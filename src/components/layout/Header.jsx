@@ -2,7 +2,9 @@ import React from 'react'
 
 function Header() {
   return (
-    <div>this is header section</div>
+    <div>
+        <div>Welcome to the aradhya tech</div>
+    </div>
   )
 }
 
