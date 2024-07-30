@@ -5,9 +5,7 @@ import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 // Example image imports (replace with your actual image paths)
 import image1 from "../../assets/images/aradyatech.png";
-import image2 from "../../assets/images/app-futura.png";
-import image3 from "../../assets/images/clutch.png";
-import image4 from "../../assets/images/goodfirm.png";
+import Button from "../common/Button";
 
 const Footer = () => {
     return (
@@ -37,8 +35,6 @@ const Footer = () => {
                         <h4 className="text-lg mb-2">Follow Us</h4>
                         <a
                             href="https://facebook.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="flex items-center mb-1 hover:text-[#ff5b2e] duration-500"
                         >
                             <FontAwesomeIcon
@@ -49,8 +45,6 @@ const Footer = () => {
                         </a>
                         <a
                             href="https://instagram.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="flex items-center hover:text-[#ff5b2e] duration-500"
                         >
                             <FontAwesomeIcon
@@ -109,11 +103,7 @@ const Footer = () => {
                                     className="w-full h-auto  md:w-35 md:h-35 sm:w-50  sm:h-50"
                                 />
                             </div>
-                            <div className="w-full flex justify-center md:w-auto md:ml-4">
-                                <button className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600">
-                                    Our Brochure
-                                </button>
-                            </div>
+                            <Button name={"Our Brochure ->"}/>
                         </div>
                     </div>
                 </div>

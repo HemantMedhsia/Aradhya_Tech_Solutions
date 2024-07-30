@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/Aradhya_tech_logo.png";
+import Button from "../common/Button";
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className="w-full bg-white flex flex-col md:flex-row justify-between items-center p-3">
+        <div className="w-full bg-white flex flex-col md:flex-row justify-between items-center p-6">
             <div className="flex justify-between w-full md:w-auto">
                 <img src={logo} alt="Logo" className="w-[212px] h-auto" />
                 <button
@@ -75,9 +76,10 @@ function Header() {
                     </li>
                 </ul>
             </div>
-            <div className="w-44 h-12 border-2 rounded-full border-[#ff5b2e] flex justify-center items-center font-bold tracking-wide hover:bg-[#ff5b2e] hover:text-white text-[#ff5b2e] duration-500 mt-3 md:mt-0">
+            {/* <div className="w-44 h-12 border-2 rounded-full border-[#ff5b2e] flex justify-center items-center font-bold tracking-wide hover:bg-[#ff5b2e] hover:text-white text-[#ff5b2e] duration-500 mt-3 md:mt-0">
                 Request Quote
-            </div>
+            </div> */}
+            <Button name={"Request Quote"} />
         </div>
     );
 }
