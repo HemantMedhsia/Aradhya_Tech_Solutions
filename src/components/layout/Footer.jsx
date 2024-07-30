@@ -1,11 +1,137 @@
-import React from 'react'
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
+
+// Example image imports (replace with your actual image paths)
+import image1 from "../../assets/images/aradyatech.png";
+import image2 from "../../assets/images/app-futura.png";
+import image3 from "../../assets/images/clutch.png";
+import image4 from "../../assets/images/goodfirm.png";
 
 const Footer = () => {
-  return (
-    <div>
-      <div> Footer Sectiom</div>
-    </div>
-  )
-}
+    return (
+        <footer className="bg-[#30303c] text-white p-6">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
+                    <div className="m-4 min-w-[200px] bg-customGray text-[#adb7c5]">
+                        <h4 className="text-lg mb-2">Contact Info</h4>
+                        <p className="flex items-center hover:text-[#ff5b2e] duration-500">
+                            <FontAwesomeIcon icon={faPhone} className="mr-2" />{" "}
+                            +91 7235888990
+                        </p>
+                        <p className="flex items-center hover:text-[#ff5b2e] duration-500">
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                className="mr-2"
+                            />
+                            <a
+                                href="mailto:technologiesaradhya@gmail.com"
+                                className="hover:text-[#ff5b2e] duration-500"
+                            >
+                                technologiesaradhya@gmail.com
+                            </a>
+                        </p>
+                    </div>
+                    <div className="m-4 text-[#adb7c5] min-w-[200px]">
+                        <h4 className="text-lg mb-2">Follow Us</h4>
+                        <a
+                            href="https://facebook.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center mb-1 hover:text-[#ff5b2e] duration-500"
+                        >
+                            <FontAwesomeIcon
+                                icon={faFacebook}
+                                className="mr-2"
+                            />{" "}
+                            Facebook
+                        </a>
+                        <a
+                            href="https://instagram.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center hover:text-[#ff5b2e] duration-500"
+                        >
+                            <FontAwesomeIcon
+                                icon={faInstagram}
+                                className="mr-2"
+                            />{" "}
+                            Instagram
+                        </a>
+                    </div>
+                    <div className="m-4 min-w-[200px] text-[#adb7c5]">
+                        <h4 className="text-lg mb-2">Services</h4>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            E-commerce Website Development
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            NGO Website Development
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            App Development
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            Digital Marketing
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            Social Media
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            iOS App Development
+                        </p>
+                    </div>
+                    <div className="m-4 min-w-[200px] text-[#adb7c5]">
+                        <h4 className="text-lg mb-2">&nbsp;</h4>{" "}
+                        {/* Blank heading for alignment */}
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            Virtual Whatsapp Marketing
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            Virtual Text SMS
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            Virtual Voice Broadcast
+                        </p>
+                        <p className="hover:text-[#ff5b2e] duration-500">
+                            Bulk SMS
+                        </p>
+                    </div>
+                </div>
 
-export default Footer
+                <div className="flex flex-col items-center mt-auto space-y-4 border-t border-gray-700 pt-4">
+                    <div className="w-full p-14">
+                        <div className="flex justify-evenly flex-wrap md:flex-nowrap items-center">
+                            <div className="w-full flex justify-between  md:w-auto mb-14 md:mb-0">
+                                <img
+                                    src={image1}
+                                    alt="Image 1"
+                                    className="w-full h-auto  md:w-35 md:h-35 sm:w-50  sm:h-50"
+                                />
+                            </div>
+                            <div className="w-full flex justify-center md:w-auto md:ml-4">
+                                <button className="bg-orange-500 text-white px-6 py-3 rounded hover:bg-orange-600">
+                                    Our Brochure
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-col items-center mt-auto space-y-4 border-t border-gray-700 pt-4">
+                    <div className="bg-customGray text-[#adb7c5] p-4 flex flex-col md:flex-row md:justify-between items-center w-full space-y-4 md:space-y-0">
+                        <p className="text-center md:text-left">
+                            We are tracking any intention of piracy.
+                        </p>
+                        <p className="text-center md:text-right">
+                            Copyright © 2024 Aradhyatechnologies. All rights
+                            reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;
