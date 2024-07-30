@@ -1,3 +1,4 @@
+import Header from "./components/layout/Header"
 import Footer from "./components/layout/Footer"
 
 
@@ -6,11 +7,13 @@ function App() {
 
   return (
     <>
-        <div className="bg-slate-700 w-full h-[100vh]">
-          Hello Aradhya Tech
+        <div className="bg-white w-full h-[100vh]">
+          <Header/>
+          <Footer/>
         </div>
+        
 
-        <Footer/>
+        
     </>
   )
 }
