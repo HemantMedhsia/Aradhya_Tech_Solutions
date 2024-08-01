@@ -4,10 +4,10 @@ import { MdConnectWithoutContact } from "react-icons/md";
 
 const ContactUs = () => {
     return (
-        <div className="bg-[#ffdbca]">
-            <div className=" flex">
-                <div className="w-[50%]">
-                    <div className="flex text-[#ff5b2e] text-xl mt-10">
+        <div className="">
+            <div className=" flex bg-[#ffdbca] pt-[10%]">
+                <div className="w-[50%] p-10">
+                    <div className="flex text-[#ff5b2e] text-xl ">
                         <div className="mr-2 ml-4 ">
                             <MdConnectWithoutContact />
                         </div>
