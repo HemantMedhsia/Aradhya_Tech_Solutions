@@ -9,7 +9,7 @@ import Button from "../common/Button";
 
 const Footer = () => {
     return (
-        <footer className="bg-[#30303c] text-white p-6">
+        <footer className="bg-[#30303c] text-white p-6 ">
             <div className="container mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
                     <div className="m-4 min-w-[200px] bg-customGray text-[#adb7c5]">
