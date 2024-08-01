@@ -84,7 +84,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="lg:mt-[8%]">
             {/* First Section */}
             <div className="flex flex-col lg:flex-row justify-between w-full px-6 lg:px-[120px] py-6 lg:py-[25px]">
                 <div className="py-4 lg:py-[5%]">
