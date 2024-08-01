@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/Aradhya_tech_logo.png";
 import Button from "../common/Button";
+import { Link } from "react-router-dom";
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ function Header() {
                     } justify-between font-semibold tracking-wider`}
                 >
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        HOME
+                        <Link to={"/"}>HOME</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -35,7 +36,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        ABOUT
+                        <Link to={"/about"}>ABOUT</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -43,7 +44,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        SERVICES
+                        <Link to={"/services"}>SERVICES</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -51,7 +52,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        BLOGS
+                        <Link to={"/blogs"}>BLOGS</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -59,7 +60,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        WORKSHOP & TRAININGS
+                        <Link to={"/workshop"}>WORKSHOP & TRAININGS</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -67,7 +68,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block">
-                        CONTACT US
+                        <Link to={"/contact"}>CONTACT US</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;

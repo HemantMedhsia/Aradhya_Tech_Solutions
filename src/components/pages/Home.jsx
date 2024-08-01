@@ -17,12 +17,19 @@ import {
     CustomPrevArrow,
 } from "../../utility/customArrow/SliderArrow";
 import Techlogo from "../common/Home/Techlogo";
+import SquareButton from "../common/SquareButton";
 
 const Home = () => {
     const [mobile, setMobile] = useState(true);
     const [frontend, setFrontend] = useState(false);
     const [database, setDatabase] = useState(false);
     const [cms, setcms] = useState(false);
+    const [activeSection, setActiveSection] = useState("mission");
+
+    const btndata = [
+        { name: "contact", label: "+91 723588990", icon: "fa-solid fa-rocket" },
+        // Add more sections as needed
+    ];
 
     const handleclick = (val) => {
         if (val === "mobile") {
@@ -414,10 +421,15 @@ const Home = () => {
                                 </h2>
                             </div>
                             <div className="mt-8 lg:mt-[40%]">
-                                <p className="text-lg text-white">
+                                <p className="text-lg text-white mb-2">
                                     Sales Department
                                 </p>
-                                <p className="text-lg text-gray-800">
+                                <SquareButton
+                                    sections={btndata}
+                                    activeSection={activeSection}
+                                    // onSectionChange={setActiveSection}
+                                />
+                                <p className="text-lg text-gray-800 my-2">
                                     hr@aradhyatechnologies.in
                                 </p>
                                 <p className="text-lg text-gray-800">
@@ -491,16 +503,21 @@ const Home = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col items-center">
-                                <Button
-                                    name={"Send Enquiry"}
-                                    width={"w-full"}
-                                />
+                                <Button name={"Send Enquiry"} width={"100%"} />
                                 <p className="mt-2 text-sm text-center">
                                     We hate spam, and we respect your privacy.
                                 </p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* Seventh section */}
+            <div>
+                <div className="flex flex-col items-center py-[10%]">
+                    <h2 className="text-4xl font-bold text-gray-800">India</h2>
+                    <p className="text-xl font-semibold text-gray-800 my-2">Varanasi, Uttar Pradesh 221010</p>
                 </div>
             </div>
         </div>

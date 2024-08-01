@@ -1,21 +1,22 @@
 import { React, useState } from "react";
 import image1 from "../../assets/images/Illustration (1).png";
 import CountUp from "react-countup";
-import image2 from "../../assets/images/teamwork.png"
+import image2 from "../../assets/images/teamwork.png";
+import SquareButton from "../common/SquareButton";
 
 export const About = () => {
     const [activeSection, setActiveSection] = useState("mission");
 
-    // styling for selction
-
-    <style>
-        {`
-                .custom-selection::selection {
-                    background-color: #ffeb3b; /* Your desired background color for selection */
-                    color: #000; /* Your desired text color for selection */
-                }
-                `}
-    </style>;
+    const btndata = [
+        { name: "mission", label: "Our Mission", icon: "fa-solid fa-rocket" },
+        { name: "vision", label: "Our Vission", icon: "fa-solid fa-rocket" },
+        {
+            name: "commitment",
+            label: "Our Commitment",
+            icon: "fa-solid fa-rocket",
+        },
+        { name: "values", label: "Our Values", icon: "fa-solid fa-rocket" },
+    ];
 
     // button styling
     const buttonClass = (section) =>
@@ -167,46 +168,11 @@ export const About = () => {
                 <div className="w-full lg:w-1/3 flex lg:flex-col lg:justify-start overflow-x-auto p-4 lg:p-6">
                     {/* Container for horizontal scrolling on small screens */}
                     <div className="flex flex-nowrap lg:flex-col   lg:items-start lg:space-y-2">
-                        <button
-                            className={`${buttonClass("mission")} mx-2 lg:mx-0`}
-                            onClick={() => setActiveSection("mission")}
-                        >
-                            <div className="flex items-center">
-                                <i className="fa-solid fa-rocket m-2 p-2 bg-slate-200 text-opacity-40 rounded-full"></i>
-                                <span className="block ml-2">Our Mission</span>
-                            </div>
-                        </button>
-                        <button
-                            className={`${buttonClass("vision")} mx-2 lg:mx-0`}
-                            onClick={() => setActiveSection("vision")}
-                        >
-                            <div className="flex items-center">
-                                <i className="fa-regular fa-eye m-2 rounded-full p-2 bg-slate-200 text-opacity-40"></i>
-                                <span className="block ml-2">Our Vision</span>
-                            </div>
-                        </button>
-                        <button
-                            className={`${buttonClass(
-                                "commitment"
-                            )} mx-2  lg:mx-0`}
-                            onClick={() => setActiveSection("commitment")}
-                        >
-                            <div className="flex items-center">
-                                <i className="fa-solid fa-handshake-angle m-2 p-2 bg-slate-200 rounded-full text-opacity-40"></i>
-                                <span className="block ml-2">
-                                    Our Commitment
-                                </span>
-                            </div>
-                        </button>
-                        <button
-                            className={`${buttonClass("values")} mx-2  lg:mx-0`}
-                            onClick={() => setActiveSection("values")}
-                        >
-                            <div className="flex items-center">
-                                <i className="fa-solid fa-hand-peace m-2 rounded-full p-2 bg-slate-200 text-opacity-40 text-xl"></i>
-                                <span className="block ml-2">Core Values</span>
-                            </div>
-                        </button>
+                        <SquareButton
+                            sections={btndata}
+                            activeSection={activeSection}
+                            onSectionChange={setActiveSection}
+                        />
                     </div>
                 </div>
 
@@ -396,7 +362,7 @@ export const About = () => {
                     </h1>
                 </div>
                 <div className="w-[50%]">
-                  <img src={image2}/>
+                    <img src={image2} />
                 </div>
             </div>
         </div>
