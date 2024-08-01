@@ -10,6 +10,7 @@ import imgabout3 from "../../assets/images/aboutCardSvg3.svg";
 import imgabout4 from "../../assets/images/aboutCardSvg4.svg";
 import imgabout5 from "../../assets/images/aboutCardSvg5.svg";
 import imgabout6 from "../../assets/images/aboutCardSvg6.svg";
+import SquareButton from "../common/SquareButton";
 
 export const About = () => {
     const [activeSection, setActiveSection] = useState("mission");
