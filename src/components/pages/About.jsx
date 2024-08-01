@@ -1,7 +1,15 @@
 import { React, useState } from "react";
 import image1 from "../../assets/images/Illustration (1).png";
 import CountUp from "react-countup";
-import image2 from "../../assets/images/teamwork.png"
+import image2 from "../../assets/images/teamwork.png";
+import Button from "../common/Button";
+import Aboutcard from "../common/Home/ServicesCard";
+import imgabout1 from "../../assets/images/aboutCardSvg1.svg";
+import imgabout2 from "../../assets/images/aboutCardSvg2.svg";
+import imgabout3 from "../../assets/images/aboutCardSvg3.svg";
+import imgabout4 from "../../assets/images/aboutCardSvg4.svg";
+import imgabout5 from "../../assets/images/aboutCardSvg5.svg";
+import imgabout6 from "../../assets/images/aboutCardSvg6.svg";
 
 export const About = () => {
     const [activeSection, setActiveSection] = useState("mission");
@@ -371,12 +379,12 @@ export const About = () => {
 
             {/* Section-4 */}
 
-            <div className="h-[200px]">
+            <div className="h-full">
                 <div className="text-center mt-16 ">
-                    <h1 className="text-4xl text-[#30303c] font-bold ">
+                    <h1 className="text-3xl text-[#30303c] mx-1 font-bold ">
                         Transparency and Ethics
                     </h1>
-                    <p className="mt-4 text-[#52525d] text-base">
+                    <p className="mt-4 text-[#52525d] mx-3 text-base">
                         Committed to transparent and ethical practices in all
                         our endeavors.
                     </p>
@@ -384,19 +392,92 @@ export const About = () => {
             </div>
 
             {/* Section-5 */}
-            <div className="h-[400px]"></div>
+            <div className="w-full flex justify-center">
+                <div className="w-11/12 ml-6 mb-2">
+                    <div className="flex flex-wrap justify-between mb-6">
+                        <div className="mt-5">
+                            <Aboutcard
+                                img={imgabout1}
+                                title={"Client-Centric Approach"}
+                                desc={
+                                    "Putting clients at the heart of our approach, delivering tailored solutions with a client-centric focus."
+                                }
+                            />
+                        </div>
+
+                        <div className="mt-5">
+                            <Aboutcard
+                                img={imgabout2}
+                                title={"Service Delivered in Time"}
+                                desc={
+                                    "Ensuring timely delivery of services, meeting deadlines with efficiency and reliability."
+                                }
+                            />
+                        </div>
+
+                        <div className="mt-5">
+                            {" "}
+                            <Aboutcard
+                                img={imgabout3}
+                                title={"Effective Collaboration"}
+                                desc={
+                                    "Fostering effective collaboration to drive success, working closely with clients to achieve shared goals."
+                                }
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex flex-wrap justify-between mb-6 ">
+                        <div className="mt-5">
+                            <Aboutcard
+                                img={imgabout4}
+                                title={"Employee Benefits"}
+                                desc={
+                                    "At Aradhya Technologies, we value our employees and strive to provide comprehensive employee benefits."
+                                }
+                            />
+                        </div>
+
+                        <div className="mt-5">
+                            {" "}
+                            <Aboutcard
+                                img={imgabout5}
+                                title={"Team Work"}
+                                desc={
+                                    "Promoting a culture of teamwork, collaboration, and synergy, where our diverse talents come together to achieve remarkable results."
+                                }
+                            />
+                        </div>
+
+                        <div className="mt-5">
+                            <Aboutcard
+                                img={imgabout6}
+                                title={"Quality of Service"}
+                                desc={
+                                    "Committed to delivering exceptional quality of service, ensuring our clients receive solutions that exceed their expectations."
+                                }
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             {/* Section -6 */}
-            <div className="bg-[#fbf1ef] flex flex-row">
-                <div className="w-[50%]">
-                    <h1>Career</h1>
-                    <h1>
+            <div className="bg-[#fbf1ef] flex flex-col md:flex-row">
+                <div className="flex flex-col items-center md:items-start md:ml-5 md:mt-10 md:w-1/2 p-5">
+                    <h1 className="mt-10 text-[#ff5b2e] text-lg text-center md:text-left">
+                        CAREER
+                    </h1>
+                    <h1 className="tracking-wider mt-5 text-2xl md:text-4xl font-semibold text-[#30303c] text-center md:text-left">
                         Teamwork is the ability to work together toward a common
                         vision.
                     </h1>
+                    <div className="mt-10 flex justify-center md:justify-start w-full">
+                        <Button name={"Join Our Team"} />
+                    </div>
                 </div>
-                <div className="w-[50%]">
-                  <img src={image2}/>
+                <div className="mt-10 md:mt-14 md:w-1/2 p-5">
+                    <img src={image2} className="w-full h-auto" />
                 </div>
             </div>
         </div>
