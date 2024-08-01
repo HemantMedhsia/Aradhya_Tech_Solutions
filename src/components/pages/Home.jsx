@@ -205,16 +205,19 @@ const Home = () => {
                                 img={serviceCardSvg1}
                                 title="Web Development"
                                 desc="Elevate your online presence with expertly crafted websites by Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                             <ServicesCard
                                 img={serviceCardSvg2}
                                 title="E-commerce Website Development"
                                 desc="Unlock online success with our comprehensive E-commerce solutions at Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                             <ServicesCard
                                 img={serviceCardSvg3}
                                 title="Website Re-Design"
                                 desc="Revitalize your online presence with our expert website re-design services at Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                         </div>
 
@@ -223,16 +226,19 @@ const Home = () => {
                                 img={serviceCardSvg4}
                                 title="Android App Development"
                                 desc="Powerful apps tailored to your needs, crafted by Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                             <ServicesCard
                                 img={serviceCardSvg4}
                                 title="iOS App Development"
                                 desc="Powerful apps tailored to your needs, crafted by Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                             <ServicesCard
                                 img={serviceCardSvg4}
                                 title="Customizable"
                                 desc="Powerful apps tailored to your needs, crafted by Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                         </div>
 
@@ -241,16 +247,19 @@ const Home = () => {
                                 img={serviceCardSvg5}
                                 title="Digital Marketing"
                                 desc="Amplify your brand's reach and engage your audience with our impactful digital marketing strategies at Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                             <ServicesCard
                                 img={serviceCardSvg6}
                                 title="Social Media"
                                 desc="Revitalize your online presence with our expert website re-design services at Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                             <ServicesCard
                                 img={serviceCardSvg7}
                                 title="Bulk SMS"
                                 desc="Reach your target audience instantly and effectively with our efficient bulk SMS services at Aradhya Technologies."
+                                readmore={"Read More"}
                             />
                         </div>
                     </div>
