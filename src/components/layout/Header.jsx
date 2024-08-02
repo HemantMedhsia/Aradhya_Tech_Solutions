@@ -77,7 +77,8 @@ function Header() {
                     </li>
                 </ul>
             </div>
-            <Button name={"Request Quote"} />
+            <Link to={"/contact"}><Button name={"Request Quote"}  /></Link>
+            
         </div>
     );
 }

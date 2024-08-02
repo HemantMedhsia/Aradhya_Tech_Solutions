@@ -526,7 +526,9 @@ const Home = () => {
             <div>
                 <div className="flex flex-col items-center py-[10%]">
                     <h2 className="text-4xl font-bold text-gray-800">India</h2>
-                    <p className="text-xl font-semibold text-gray-800 my-2">Varanasi, Uttar Pradesh 221010</p>
+                    <p className="text-xl font-semibold text-gray-800 my-2">
+                        Varanasi, Uttar Pradesh 221010
+                    </p>
                 </div>
             </div>
         </div>
