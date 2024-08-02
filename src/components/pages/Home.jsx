@@ -183,7 +183,7 @@ const Home = () => {
 
             {/* Third Section */}
             <div className="w-full flex flex-col justify-center items-center mt-5">
-                <div className="w-full lg:w-1/2 flex flex-col justify-center items-center text-justify">
+                <div className="w-full my-12 lg:w-1/2 flex flex-col justify-center items-center text-justify">
                     <h2 className="text-4xl px-3 text-gray-800 font-bold mb-4">
                         See what we can do for you
                     </h2>
@@ -200,7 +200,7 @@ const Home = () => {
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="w-11/12">
-                        <div className="flex flex-wrap justify-between mb-6">
+                        <div className="flex flex-wrap justify-evenly mb-6">
                             <ServicesCard
                                 img={serviceCardSvg1}
                                 title="Web Development"
@@ -221,7 +221,7 @@ const Home = () => {
                             />
                         </div>
 
-                        <div className="flex flex-wrap justify-between mb-6">
+                        <div className="flex flex-wrap justify-evenly mb-6">
                             <ServicesCard
                                 img={serviceCardSvg4}
                                 title="Android App Development"
@@ -242,7 +242,7 @@ const Home = () => {
                             />
                         </div>
 
-                        <div className="flex flex-wrap justify-between mb-6">
+                        <div className="flex flex-wrap justify-evenly mb-6">
                             <ServicesCard
                                 img={serviceCardSvg5}
                                 title="Digital Marketing"
@@ -264,7 +264,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="my-2 lg:my-5 flex flex-col lg:flex-row items-center justify-center">
+                <div className="pb-8 lg:my-5 flex flex-col lg:flex-row items-center justify-center">
                     <div className="w-[100%] flex justify-center lg:w-auto text-center lg:text-left mb-4 lg:mb-0">
                         <h2 className="text-2xl lg:text-4xl font-bold text-[#30303c]">
                             Hire us for customized{" "}
@@ -324,7 +324,7 @@ const Home = () => {
             </div>
 
             {/* Fifth section */}
-            <div className="w-full flex flex-col items-center my-6 px-4">
+            <div className="w-full flex flex-col items-center my-6 px-4 py-10">
                 <div className="w-full lg:w-3/5 flex flex-col items-center text-justify">
                     <h2 className="text-3xl md:text-4xl px-3 text-gray-800 font-bold mb-4">
                         Technologies we work with

@@ -39,7 +39,7 @@ export const About = () => {
         }`;
 
     return (
-        <div className="lg:mt-[8%]">
+        <div className=" lg:mt-[8%]">
             {/* section 1 */}
             <div className="flex flex-col md:flex-row justify-between py-4 px-4 md:px-12">
                 <div className="w-full md:w-1/2 mb-6 md:mb-0 mr-4">
