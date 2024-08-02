@@ -1,12 +1,11 @@
 /* index.css or App.css */
-@import 'slick-carousel/slick/slick.css';
-@import 'slick-carousel/slick/slick-theme.css';
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 /* Tailwind imports should follow */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 /* Custom scrollbar for Webkit browsers */
 ::-webkit-scrollbar {

@@ -7,7 +7,7 @@ function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className="w-full bg-white bg-opacity-50 backdrop-blur-sm fixed top-0 left-0 z-50 flex flex-col md:flex-row justify-between items-center p-6">
+        <div className="w-full bg-transparent bg-opacity-50 backdrop-blur-sm lg:fixed lg:top-0 lg:left-0 lg:z-50 flex flex-col md:flex-row justify-between items-center p-6">
             <div className="flex justify-between w-full md:w-auto">
                 <img src={logo} alt="Logo" className="w-[212px] h-auto" />
                 <button
