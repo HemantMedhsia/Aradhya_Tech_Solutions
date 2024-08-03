@@ -8,7 +8,7 @@ const ServicesCard = ({ img, title, desc, readmore }) => {
             </div>
             <h2 className="text-2xl font-bold mt-4 text-[#30303c]">{title}</h2>
             <p className="text-lg text-[#52525d] mt-4">{desc}</p>
-            <p className="text-lg mt-4">{readmore}</p>
+            <p className="text-lg mt-4 cursor-pointer hover:text-[#ff5b2e]">{readmore}</p>
         </div>
     );
 };

@@ -7,7 +7,7 @@ const WorkCard = ({ img, title, desc }) => {
                 <img
                     src={img}
                     alt={title}
-                    className="w-full lg:w-[50%] h-auto object-cover"
+                    className="w-full lg:w-[100%] h-auto object-cover"
                 />
             </div>
             <p className="text-base sm:text-lg text-[#52525d] mt-4">{desc}</p>

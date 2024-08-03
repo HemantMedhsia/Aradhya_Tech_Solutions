@@ -3,8 +3,8 @@ import CountUp from "react-countup";
 
 const ServicebtnCard = ({ value, title, img }) => {
     return (
-        <div className="flex  w-[31%] h-auto px-6 py-6 bg-white rounded-xl">
-            <div className="mr-4 w-[90px] p-2 rounded-[50%] flex justify-center bg-[#ff5b2e]">
+        <div className="flex w-full lg:w-[31%] h-auto px-6 py-6 bg-white rounded-xl">
+            <div className="mr-4 lg:w-[90px] p-2 rounded-[50%] flex justify-center bg-[#ff5b2e]">
                 <img className="w-[65%]" src={img} />
             </div>
             <div className="w-[80%]">

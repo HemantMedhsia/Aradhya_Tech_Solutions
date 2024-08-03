@@ -13,6 +13,37 @@ import ServicesCard from "../common/Home/ServicesCard";
 import NewBoxComponent from "../common/services/NewBoxComponent";
 import ToastCard from "../common/services/ToastCard";
 import CommonContactSection from "../layout/CommonContactSection";
+import img1 from "../../assets/images/Designservice/Img1.svg";
+import branding from "../../assets/images/Designservice/branding.svg";
+import mobileapp from "../../assets/images/Designservice/mobile-app.svg";
+import ui from "../../assets/images/Designservice/ui.svg";
+import appcode from "../../assets/images/Developmentservices/appcode.svg";
+import buyonline from "../../assets/images/Developmentservices/buy-online.svg";
+import coding from "../../assets/images/Developmentservices/coding.svg";
+import servers from "../../assets/images/Developmentservices/servers.svg";
+import ppc from "../../assets/images/Marketingservices/ppc.svg";
+import ratings from "../../assets/images/Marketingservices/ratings.svg";
+import searchEngine from "../../assets/images/Marketingservices/search-engine.svg";
+import socialMedia from "../../assets/images/Marketingservices/social-media.svg";
+import computer from "../../assets/images/Developmentprocess/computer.svg";
+import creativity from "../../assets/images/Developmentprocess/creativity.svg";
+import cs from "../../assets/images/Developmentprocess/customer-support.svg";
+import pencil from "../../assets/images/Developmentprocess/pencil.svg";
+import prototype from "../../assets/images/Developmentprocess/prototype.svg";
+import qc from "../../assets/images/Developmentprocess/quality-check.svg";
+import su from "../../assets/images/Developmentprocess/start-up.svg";
+import one from "../../assets/images/Industryweserve/1.svg";
+import two from "../../assets/images/Industryweserve/2.svg";
+import three from "../../assets/images/Industryweserve/3.svg";
+import four from "../../assets/images/Industryweserve/4.svg";
+import five from "../../assets/images/Industryweserve/5.svg";
+import six from "../../assets/images/Industryweserve/6.svg";
+import seven from "../../assets/images/Industryweserve/7.svg";
+import eight from "../../assets/images/Industryweserve/8.svg";
+import nine from "../../assets/images/Industryweserve/9.svg";
+import ten from "../../assets/images/Industryweserve/10.svg";
+import eleven from "../../assets/images/Industryweserve/11.svg";
+import twelve from "../../assets/images/Industryweserve/12.svg";
 
 const Services = () => {
     return (
@@ -39,7 +70,7 @@ const Services = () => {
                         transformation with Aradhya Technologies.
                     </p>
                 </div>
-                <div className="w-[90%] flex justify-evenly my-16">
+                <div className="lg:w-[90%] flex flex-col lg:flex-row lg:justify-evenly my-16">
                     <ServicebtnCard
                         value={"150"}
                         title={"Mobile Apps Developed"}
@@ -79,7 +110,7 @@ const Services = () => {
                         </h2>
                         <div className="flex justify-between">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={img1}
                                 title={"Website Design"}
                                 desc={
                                     "Elevate your online presence with expertly crafted websites by Aradhya Technologies."
@@ -87,7 +118,7 @@ const Services = () => {
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={mobileapp}
                                 title={"UI/UX Design"}
                                 desc={
                                     "We create comprehensive and sophisticated yet simple to use interfaces for your web , app & social medias."
@@ -98,7 +129,7 @@ const Services = () => {
 
                         <div className="flex justify-between my-6">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={ui}
                                 title={"Brandings"}
                                 desc={
                                     "Amplify your brand's reach and engage your audience with our impactful digital marketing strategies at Aradhya Technologies."
@@ -106,7 +137,7 @@ const Services = () => {
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={branding}
                                 title={"Mobile Apps Design"}
                                 desc={
                                     "Powerful apps tailored to your needs, crafted by Aradhya Technologies."
@@ -120,44 +151,43 @@ const Services = () => {
 
             {/* section 3 */}
             <div className="h-auto bg-[#fbf1ef]">
-                <div className="flex px-[9%] py-[7%]">
-                    <div className="w-[39%]">
-                        <div className="w-[80%]">
-                            <h2 className="text-4xl text-gray-800 font-bold tracking-wide leading-snug">
+                <div className="flex flex-col lg:flex-row px-4 py-8 lg:px-[9%] lg:py-[7%]">
+                    <div className="w-full lg:w-[39%] mb-8 lg:mb-0">
+                        <div className="w-full lg:w-[80%]">
+                            <h2 className="text-2xl lg:text-4xl text-gray-800 font-bold tracking-wide leading-snug">
                                 Our Professional Developers are ready to serve
                                 you these services.
                             </h2>
-
-                            <div className="my-10">
+                            <div className="my-6 lg:my-10">
                                 <Button name={"Need a Developer"} />
                             </div>
                         </div>
                     </div>
-                    <div className="w-[61%]">
-                        <h2 className="text-5xl font-bold pb-8">
+                    <div className="w-full lg:w-[61%]">
+                        <h2 className="text-3xl lg:text-5xl font-bold pb-6 lg:pb-8">
                             Development Service
                         </h2>
-                        <div className="flex justify-between">
+                        <div className="flex flex-col lg:flex-row lg:justify-between">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={appcode}
                                 title={"NGO Web Development"}
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={coding}
                                 title={"App Development"}
                                 readmore={"Read More"}
                             />
                         </div>
 
-                        <div className="flex justify-between my-6">
+                        <div className="flex flex-col lg:flex-row lg:justify-between my-6">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={buyonline}
                                 title={"E-Commerce Development"}
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={servers}
                                 title={"Cloud Based App Development"}
                                 readmore={"Read More"}
                             />
@@ -190,12 +220,12 @@ const Services = () => {
                         </h2>
                         <div className="flex justify-between">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={searchEngine}
                                 title={"Search Engine Optimization"}
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={socialMedia}
                                 title={"Social Media Optimization"}
                                 readmore={"Read More"}
                             />
@@ -203,12 +233,12 @@ const Services = () => {
 
                         <div className="flex justify-between my-6">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={ppc}
                                 title={"Lead Generation"}
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={ratings}
                                 title={"Online Reputation Management"}
                                 desc={
                                     "Elevate your online presence with expertly crafted websites by Aradhya Technologies."
@@ -241,16 +271,16 @@ const Services = () => {
                     </div>
                     <div className="w-[61%]">
                         <h2 className="text-5xl font-bold pb-8">
-                            Marketing Service
+                            Marketing Bussiness
                         </h2>
                         <div className="flex justify-between">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={searchEngine}
                                 title={"Bulk SMS"}
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={socialMedia}
                                 title={"Virtual Whatsapp Marketing"}
                                 readmore={"Read More"}
                             />
@@ -258,12 +288,12 @@ const Services = () => {
 
                         <div className="flex justify-between my-6">
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={ppc}
                                 title={"Virtual Text SMS"}
                                 readmore={"Read More"}
                             />
                             <ServicesCard
-                                img={serviceCardSvg1}
+                                img={ratings}
                                 title={"Virtual Voice Broadcast"}
                                 readmore={"Read More"}
                             />
@@ -288,28 +318,28 @@ const Services = () => {
                     <div className="flex justify-between mb-6">
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={pencil}
                                 title={"Requirment Gathering"}
                                 number={"01"}
                             />
                         </div>
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={creativity}
                                 title={"Design"}
                                 number={"02"}
                             />
                         </div>
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={prototype}
                                 title={"Portotype"}
                                 number={"03"}
                             />
                         </div>
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={computer}
                                 title={"Development"}
                                 number={"04"}
                             />
@@ -318,21 +348,21 @@ const Services = () => {
                     <div className="flex justify-between">
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={qc}
                                 title={"Quality Assurance"}
                                 number={"05"}
                             />
                         </div>
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={su}
                                 title={"Deploymen"}
                                 number={"06"}
                             />
                         </div>
                         <div className="mx-4">
                             <NewBoxComponent
-                                img={serviceCardSvg2}
+                                img={cs}
                                 title={"Support & Maintenance"}
                                 number={"07"}
                             />
@@ -353,35 +383,28 @@ const Services = () => {
                 </div>
                 <div className="w-full">
                     <div className="flex justify-evenly w-full mb-12">
-                        <ToastCard
-                            img={serviceCardSvg1}
-                            title={"Real estate"}
-                        />
-                        <ToastCard img={serviceCardSvg1} title={"Education"} />
-                        <ToastCard img={serviceCardSvg1} title={"Event"} />
-                        <ToastCard img={serviceCardSvg1} title={"NGO"} />
+                        <ToastCard img={one} title={"Real estate"} />
+                        <ToastCard img={two} title={"Education"} />
+                        <ToastCard img={three} title={"Event"} />
+                        <ToastCard img={four} title={"NGO"} />
                     </div>
                     <div className="flex justify-evenly w-full mb-12">
-                        <ToastCard img={serviceCardSvg1} title={"Finance"} />
-                        <ToastCard img={serviceCardSvg1} title={"On-Demand"} />
-                        <ToastCard
-                            img={serviceCardSvg1}
-                            title={"Tour & Travels"}
-                        />
-                        <ToastCard img={serviceCardSvg1} title={"Transport"} />
+                        <ToastCard img={five} title={"Finance"} />
+                        <ToastCard img={six} title={"On-Demand"} />
+                        <ToastCard img={seven} title={"Tour & Travels"} />
+                        <ToastCard img={eight} title={"Transport"} />
                     </div>
                     <div className="flex justify-evenly w-full mb-12">
-                        <ToastCard img={serviceCardSvg1} title={"eCommerce"} />
-                        <ToastCard img={serviceCardSvg1} title={"Healthcare"} />
-                        <ToastCard img={serviceCardSvg1} title={"Resturant"} />
-                        <ToastCard img={serviceCardSvg1} title={"Grocery"} />
+                        <ToastCard img={nine} title={"eCommerce"} />
+                        <ToastCard img={ten} title={"Healthcare"} />
+                        <ToastCard img={eleven} title={"Resturant"} />
+                        <ToastCard img={twelve} title={"Grocery"} />
                     </div>
                 </div>
             </div>
 
             {/* section 8 */}
-            <CommonContactSection/>
-            
+            <CommonContactSection />
         </div>
     );
 };

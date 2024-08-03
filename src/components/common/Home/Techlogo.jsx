@@ -6,7 +6,7 @@ const Techlogo = ({ img, name }) => {
             <div className="w-[40%] mt-3">
                 <img src={img} />
             </div>
-            <p className="text-xl my-4">{name} </p>
+            <p className="text-md my-4">{name} </p>
         </div>
     );
 };

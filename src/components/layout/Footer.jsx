@@ -10,10 +10,10 @@ import Button from "../common/Button";
 const Footer = () => {
     return (
         <footer className="bg-[#30303c] text-white p-6 ">
-            <div className="container mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
-                    <div className="m-4 min-w-[200px] bg-customGray text-[#adb7c5]">
-                        <h4 className="text-lg mb-2">Contact Info</h4>
+            <div className="w-[100%]">
+                <div className="flex justify-between pl-32 mb-16 mt-8">
+                    <div className=" w-[25%] bg-customGray text-[#adb7c5]">
+                        <h4 className="text-xl font-semibold mb-2">Contact Info</h4>
                         <p className="flex items-center hover:text-[#ff5b2e] duration-500">
                             <FontAwesomeIcon icon={faPhone} className="mr-2" />{" "}
                             +91 7235888990
@@ -31,8 +31,8 @@ const Footer = () => {
                             </a>
                         </p>
                     </div>
-                    <div className="m-4 text-[#adb7c5] min-w-[200px]">
-                        <h4 className="text-lg mb-2">Follow Us</h4>
+                    <div className=" text-[#adb7c5] w-[15%]">
+                        <h4 className="text-xl font-semibold mb-2">Follow Us</h4>
                         <a
                             href="https://facebook.com"
                             className="flex items-center mb-1 hover:text-[#ff5b2e] duration-500"
@@ -54,40 +54,40 @@ const Footer = () => {
                             Instagram
                         </a>
                     </div>
-                    <div className="m-4 min-w-[200px] text-[#adb7c5]">
-                        <h4 className="text-lg mb-2">Services</h4>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                    <div className="w-[25%] text-[#adb7c5]">
+                        <h4 className="text-xl font-semibold mb-2">Services</h4>
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             E-commerce Website Development
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             NGO Website Development
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             App Development
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             Digital Marketing
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             Social Media
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             iOS App Development
                         </p>
                     </div>
-                    <div className="m-4 min-w-[200px] text-[#adb7c5]">
+                    <div className=" w-[25%] text-[#adb7c5]">
                         <h4 className="text-lg mb-2">&nbsp;</h4>{" "}
                         {/* Blank heading for alignment */}
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             Virtual Whatsapp Marketing
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             Virtual Text SMS
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             Virtual Voice Broadcast
                         </p>
-                        <p className="hover:text-[#ff5b2e] duration-500">
+                        <p className="hover:text-[#ff5b2e] cursor-pointer duration-500">
                             Bulk SMS
                         </p>
                     </div>
@@ -103,7 +103,7 @@ const Footer = () => {
                                     className="w-full h-auto  md:w-35 md:h-35 sm:w-50  sm:h-50"
                                 />
                             </div>
-                            <Button name={"Our Brochure ->"}/>
+                            <Button name={"Our Brochure ->"} />
                         </div>
                     </div>
                 </div>
