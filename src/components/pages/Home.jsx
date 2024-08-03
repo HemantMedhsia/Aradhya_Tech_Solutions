@@ -12,6 +12,35 @@ import serviceCardSvg7 from "../../assets/images/serviceCardSvg7.svg";
 import NormalCard from "../common/Home/NormalCard";
 import ServicesCard from "../common/Home/ServicesCard";
 import WorkCard from "../common/Home/WorkCard";
+import Ecommerce from '../../assets/images/OurRecentWork/E-commerce.png';
+import Ngo1 from '../../assets/images/OurRecentWork/NGOWebsite.png';
+import Ngo2 from '../../assets/images/OurRecentWork/NGOWeb2.png';
+import Ngo3 from '../../assets/images/OurRecentWork/NGO3.png';
+import Training from '../../assets/images/OurRecentWork/TrainingInstitute.png';
+import Trust from '../../assets/images/OurRecentWork/TrustWebsiteAAS.png';
+import android from '../../assets/images/Mobile/android.svg'
+import ios from '../../assets/images/Mobile/ios.svg';
+import java from '../../assets/images/Mobile/java.svg';
+import pwa from '../../assets/images/Mobile/pwa.svg';
+import ionic from '../../assets/images/Mobile/ionic.png';
+import react from '../../assets/images/Mobile/react.svg';
+import angular from '../../assets/images/Frontend/angular.svg';
+import bootstrap from '../../assets/images/Frontend/bootstrap.svg';
+import html5 from '../../assets/images/Frontend/html5.svg';
+import npm from '../../assets/images/Frontend/Npm.svg';
+import typescript from '../../assets/images/Frontend/typescript.svg'
+import reactjs from '../../assets/images/Frontend/Reactjs.svg'
+import mariadb from '../../assets/images/Database/MariaDB.svg';
+import mongodb from '../../assets/images/Database/mongodb.svg';
+import mysql from '../../assets/images/Database/mysql.svg';
+import postgresql from '../../assets/images/Database/postgresql.svg';
+import sqlite from '../../assets/images/Database/sqlite.svg'
+import bigcom from '../../assets/images/CMS/bigcommerce.svg';
+import shopify from '../../assets/images/CMS/shopify.svg';
+import wordpress from '../../assets/images/CMS/wordpress.svg';
+import wix from '../../assets/images/CMS/wix.svg';
+import woo from '../../assets/images/CMS/woo.svg';
+
 import {
     CustomNextArrow,
     CustomPrevArrow,
@@ -285,39 +314,49 @@ const Home = () => {
                     <h2 className="text-3xl md:text-4xl font-bold">
                         Our Recent Work
                     </h2>
-                    <p className="text-lg md:text-xl mt-4 md:mt-0">Hire Us</p>
+                    <p className="text-lg font-semibold md:text-xl mt-4 cursor-pointer hover:text-[#ff5b2e] md:mt-0">Hire Us</p>
                 </div>
                 <div className="py-4 px-8">
                     <Slider {...settings}>
                         <WorkCard
-                            img={serviceCardSvg3}
-                            desc={"Infographic website learning management"}
+                            img={Training}
+                            desc={"Training Institute"}
+                            title={"Tekriwal Education"}
+                        />
+                        <WorkCard
+                            img={Ngo1}
+                            desc={"NGO Website"}
+                            title={"Indian Rural Environment Trust"}
+                        />
+                        <WorkCard
+                            img={Ngo2}
+                            desc={"NGO Website"}
+                            title={"Narayan Seva Sthali"}
+                        />
+                        <WorkCard
+                            img={Trust}
+                            desc={"Trust Website"}
+                            title={"AAS Foundation (Trust)"}
+                        />
+                        <WorkCard
+                            img={Ngo3}
+                            desc={"NGO Website"}
+                            title={"Beti Raksha Dal"}
+                        />
+                        <WorkCard
+                            img={Ecommerce}
+                            desc={"E-Commerce Infographic Website"}
+                            title={"Bajaj Techno World"}
+                        />
+                        <WorkCard
+                            img={Trust}
+                            desc={"Infographic Website Learning Management"}
                             title={"Software Solution Information Technology"}
                         />
                         <WorkCard
-                            img={serviceCardSvg3}
-                            desc={"Infographic website learning management"}
-                            title={"Software Solution Information Technology"}
-                        />
-                        <WorkCard
-                            img={serviceCardSvg3}
-                            desc={"Infographic website learning management"}
-                            title={"Software Solution Information Technology"}
-                        />
-                        <WorkCard
-                            img={serviceCardSvg3}
-                            desc={"Infographic website learning management"}
-                            title={"Software Solution Information Technology"}
-                        />
-                        <WorkCard
-                            img={serviceCardSvg3}
-                            desc={"Infographic website learning management"}
-                            title={"Software Solution Information Technology"}
-                        />
-                        <WorkCard
-                            img={serviceCardSvg3}
-                            desc={"Infographic website learning management"}
-                            title={"Software Solution Information Technology"}
+                            img={Ecommerce}
+                            desc={"Technology E-Commerce"}
+                            title={"Aditya Raj Technologies"}
                         />
                     </Slider>
                 </div>
@@ -345,25 +384,25 @@ const Home = () => {
                         <div className="w-full lg:w-3/4 border-b-2 border-black">
                             <ul className="flex flex-wrap justify-around lg:justify-between w-full text-base md:text-lg font-semibold">
                                 <li
-                                    className="cursor-pointer hover:text-blue-500"
+                                    className="cursor-pointer hover:text-[#ff5b2e]"
                                     onClick={() => handleclick("mobile")}
                                 >
                                     Mobile
                                 </li>
                                 <li
-                                    className="cursor-pointer hover:text-blue-500"
+                                    className="cursor-pointer hover:text-[#ff5b2e]"
                                     onClick={() => handleclick("frontend")}
                                 >
                                     Front End
                                 </li>
                                 <li
-                                    className="cursor-pointer hover:text-blue-500"
+                                    className="cursor-pointer hover:text-[#ff5b2e]"
                                     onClick={() => handleclick("database")}
                                 >
                                     Database
                                 </li>
                                 <li
-                                    className="cursor-pointer hover:text-blue-500"
+                                    className="cursor-pointer hover:text-[#ff5b2e]"
                                     onClick={() => handleclick("cms")}
                                 >
                                     CMS
@@ -374,40 +413,40 @@ const Home = () => {
                     <div className="w-full flex flex-col items-center">
                         {mobile && (
                             <div className="flex flex-wrap justify-evenly lg:justify-between w-full max-w-4xl mb-4">
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
+                                <Techlogo name={"iOS"} img={ios} />
+                                <Techlogo name={"Android"} img={android} />
+                                <Techlogo name={"Java"} img={java} />
+                                <Techlogo name={"React Native"} img={react} />
+                                <Techlogo name={"PWA"} img={pwa} />
+                                <Techlogo name={"Ionic"} img={ionic} />
                             </div>
                         )}
                         {frontend && (
                             <div className="flex flex-wrap justify-evenly lg:justify-between w-full max-w-4xl mb-4">
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
+                                <Techlogo name={"Angular JS"} img={angular} />
+                                <Techlogo name={"ReactJs"} img={reactjs} />
+                                <Techlogo name={"Npm"} img={npm} />
+                                <Techlogo name={"Typescript"} img={typescript} />
+                                <Techlogo name={"HTML5"} img={html5} />
+                                <Techlogo name={"Bootstrap"} img={bootstrap} />
                             </div>
                         )}
                         {database && (
                             <div className="flex flex-wrap justify-evenly lg:justify-between w-full max-w-4xl mb-4">
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
+                                <Techlogo name={"MariaDB"} img={mariadb} />
+                                <Techlogo name={"MongoDb"} img={mongodb} />
+                                <Techlogo name={"MySQL"} img={mysql} />
+                                <Techlogo name={"PostgreSQL"} img={postgresql} />
+                                <Techlogo name={"SQLite"} img={sqlite} />
                             </div>
                         )}
                         {cms && (
                             <div className="flex flex-wrap justify-evenly lg:justify-between w-full max-w-4xl mb-4">
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
-                                <Techlogo name={"xyz"} img={serviceCardSvg6} />
+                                <Techlogo name={"Shopify"} img={shopify} />
+                                <Techlogo name={"Wordpress"} img={wordpress} />
+                                <Techlogo name={"Wix"} img={wix} />
+                                <Techlogo name={"Big Commerce"} img={bigcom} />
+                                <Techlogo name={"Woo Commerce"} img={woo} />
                             </div>
                         )}
                     </div>

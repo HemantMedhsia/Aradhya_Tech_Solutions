@@ -15,7 +15,7 @@ const Button = ({
 
     return (
         <div
-            className=" rounded-full flex justify-center items-center font-bold tracking-wide duration-500 mt-3 md:mt-0"
+            className=" cursor-pointer rounded-full flex justify-center items-center font-bold tracking-wide duration-500 mt-3 md:mt-0"
             style={{
                 width: width || "11rem", // fallback to 11rem if no width is provided
                 height: height || "3rem", // fallback to 3rem if no height is provided
