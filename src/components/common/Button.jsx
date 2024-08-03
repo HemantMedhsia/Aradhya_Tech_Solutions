@@ -9,6 +9,7 @@ const Button = ({
     hoverbg,
     hovertext,
     shadow, // Add shadow prop
+    onClick // Add onClick prop
 }) => {
     const defaultShadow = shadow || "0 4px 8px #ff5b2e";
 
@@ -24,6 +25,7 @@ const Button = ({
                 boxShadow: shadow || defaultShadow, // default shadow effect
                 transition: "all 0.3s ease", // Ensure smooth transition
             }}
+            onClick={onClick} // Add onClick event handler
             onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = hoverbg || "#ff5b2e";
                 e.currentTarget.style.color = hovertext || "white";
