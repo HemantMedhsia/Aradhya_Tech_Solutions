@@ -34,8 +34,6 @@ function LogAdminPath({ setAdmin, setLogin }) {
 function App() {
     const [admin, setAdmin] = useState(false);
     const [login, setLogin] = useState(false);
-    const [activeHeader, setActiveHeader] = useState(true);
-
     return (
         <Router>
             <div className="bg-white w-full h-auto">
