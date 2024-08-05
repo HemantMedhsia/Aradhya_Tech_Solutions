@@ -2,12 +2,19 @@
 import dotenv from "dotenv";
 import connectDB from "./Db/db.js";
 import { app } from "./app.js";
+import userRoutes from "./Routes/userRoutes.js"
 
 const port = process.env.PORT || 4000;
 
 dotenv.config({
     path: "./.env",
 });
+
+
+
+app.use("/api/user", userRoutes)
+
+
 
 connectDB()
     .then(() => { 
@@ -24,3 +31,5 @@ connectDB()
     .catch((err) => {
         console.log(err);
     });
+
+   
