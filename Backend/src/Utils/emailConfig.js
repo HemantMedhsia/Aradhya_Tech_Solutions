@@ -1,15 +1,37 @@
-import dotenv from 'dotenv'
-dotenv.config()
-import nodemailer from 'nodemailer'
+import dotenv from 'dotenv';
+dotenv.config();
+import nodemailer from 'nodemailer';
 
-let transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER, // Admin Gmail ID
-    pass: process.env.EMAIL_PASS, // Admin Gmail Password
-  },
-})
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.ethereal.email",
+//   port: 587,
+//   secure: false, // true for port 465, false for other ports
+//   auth: {
+//     user: "vt2855028@gmail.com",
+//     pass: "pwtbycdgzriqaco",
+//   },
+// });
 
-export default transporter
+// const transporter = nodemailer.createTransport({
+//     host: "smtp.ethereal.email",
+//     port: 587,
+//     secure: false, // Use `true` for port 465, `false` for all other ports
+//     auth: {
+//       user: "vt2855028@gmai.com",
+//       pass: "hyej nafp oywq gvnx",
+//     },
+//   });
+
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Use true for port 465, false for other ports
+    auth: {
+      user: "vt2855028@gmail.com",
+      pass: "hyej nafp oywq gvnx",
+    },
+  });
+
+
+export default transporter;

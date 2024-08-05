@@ -1,13 +1,53 @@
 import React, { useState } from "react";
-import { MdDarkMode } from "react-icons/md";
-import { MdLightMode } from "react-icons/md";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import axios from "axios"; // Import axios or any other HTTP client of your choice
+import { useNavigate } from "react-router-dom"; 
 
 const LoginPage = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [tc, setTc] = useState(true);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+    const navigate = useNavigate(); // Initialize useNavigate
+
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setError(""); // Clear any previous errors
+        setSuccess(""); // Clear any previous success messages
+
+        try {
+            const response = await axios.post(
+                "http://localhost:8000/api/user/login",
+                { email, password },
+                { tc: true }
+            );
+            setSuccess("Login successful!");
+            // Handle success, e.g., redirect or save token
+
+            console.log(response.data.token); // Assuming the API returns a token
+            navigate("/admin");
+        } catch (err) {     
+            console.error("Error details:", err); // Log the error for debugging
+            if (err.response && err.response.data) {
+                setError(err.response.data.message || "An error occurred.");
+            } else {
+                setError("An error occurred.");
+            }
+        }
+    };
+
+
+      const handleForgetPasswordClick = () => {
+        navigate('/forgetpassword');
+    };
+
 
     return (
         <div
@@ -32,9 +72,9 @@ const LoginPage = () => {
                                 isDarkMode ? "text-white" : "text-gray-800"
                             } text-center cursor-default`}
                         >
-                            Sign Up
+                            Log In
                         </h1>
-                        <form action="#" method="post" className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
                                 <label
                                     htmlFor="email"
@@ -56,7 +96,8 @@ const LoginPage = () => {
                                     type="email"
                                     placeholder="Email"
                                     required
-                                    value={""}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -80,8 +121,22 @@ const LoginPage = () => {
                                     type="password"
                                     placeholder="Password"
                                     required
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                 />
                             </div>
+                            {error && (
+                                <div className="text-red-500 text-sm mb-2">
+                                    {error}
+                                </div>
+                            )}
+                            {success && (
+                                <div className="text-green-500 text-sm mb-2">
+                                    {success}
+                                </div>
+                            )}
                             <button
                                 className={`bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out`}
                                 type="submit"
@@ -91,18 +146,9 @@ const LoginPage = () => {
                         </form>
                         <div className="flex flex-col mt-4 items-center justify-center text-sm">
                             <h3>
-                                {/* <span
-                                    className={`cursor-default ${
-                                        isDarkMode
-                                            ? "text-gray-300"
-                                            : "text-gray-800"
-                                    }`}
-                                >
-                                    Have an account?
-                                </span> */}
                                 <a
                                     className="group text-blue-400 transition-all duration-100 ease-in-out"
-                                    href="#"
+                                    onClick={handleForgetPasswordClick}
                                 >
                                     <span className="bg-left-bottom ml-1 bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
                                         Forget Password
@@ -140,10 +186,15 @@ const LoginPage = () => {
                 onClick={toggleDarkMode}
                 className="absolute top-4 left-4 p-2 text-6xl text-white rounded-full"
             >
-                {
-                    isDarkMode ? <div className="text-white"><MdLightMode/></div> : <div className="text-gray-900"><MdDarkMode/></div>
-                }
-                
+                {isDarkMode ? (
+                    <div className="text-white">
+                        <MdLightMode />
+                    </div>
+                ) : (
+                    <div className="text-gray-900">
+                        <MdDarkMode />
+                    </div>
+                )}
             </button>
         </div>
     );

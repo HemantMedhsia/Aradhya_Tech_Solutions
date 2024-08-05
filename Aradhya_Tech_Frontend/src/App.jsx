@@ -13,31 +13,47 @@ import ContactUs from "./components/pages/ContactUs";
 import Services from "./components/pages/Services";
 import Blogs from "./components/pages/Blogs";
 import WorkshopAndTraining from "./components/pages/WorkshopAndTraining";
-import LoginPage from "./components/pages/LoginPage";
-import AdminPanel from "./components/pages/AdminPanel";
+import LoginPage from "./components/pages/UserAuth/LoginPage";
+import AdminPanel from "./components/pages/UserAuth/AdminPanel";
 import AdminNavbar from "./components/layout/AdminNavbar";
+import ForgetPassword from "./components/pages/UserAuth/ForgetPassword";
+import ResetPassword from "./components/pages/UserAuth/ResetPassword";
 
-function useLogAdminPath(setAdmin, setLogin) {
+function useLogAdminPath(setAdmin, setLogin,setForgetPassword, setResetPassword) {
     const location = useLocation();
 
     React.useEffect(() => {
         setAdmin(location.pathname === "/admin");
         setLogin(location.pathname === "/login");
+        setForgetPassword(location.pathname === "/forgetpassword");
+        setResetPassword(location.pathname === "/resetpassword")
+        
     }, [location]);
 }
 
-function LogAdminPath({ setAdmin, setLogin }) {
-    useLogAdminPath(setAdmin, setLogin);
+function LogAdminPath({ setAdmin, setLogin ,setForgetPassword,setResetPassword}) {
+    useLogAdminPath(setAdmin, setLogin,setForgetPassword,setResetPassword);
     return null;
 }
+
+
 
 function App() {
     const [admin, setAdmin] = useState(false);
     const [login, setLogin] = useState(false);
+    const [forgetPassword, setForgetPassword] = useState(false);
+    const [resetPassword, setResetPassword] = useState(false);
+
     return (
         <Router>
             <div className="bg-white w-full h-auto">
-                {admin ? <AdminNavbar /> : login ? null : <Header />}
+                <LogAdminPath 
+                    setAdmin={setAdmin} 
+                    setLogin={setLogin}  
+                    setForgetPassword={setForgetPassword}
+                    setResetPassword={setResetPassword} 
+                />
+                {admin ? <AdminNavbar /> : (login || forgetPassword || resetPassword) ? null : <Header />}
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -46,18 +62,17 @@ function App() {
                         <Route path="/services" element={<Services />} />
                         <Route path="/blogs" element={<Blogs />} />
                         <Route path="/admin" element={<AdminPanel />} />
-                        <Route
-                            path="/workshop"
-                            element={<WorkshopAndTraining />}
-                        />
+                        <Route path="/workshop" element={<WorkshopAndTraining />} />
+                        <Route path="/forgetpassword" element={<ForgetPassword />} />
+                        <Route path="/resetpassword" element={<ResetPassword />} />
                         <Route path="/login" element={<LoginPage />} />
                     </Routes>
                 </main>
-                {admin ? null : login ? null : <Footer />}
-                <LogAdminPath setAdmin={setAdmin} setLogin={setLogin} />
+                {admin || forgetPassword || resetPassword ? null : login ? null : <Footer />}
             </div>
         </Router>
     );
 }
+
 
 export default App;

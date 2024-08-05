@@ -8,6 +8,9 @@ import {
   sendUserPasswordResetEmail,
   userPasswordReset,
   logout,
+  allData,
+  AuthLink,
+//   temp,
 } from "../Controllers/userController.js";
 import checkUserAuth from "../Middlewares/auth-middleware.js";
 
@@ -20,11 +23,16 @@ router.post("/register", userRegistration);
 router.post("/login", userLogin);
 router.post("/send-reset-password-email", sendUserPasswordResetEmail);
 router.post("/reset-password/:id/:token", userPasswordReset);
+router.get("/authlink", AuthLink);
+// router.get("/email",temp);
+// router.get("/alldata",allData);
+
 
 // Protected Routes
 router.use(checkUserAuth); // Apply authentication middleware to all protected routes
 router.post("/changepassword", changeUserPassword);
 router.post("/logout", logout); // Add the logout route
+router.get("/getdata", loggedUser)
 
 // router.get('/loggeduser', loggedUser);
 
