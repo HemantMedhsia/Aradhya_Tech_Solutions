@@ -1,13 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaBook } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa";
+import axios from "axios";
+import ServicesCard from "../common/Home/ServicesCard";
+import WorkCard from "../common/Home/WorkCard";
+import {useNavigate} from 'react-router-dom'
 
 const Blogs = () => {
+    const [blogs, setBlogs] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const result = await axios.get(
+                    "http://localhost:8000/api/user/blogs"
+                );
+                setBlogs(result.data);
+                console.log(result.data)
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
+    const getId = (id) => {
+        console.log("Here is the ID: ", id)
+        navigate(`/show-blogs/${id}`);
+    }
+
     return (
         <div>
             {/* section 1 */}
             <div className="pt-[8%] flex flex-col md:flex-row bg-[#fbf1ef]">
-                <div className="w-full md:w-[45%] h-auto md:h-[50vh] px-4 md:px-0">
+                <div className="w-full md:w-[45%] h-auto md:h-auto px-4 md:px-0">
                     <div className="mx-auto my-[10%] max-w-[500px]">
                         <p className="flex items-center text-xl font-semibold my-6 text-[#ff5b2e]">
                             <div className="mr-2">
@@ -46,6 +74,22 @@ const Blogs = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* Section 2 */}
+            <div className="h-[100%] w-[100%] px-[10%] py-[5%] bg-[#c6aaa0]">
+                <div className="flex flex-wrap h-auto">
+                    {blogs.map((blog, index) => (
+                        <div onClick={(id)=> {getId(blog._id)}} className="w-[33.33%] h-auto my-3">
+                            <WorkCard
+                                key={index}
+                                img={blog.img}
+                                desc={blog.date}
+                                title={blog.title}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

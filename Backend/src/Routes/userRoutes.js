@@ -21,6 +21,7 @@ import {
   getContent,
   setBlogContentData,
   setBlogData,
+  updateBlogData,
 } from "../Controllers/blogController.js";
 
 // Route Level Middleware - To Protect Route
@@ -36,17 +37,8 @@ router.get("/blogs", getBlogData);
 router.post("/blogs", setBlogData);
 router.post("/blogs/:id/content", setBlogContentData);
 router.get("/content", getContent);
-router.delete("/blogs/:id/content", deleteBlogData);
-
-
-router.post('/contact', userContact);
-   
- 
-  
-
-router.get("/authlink", AuthLink);
-// router.get("/email",temp);
-// router.get("/alldata",allData);
+router.delete("/blogs/:id/content", deleteBlogData)
+router.put("/blogs/:id", updateBlogData )
 
 
 // Protected Routes

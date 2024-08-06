@@ -67,6 +67,7 @@ function App() {
                         {/* <Route path="/reset_password/:id/:token" element={<ResetPassword />} /> */}
                         <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/show-blogs/:id" element={<LoginPage />} />
                     </Routes>
                 </main>
                 {admin || forgetPassword ? null : login ? null : <Footer />}

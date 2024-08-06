@@ -59,6 +59,21 @@ export const deleteBlogData = async (req, res) => {
   }
 };
 
+// Update Blog Data
+export const updateBlogData = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+    const updatedBlog = await Blog.findByIdAndUpdate(id, {...updateData});
+    if (!updatedBlog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    res.status(200).json(updatedBlog);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 export const deleteContentData = async (req, res) => {
   try {
     const { id, contentid } = req.params; // Extract both parameters from req.params
