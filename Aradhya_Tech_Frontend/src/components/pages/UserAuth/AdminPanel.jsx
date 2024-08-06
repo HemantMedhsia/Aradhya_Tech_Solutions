@@ -18,7 +18,11 @@ const AdminPanel = () => {
     const formattedTime = `${hours}:${minutes}:${seconds}`;
     const [Cdate, setDate] = useState();
     const [Ctime, setCtime] = useState();
+    const [active, setActive] = useState(false);
 
+    function activepage() {
+        setActive(true);
+    }
     useEffect(() => {
         setDate(formattedDate);
         setCtime(formattedTime);

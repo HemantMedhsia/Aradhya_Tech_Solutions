@@ -19,6 +19,7 @@ import AdminNavbar from "./components/layout/AdminNavbar";
 import ForgetPassword from "./components/pages/UserAuth/ForgetPassword";
 import ResetPassword from "./components/pages/UserAuth/ResetPassword";
 import AllBlogsAdmin from "./components/pages/UserAuth/AllBlogsAdmin";
+import ShowBlog from "./components/pages/ShowBlog"
 
 function useLogAdminPath(setAdmin, setLogin,setForgetPassword, setViewAllBlog) {
     const location = useLocation();
