@@ -3,11 +3,14 @@ import axios from "axios";
 import Searchbar from "../../common/Searchbar";
 import ModalComponent from "../../common/AdminPanel/ModalComponent";
 
+
 const AllBlogsAdmin = () => {
     const [blogs, setBlogs] = useState([]);
     const [search, setSearch] = useState("");
     const [popup, setPopup] = useState(false);
     const [currentBlog, setCurrentBlog] = useState(null);
+
+    
 
     useEffect(() => {
         // Fetch the initial list of blogs

@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
 import ServicesCard from "../common/Home/ServicesCard";
 import WorkCard from "../common/Home/WorkCard";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -27,9 +27,9 @@ const Blogs = () => {
     }, []);
 
     const getId = (id) => {
-        console.log("Here is the ID: ", id)
+        console.log("Here is the ID: ", id);
         navigate(`/show-blogs/${id}`);
-    }
+    };
 
     return (
         <div>
@@ -60,7 +60,7 @@ const Blogs = () => {
                             <div className="flex-1">
                                 <input
                                     type="text"
-                                    className="w-full h-[45px] md:h-[65px] border-none focus:border-none focus:outline-none rounded-l-lg px-4 text-xl font-semibold"
+                                    className="w-full h-[45px] md:h-[65px] border-none text-black focus:border-none focus:outline-none rounded-l-lg px-4 text-xl font-semibold"
                                     placeholder="Your Email Please"
                                 />
                             </div>
@@ -81,7 +81,12 @@ const Blogs = () => {
             <div className="h-[100%] w-[100%] px-[10%] py-[5%] bg-[#c6aaa0]">
                 <div className="flex flex-wrap h-auto">
                     {blogs.map((blog, index) => (
-                        <div onClick={(id)=> {getId(blog._id)}} className="w-[33.33%] h-auto my-3">
+                        <div
+                            onClick={(id) => {
+                                getId(blog._id);
+                            }}
+                            className="w-[33.33%] h-auto my-3"
+                        >
                             <WorkCard
                                 key={index}
                                 img={blog.img}

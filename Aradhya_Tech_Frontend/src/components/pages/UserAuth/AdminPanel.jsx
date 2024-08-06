@@ -1,32 +1,42 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AdminPanel = () => {
-    const now = new Date();
-
-    // Get the current date and time
-    const date = now.getDate();
-    const month = now.getMonth() + 1; // Months are zero-based, so we add 1
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    // Format the date and time as desired
-    const formattedDate = `${date}/${month}/${year}`;
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
-    const [Cdate, setDate] = useState();
-    const [Ctime, setCtime] = useState();
     const [active, setActive] = useState(false);
+    const [formData, setFormData] = useState({
+        title: "",
+        author: "",
+        img: "",
+        slug: "",
+    });
 
-    function activepage() {
+    
+
+    function activePage() {
         setActive(true);
     }
-    useEffect(() => {
-        setDate(formattedDate);
-        setCtime(formattedTime);
-    }, []);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        try {
+            const response = await axios.post(
+                "http://localhost:8000/api/user/blogs",
+                formData
+            );
+            console.log(response.data);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div className="bg-orange-100 min-h-screen">
@@ -57,10 +67,10 @@ const AdminPanel = () => {
                             </a>
                         </Link>
                         <a
-                            onClick={activepage}
+                            onClick={activePage}
                             className="flex items-center cursor-pointer text-gray-600 hover:text-black my-4 w-full"
                         >
-                            <span className="material-icons-outlined  mr-2">
+                            <span className="material-icons-outlined mr-2">
                                 tune
                             </span>
                             Add Blog
@@ -83,42 +93,27 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <a
-                            href="#"
-                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
-                        >
-                            <span className="material-icons-outlined mr-2">
-                                power_settings_new
-                            </span>
-                            Log out
-                            <span className="material-icons-outlined ml-auto">
-                                keyboard_arrow_right
-                            </span>
-                        </a>
+                        <Link to={"/"}>
+                            {" "}
+                            <a className="flex items-center text-gray-600 hover:text-black my-4 w-full">
+                                <span className="material-icons-outlined mr-2">
+                                    power_settings_new
+                                </span>
+                                Log out
+                                <span className="material-icons-outlined ml-auto">
+                                    keyboard_arrow_right
+                                </span>
+                            </a>
+                        </Link>
                     </div>
                 </nav>
 
                 {active ? (
                     <main className="flex-grow">
-                        {/* <div className="bg-red-200 border h-auto border-red-300 rounded-xl p-6 flex flex-col items-center">
-                            <p className="text-5xl text-indigo-900 mb-6">
-                                Welcome to <br />
-                                <strong>Aradhya Technologies</strong>
-                            </p>
-                            <div className="flex space-x-4">
-                                <span className="bg-red-300 text-xl text-white inline-block rounded-full px-8 py-2">
-                                    <strong>{Cdate}</strong>
-                                </span>
-                                <span className="bg-red-300 text-xl text-white inline-block rounded-full px-8 py-2">
-                                    <strong>{Ctime}</strong>
-                                </span>
-                            </div>
-                        </div> */}
-
-                        <div className="flex items-center justify-center  ">
+                        <div className="flex items-center justify-center">
                             <form
                                 onSubmit={handleSubmit}
-                                className="w-full max-w-2xl  p-16 shadow-2xl rounded-lg"
+                                className="w-full max-w-2xl p-16 shadow-2xl rounded-lg"
                             >
                                 <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
                                     Add a New Blog
@@ -130,7 +125,7 @@ const AdminPanel = () => {
                                         name="title"
                                         value={formData.title}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border  border-gray-300 rounded-md shadow-sm focus:outline-none    sm:text-sm"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                         placeholder="Enter blog title"
                                         required
                                     />
@@ -142,7 +137,7 @@ const AdminPanel = () => {
                                         name="author"
                                         value={formData.author}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  sm:text-sm"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                         placeholder="Enter author's name"
                                         required
                                     />
@@ -154,8 +149,9 @@ const AdminPanel = () => {
                                         name="img"
                                         value={formData.img}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  sm:text-sm"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                         placeholder="Enter image URL"
+                                        required
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -165,14 +161,14 @@ const AdminPanel = () => {
                                         name="slug"
                                         value={formData.slug}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  sm:text-sm"
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
                                         placeholder="Enter a unique slug"
                                         required
                                     />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-[25%] item-center px-4 py-2 bg-red-300 text-black font-semibold rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
+                                    className="w-[20%] item-center px-4 py-2 bg-red-300 text-black font-semibold rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
                                 >
                                     Add Blog
                                 </button>
