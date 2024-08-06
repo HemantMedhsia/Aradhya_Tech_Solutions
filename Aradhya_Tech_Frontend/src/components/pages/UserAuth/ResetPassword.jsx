@@ -1,8 +1,9 @@
-// src/components/PasswordUpdateForm.jsx
 import axios from "axios";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom"; // Assuming you're using react-router
 
 const ResetPassword = () => {
+    const { id, token } = useParams(); // Get id and token from route params
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
@@ -19,12 +20,15 @@ const ResetPassword = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/user/reset-password/:id/:token",
-                { newPassword }
+                `http://localhost:8000/api/user/reset-password/${id}/${token}`,
+                {
+                    password: newPassword,
+                    password_confirmation: confirmPassword,
+                }
             );
 
             if (response.data.success) {
-                setSuccess("Password update successfully");
+                setSuccess("Password updated successfully");
                 setError("");
                 setNewPassword("");
                 setConfirmPassword("");
@@ -33,14 +37,31 @@ const ResetPassword = () => {
                 setSuccess("");
             }
         } catch (err) {
-            setError("An error occurred while updating the password");
+            console.error("Error during password reset", err); // Log the error for debugging
+            if (err.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.error("Response data:", err.response.data);
+                console.error("Response status:", err.response.status);
+                console.error("Response headers:", err.response.headers);
+                setError(
+                    err.response.data.message ||
+                        "An error occurred while updating the password"
+                );
+            } else if (err.request) {
+                // The request was made but no response was received
+                console.error("Request data:", err.request);
+                setError("No response received from the server");
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error("Error message:", err.message);
+                setError("An error occurred while updating the password");
+            }
             setSuccess("");
-            setNewPassword("");
-            setConfirmPassword("");
         }
     };
 
-    return (  
+    return (
         <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-16">
             <h2 className="text-2xl font-semibold text-center mb-4">
                 Update Password

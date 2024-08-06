@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
     try {
       const response = await axios.post('http://localhost:8000/api/user/send-reset-password-email', { email });
       setMessage(response.data.message);
+      navigate("/login");
+
     } catch (error) {
       console.error('Error details:', error);
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.error('Error response data:', error.response.data);
-        console.error('Error response status:', error.response.status);
-        console.error('Error response headers:', error.response.headers);
         setMessage(error.response.data.message || 'Error sending password reset email');
       } else if (error.request) {
         // The request was made but no response was received

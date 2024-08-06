@@ -19,20 +19,20 @@ import AdminNavbar from "./components/layout/AdminNavbar";
 import ForgetPassword from "./components/pages/UserAuth/ForgetPassword";
 import ResetPassword from "./components/pages/UserAuth/ResetPassword";
 
-function useLogAdminPath(setAdmin, setLogin,setForgetPassword, setResetPassword) {
+function useLogAdminPath(setAdmin, setLogin,setForgetPassword) {
     const location = useLocation();
 
     React.useEffect(() => {
         setAdmin(location.pathname === "/admin");
         setLogin(location.pathname === "/login");
         setForgetPassword(location.pathname === "/forgetpassword");
-        setResetPassword(location.pathname === "/resetpassword")
+        // setResetPassword(location.pathname === "/reset_password/:id/:token");
         
     }, [location]);
 }
 
-function LogAdminPath({ setAdmin, setLogin ,setForgetPassword,setResetPassword}) {
-    useLogAdminPath(setAdmin, setLogin,setForgetPassword,setResetPassword);
+function LogAdminPath({ setAdmin, setLogin ,setForgetPassword}) {
+    useLogAdminPath(setAdmin, setLogin,setForgetPassword);
     return null;
 }
 
@@ -42,7 +42,7 @@ function App() {
     const [admin, setAdmin] = useState(false);
     const [login, setLogin] = useState(false);
     const [forgetPassword, setForgetPassword] = useState(false);
-    const [resetPassword, setResetPassword] = useState(false);
+    // const [resetPassword, setResetPassword] = useState(false);
 
     return (
         <Router>
@@ -51,9 +51,9 @@ function App() {
                     setAdmin={setAdmin} 
                     setLogin={setLogin}  
                     setForgetPassword={setForgetPassword}
-                    setResetPassword={setResetPassword} 
+                    // setResetPassword={setResetPassword} 
                 />
-                {admin ? <AdminNavbar /> : (login || forgetPassword || resetPassword) ? null : <Header />}
+                {admin ? <AdminNavbar /> : (login || forgetPassword ) ? null : <Header />}
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -64,11 +64,12 @@ function App() {
                         <Route path="/admin" element={<AdminPanel />} />
                         <Route path="/workshop" element={<WorkshopAndTraining />} />
                         <Route path="/forgetpassword" element={<ForgetPassword />} />
-                        <Route path="/resetpassword" element={<ResetPassword />} />
+                        {/* <Route path="/reset_password/:id/:token" element={<ResetPassword />} /> */}
+                        <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
                         <Route path="/login" element={<LoginPage />} />
                     </Routes>
                 </main>
-                {admin || forgetPassword || resetPassword ? null : login ? null : <Footer />}
+                {admin || forgetPassword ? null : login ? null : <Footer />}
             </div>
         </Router>
     );

@@ -3,6 +3,7 @@ import UserModel from "../Models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import transporter from "../Utils/emailConfig.js";
+import nodemailer from "nodemailer";
 import {
   registrationSchema,
   loginSchema,
@@ -126,10 +127,10 @@ const sendUserPasswordResetEmail = async (req, res) => {
 
   const secret = user._id + process.env.JWT_SECRET_KEY;
   const token = jwt.sign({ userID: user._id }, secret, { expiresIn: "15m" });
-  const link = `http://localhost:5173/resetpassword/${user._id}/${token}`;
+  const link = `http://localhost:5173/reset_password/${user._id}/${token}`;
   console.log(link);
-  const authlink = await new AuthModel({link});
-  await authlink.save()
+  const authlink = await new AuthModel({ link });
+  await authlink.save();
   try {
     const mailOptions = {
       from: "vt2855028@gmail.com",
@@ -149,14 +150,15 @@ const sendUserPasswordResetEmail = async (req, res) => {
   }
 };
 
-export const AuthLink = async (req,res) => {
-    const result = await AuthModel.find();
-    res.send(result[0].link)
-}
+export const AuthLink = async (req, res) => {
+  const result = await AuthModel.find();
+  res.send(result[0].link);
+};
 
 const userPasswordReset = async (req, res) => {
   const { password, password_confirmation } = req.body;
   const { id, token } = req.params;
+  console.log(password, id, token);
   const user = await UserModel.findById(id);
   if (!user)
     return res.status(400).send({ status: "failed", message: "Invalid user" });
@@ -200,6 +202,48 @@ const logout = (req, res) => {
   });
   res.send({ status: "success", message: "Logged out successfully" });
 };
+
+export const userContact = async (req, res) => {
+  const { subject, fullName, email, contactNumber, service, message } =
+    req.body;
+
+  // Configure Nodemailer
+  let transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: "vt2855028@gmail.com",
+      pass: "hyej nafp oywq gvnx",
+    },
+  });
+
+  // Email to owner
+  let ownerMailOptions = {
+    from: email,
+    to: "vt2855028@gmail.com",
+    subject: "New Contact Form Submission",
+    text: `Subject: ${subject}\nFull Name: ${fullName}\nEmail: ${email}\nContact Number: ${contactNumber}\nService: ${service}\nMessage: ${message}`,
+  };
+
+  // Confirmation email to user
+  let userMailOptions = {
+    from: "vt2855028@gmail.com",
+    to: email,
+    subject: "Thank you for contacting us",
+    text: "We have received your message and will get back to you shortly.",
+  };
+
+  try {
+    await transporter.sendMail(ownerMailOptions);
+    await transporter.sendMail(userMailOptions);
+    res.status(200).send("Emails sent successfully");
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).send("Failed to send email");
+  }
+};
+
+
+
 
 export {
   userRegistration,
