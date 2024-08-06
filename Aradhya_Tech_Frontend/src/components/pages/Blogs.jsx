@@ -17,7 +17,7 @@ const Blogs = () => {
                     "http://localhost:8000/api/user/blogs"
                 );
                 setBlogs(result.data);
-                console.log(result.data)
+                // console.log(result.data)
             } catch (error) {
                 console.log(error);
             }

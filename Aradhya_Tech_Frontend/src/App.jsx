@@ -18,21 +18,23 @@ import AdminPanel from "./components/pages/UserAuth/AdminPanel";
 import AdminNavbar from "./components/layout/AdminNavbar";
 import ForgetPassword from "./components/pages/UserAuth/ForgetPassword";
 import ResetPassword from "./components/pages/UserAuth/ResetPassword";
+import AllBlogsAdmin from "./components/pages/UserAuth/AllBlogsAdmin";
 
-function useLogAdminPath(setAdmin, setLogin,setForgetPassword) {
+function useLogAdminPath(setAdmin, setLogin,setForgetPassword, setViewAllBlog) {
     const location = useLocation();
 
     React.useEffect(() => {
         setAdmin(location.pathname === "/admin");
         setLogin(location.pathname === "/login");
         setForgetPassword(location.pathname === "/forgetpassword");
+        setViewAllBlog(location.pathname === "/all-blogs-admin");
         // setResetPassword(location.pathname === "/reset_password/:id/:token");
         
     }, [location]);
 }
 
-function LogAdminPath({ setAdmin, setLogin ,setForgetPassword}) {
-    useLogAdminPath(setAdmin, setLogin,setForgetPassword);
+function LogAdminPath({ setAdmin, setLogin ,setForgetPassword, setViewAllBlog}) {
+    useLogAdminPath(setAdmin, setLogin,setForgetPassword, setViewAllBlog);
     return null;
 }
 
@@ -42,6 +44,7 @@ function App() {
     const [admin, setAdmin] = useState(false);
     const [login, setLogin] = useState(false);
     const [forgetPassword, setForgetPassword] = useState(false);
+    const [viewAllBlog, setViewAllBlog] = useState(false);
     // const [resetPassword, setResetPassword] = useState(false);
 
     return (
@@ -51,9 +54,10 @@ function App() {
                     setAdmin={setAdmin} 
                     setLogin={setLogin}  
                     setForgetPassword={setForgetPassword}
-                    // setResetPassword={setResetPassword} 
+                    // setResetPassword={setResetPassword}
+                    setViewAllBlog={setViewAllBlog} 
                 />
-                {admin ? <AdminNavbar /> : (login || forgetPassword ) ? null : <Header />}
+                {admin ? <AdminNavbar /> : (login || forgetPassword || viewAllBlog ) ? null : <Header />}
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -68,9 +72,11 @@ function App() {
                         <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/show-blogs/:id" element={<LoginPage />} />
+                        <Route path="/all-blogs-admin" element={<AllBlogsAdmin />} />
                     </Routes>
+
                 </main>
-                {admin || forgetPassword ? null : login ? null : <Footer />}
+                {admin || forgetPassword || viewAllBlog ? null : login ? null : <Footer />}
             </div>
         </Router>
     );

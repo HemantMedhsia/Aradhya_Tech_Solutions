@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AdminPanel = () => {
     const now = new Date();
@@ -15,12 +16,12 @@ const AdminPanel = () => {
     const formattedDate = `${date}/${month}/${year}`;
     const formattedTime = `${hours}:${minutes}:${seconds}`;
     const [Cdate, setDate] = useState();
-    const [Ctime,setCtime] = useState();
+    const [Ctime, setCtime] = useState();
 
-    useEffect(()=>{
+    useEffect(() => {
         setDate(formattedDate);
         setCtime(formattedTime);
-    },[])
+    }, []);
 
     return (
         <div className="bg-orange-100 min-h-screen ">
@@ -39,18 +40,17 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <a
-                            href="#"
-                            className="inline-block text-gray-600 hover:text-black my-4 w-full"
-                        >
-                            <span className="material-icons-outlined float-left pr-2">
-                                tune
-                            </span>
-                            All Blogs
-                            <span className="material-icons-outlined float-right">
-                                keyboard_arrow_right
-                            </span>
-                        </a>
+                        <Link to={"/all-blogs-admin"}>
+                            <a className="inline-block text-gray-600 hover:text-black my-4 w-full">
+                                <span className="material-icons-outlined float-left pr-2">
+                                    tune
+                                </span>
+                                All Blogs
+                                <span className="material-icons-outlined float-right">
+                                    keyboard_arrow_right
+                                </span>
+                            </a>
+                        </Link>
                         <a
                             href="#"
                             className="inline-block text-gray-600 hover:text-black my-4 w-full"
