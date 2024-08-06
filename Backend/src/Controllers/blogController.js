@@ -97,3 +97,16 @@ export const deleteContentData = async (req, res) => {
     res.status(500).send(err.message); // Use status 500 for server errors
   }
 };
+
+export const getSingleBlogData = async (req, res)=> {
+  try {
+    const singleBlogData =await Blog.findById(req.params.id).populate('content')
+  if(!singleBlogData) {
+    res.status(400).json({message:"Someting Went Wrong"})
+  }
+  res.send(singleBlogData)
+  }
+  catch(err) {
+    res.send(err.message);
+  }
+}

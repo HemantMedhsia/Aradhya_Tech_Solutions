@@ -46,7 +46,7 @@ const HireUsForm = () => {
                             ×
                         </button>
                         <h2 className="text-md font-bold mb-4">Hire Us</h2>
-                        <form onSubmit={handleSubmit} className="space-y-3">
+                        <form onSubmit={handleSubmit} className="space-y-3 ">
                             <div className="mb-2">
                                 <label
                                     className="block text-gray-700 text-sm font-bold mb-1"

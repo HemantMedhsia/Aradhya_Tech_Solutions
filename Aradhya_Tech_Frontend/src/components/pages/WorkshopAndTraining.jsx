@@ -252,7 +252,7 @@ const WorkshopAndTraining = () => {
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center px-5 ">
                     <div className="fixed inset-0 bg-gray-800 opacity-50"></div>
-                    <div className="relative bg-[#fbf1ef] p-4 pt-6 pb-8 border border-gray-300 shadow-md rounded sm:max-w-sm lg:max-w-lg  mx-auto w-full z-10 overflow-y-auto max-h-full my-4">
+                    <div className="relative bg-[#fbf1ef] p-4 pt-6 pb-8 border border-gray-300 shadow-md rounded-xl sm:max-w-sm lg:max-w-lg  mx-auto w-full z-10 overflow-y-auto max-h-full my-4">
                         <button
                             onClick={toggleForm}
                             className="absolute top-2 right-2 text-red-500 text-3xl"

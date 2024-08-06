@@ -18,6 +18,7 @@ import AdminPanel from "./components/pages/UserAuth/AdminPanel";
 import AdminNavbar from "./components/layout/AdminNavbar";
 import ForgetPassword from "./components/pages/UserAuth/ForgetPassword";
 import ResetPassword from "./components/pages/UserAuth/ResetPassword";
+import ShowBlog from "./components/pages/ShowBlog";
 
 function useLogAdminPath(setAdmin, setLogin,setForgetPassword) {
     const location = useLocation();
@@ -67,7 +68,7 @@ function App() {
                         {/* <Route path="/reset_password/:id/:token" element={<ResetPassword />} /> */}
                         <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/show-blogs/:id" element={<LoginPage />} />
+                        <Route path="/show-blogs/:id" element={<ShowBlog />} />
                     </Routes>
                 </main>
                 {admin || forgetPassword ? null : login ? null : <Footer />}

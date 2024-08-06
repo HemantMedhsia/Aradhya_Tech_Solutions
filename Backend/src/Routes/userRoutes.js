@@ -19,6 +19,7 @@ import {
   deleteContentData,
   getBlogData,
   getContent,
+  getSingleBlogData,
   setBlogContentData,
   setBlogData,
   updateBlogData,
@@ -37,8 +38,10 @@ router.get("/blogs", getBlogData);
 router.post("/blogs", setBlogData);
 router.post("/blogs/:id/content", setBlogContentData);
 router.get("/content", getContent);
-router.delete("/blogs/:id/content", deleteBlogData)
+router.delete("/blogs/:id/content", deleteBlogData);
 router.put("/blogs/:id", updateBlogData )
+router.post("/single-blog/:id",getSingleBlogData);
+router.post("/contact",userContact);
 
 
 // Protected Routes

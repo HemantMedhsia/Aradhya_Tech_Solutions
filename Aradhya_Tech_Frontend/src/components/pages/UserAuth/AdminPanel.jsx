@@ -1,121 +1,206 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const AdminPanel = () => {
-    const now = new Date();
+    const [active, setActive] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
-    // Get the current date and time
-    const date = now.getDate();
-    const month = now.getMonth() + 1; // Months are zero-based, so we add 1
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
+    function activepage() {
+        setActive(!active);
+    }
 
-    // Format the date and time as desired
-    const formattedDate = `${date}/${month}/${year}`;
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
-    const [Cdate, setDate] = useState();
-    const [Ctime,setCtime] = useState();
+    const [formData, setFormData] = useState({
+        title: "",
+        author: "",
+        img: "",
+        slug: "",
+    });
 
-    useEffect(()=>{
-        setDate(formattedDate);
-        setCtime(formattedTime);
-    },[])
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit =async (e) => {
+        e.preventDefault();
+       try{
+        const response = await axios.post("http://localhost:8000/api/user/blogs",formData);
+        console.log(response.data);
+        console.log(response.status);
+        if(response.status === 201){
+            setSubmitted(true);
+            alert("Blog add Successfully");
+            setFormData({
+                title: "",
+                author: "",
+                img: "",
+                slug:""
+            });
+        }
+
+       }catch(err){
+        console.log(err);
+
+       }
+        
+    };
 
     return (
-        <div className="bg-orange-100 min-h-screen ">
-            <div className="flex flex-row pt-24 px-10 pb-4">
-                <div className="w-2/12 mr-6">
-                    <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
+        <div className="bg-orange-100 min-h-screen">
+            <div className="flex w-full pt-24 px-10 pb-4">
+                <nav className="w-2/12 mr-6">
+                    <div className="bg-white rounded-xl shadow-lg mb-6 p-6">
                         <a
                             href="#"
-                            className="inline-block text-gray-600 hover:text-black my-4 w-full"
+                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
                         >
-                            <span className="material-icons-outlined float-left pr-2">
+                            <span className="material-icons-outlined mr-2">
                                 dashboard
                             </span>
                             Users
-                            <span className="material-icons-outlined float-right">
+                            <span className="material-icons-outlined ml-auto">
                                 keyboard_arrow_right
                             </span>
                         </a>
                         <a
                             href="#"
-                            className="inline-block text-gray-600 hover:text-black my-4 w-full"
+                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
                         >
-                            <span className="material-icons-outlined float-left pr-2">
+                            <span className="material-icons-outlined mr-2">
                                 tune
                             </span>
                             All Blogs
-                            <span className="material-icons-outlined float-right">
+                            <span className="material-icons-outlined ml-auto">
                                 keyboard_arrow_right
                             </span>
                         </a>
                         <a
-                            href="#"
-                            className="inline-block text-gray-600 hover:text-black my-4 w-full"
+                            onClick={activepage}
+                            className="flex items-center cursor-pointer text-gray-600 hover:text-black my-4 w-full"
                         >
-                            <span className="material-icons-outlined float-left pr-2">
+                            <span className="material-icons-outlined  mr-2">
                                 tune
                             </span>
                             Add Blog
-                            <span className="material-icons-outlined float-right">
+                            <span className="material-icons-outlined ml-auto">
                                 keyboard_arrow_right
                             </span>
                         </a>
                     </div>
 
-                    <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
+                    <div className="bg-white rounded-xl shadow-lg mb-6 p-6">
                         <a
                             href="#"
-                            className="inline-block text-gray-600 hover:text-black my-4 w-full"
+                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
                         >
-                            <span className="material-icons-outlined float-left pr-2">
+                            <span className="material-icons-outlined mr-2">
                                 settings
                             </span>
                             Settings
-                            <span className="material-icons-outlined float-right">
+                            <span className="material-icons-outlined ml-auto">
                                 keyboard_arrow_right
                             </span>
                         </a>
                         <a
                             href="#"
-                            className="inline-block text-gray-600 hover:text-black my-4 w-full"
+                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
                         >
-                            <span className="material-icons-outlined float-left pr-2">
+                            <span className="material-icons-outlined mr-2">
                                 power_settings_new
                             </span>
                             Log out
-                            <span className="material-icons-outlined float-right">
+                            <span className="material-icons-outlined ml-auto">
                                 keyboard_arrow_right
                             </span>
                         </a>
                     </div>
-                </div>
+                </nav>
 
-                <div className="w-10/12">
-                    <div className="flex flex-row">
-                        <div
-                            className="bg-no-repeat bg-red-200 border border-red-300 rounded-xl w-7/12 mr-2 p-6"
-                            style={{
-                                backgroundImage:
-                                    "url(https://previews.dropbox.com/p/thumb/AAvyFru8elv-S19NMGkQcztLLpDd6Y6VVVMqKhwISfNEpqV59iR5sJaPD4VTrz8ExV7WU9ryYPIUW8Gk2JmEm03OLBE2zAeQ3i7sjFx80O-7skVlsmlm0qRT0n7z9t07jU_E9KafA9l4rz68MsaZPazbDKBdcvEEEQPPc3TmZDsIhes1U-Z0YsH0uc2RSqEb0b83A1GNRo86e-8TbEoNqyX0gxBG-14Tawn0sZWLo5Iv96X-x10kVauME-Mc9HGS5G4h_26P2oHhiZ3SEgj6jW0KlEnsh2H_yTego0grbhdcN1Yjd_rLpyHUt5XhXHJwoqyJ_ylwvZD9-dRLgi_fM_7j/p.png?fv_content=true&size_mode=5)",
-                                backgroundPosition: "90% center",
-                            }}
-                        >
-                            <p className="text-5xl text-indigo-900">
+                {active ? (
+                    <main className="flex-grow">
+                        {/* <div className="bg-red-200 border h-auto border-red-300 rounded-xl p-6 flex flex-col items-center">
+                            <p className="text-5xl text-indigo-900 mb-6">
                                 Welcome to <br />
                                 <strong>Aradhya Technologies</strong>
                             </p>
-                            <span className="bg-red-300 text-xl text-white inline-block rounded-full mt-12 px-8 py-2">
-                                <strong>{Cdate}</strong>
-                            </span>
-                            <span className="bg-red-300 text-xl ml-5 text-white inline-block rounded-full mt-12 px-8 py-2">
-                                <strong>{Ctime}</strong>
-                            </span>
+                            <div className="flex space-x-4">
+                                <span className="bg-red-300 text-xl text-white inline-block rounded-full px-8 py-2">
+                                    <strong>{Cdate}</strong>
+                                </span>
+                                <span className="bg-red-300 text-xl text-white inline-block rounded-full px-8 py-2">
+                                    <strong>{Ctime}</strong>
+                                </span>
+                            </div>
+                        </div> */}
+
+                        <div className="flex items-center justify-center  ">
+                            <form
+                                onSubmit={handleSubmit}
+                                className="w-full max-w-2xl  p-16 shadow-2xl rounded-lg"
+                            >
+                                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                                    Add a New Blog
+                                </h2>
+                                <div className="mb-4">
+                                    <input
+                                        type="text"
+                                        id="title"
+                                        name="title"
+                                        value={formData.title}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full px-3 py-2 border  border-gray-300 rounded-md shadow-sm focus:outline-none    sm:text-sm"
+                                        placeholder="Enter blog title"
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <input
+                                        type="text"
+                                        id="author"
+                                        name="author"
+                                        value={formData.author}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  sm:text-sm"
+                                        placeholder="Enter author's name"
+                                        required
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <input
+                                        type="text"
+                                        id="img"
+                                        name="img"
+                                        value={formData.img}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  sm:text-sm"
+                                        placeholder="Enter image URL"
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <input
+                                        type="text"
+                                        id="slug"
+                                        name="slug"
+                                        value={formData.slug}
+                                        onChange={handleChange}
+                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none  sm:text-sm"
+                                        placeholder="Enter a unique slug"
+                                        required
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-[25%] item-center px-4 py-2 bg-red-300 text-black font-semibold rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
+                                >
+                                    Add Blog
+                                </button>
+                            </form>
                         </div>
-                    </div>
-                </div>
+                    </main>
+                ) : null}
             </div>
         </div>
     );

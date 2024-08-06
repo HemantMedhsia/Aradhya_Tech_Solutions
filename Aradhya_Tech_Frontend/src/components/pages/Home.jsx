@@ -40,6 +40,7 @@ import shopify from '../../assets/images/CMS/shopify.svg';
 import wordpress from '../../assets/images/CMS/wordpress.svg';
 import wix from '../../assets/images/CMS/wix.svg';
 import woo from '../../assets/images/CMS/woo.svg';
+import Form from "./../common/Home/Form";
 
 import {
     CustomNextArrow,
@@ -487,7 +488,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2 flex justify-center px-4">
-                        <div className="w-full max-w-lg rounded-2xl bg-[#f7f7f7] h-auto px-4 py-6">
+                        {/* <div className="w-full max-w-lg rounded-2xl bg-[#f7f7f7] h-auto px-4 py-6">
                             <div className="w-full text-2xl lg:text-4xl font-bold mb-4 text-center lg:text-left">
                                 <h2 className="text-[#ff5b2e]">
                                     Please fill in the form below.
@@ -556,7 +557,8 @@ const Home = () => {
                                     We hate spam, and we respect your privacy.
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
+                        <Form/>
                     </div>
                 </div>
             </div>

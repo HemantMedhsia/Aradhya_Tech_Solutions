@@ -7,7 +7,7 @@ const WorkCard = ({ img, title, desc }) => {
                 <img
                     src={img}
                     alt={title}
-                    className="w-full lg:w-[100%] h-auto max-h-[300px] object-cover"
+                    className="w-full lg:w-[100%] h-[400px] max-h-[300px] object-cover"
                 />
             </div>
             <div className="px-2 py-4">
