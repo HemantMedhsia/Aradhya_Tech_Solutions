@@ -51,6 +51,7 @@ function App() {
                             element={<WorkshopAndTraining />}
                         />
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/show-blogs/:id" element={<LoginPage />} />
                     </Routes>
                 </main>
                 {admin ? null : login ? null : <Footer />}
