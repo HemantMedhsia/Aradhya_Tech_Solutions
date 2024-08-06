@@ -1,52 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AdminPanel = () => {
-    const [active, setActive] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
+    const now = new Date();
 
-    function activepage() {
-        setActive(!active);
-    }
+    // Get the current date and time
+    const date = now.getDate();
+    const month = now.getMonth() + 1; // Months are zero-based, so we add 1
+    const year = now.getFullYear();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
 
-    const [formData, setFormData] = useState({
-        title: "",
-        author: "",
-        img: "",
-        slug: "",
-    });
+    // Format the date and time as desired
+    const formattedDate = `${date}/${month}/${year}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    const [Cdate, setDate] = useState();
+    const [Ctime, setCtime] = useState();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit =async (e) => {
-        e.preventDefault();
-       try{
-        const response = await axios.post("http://localhost:8000/api/user/blogs",formData);
-        console.log(response.data);
-        console.log(response.status);
-        if(response.status === 201){
-            setSubmitted(true);
-            alert("Blog add Successfully");
-            setFormData({
-                title: "",
-                author: "",
-                img: "",
-                slug:""
-            });
-        }
-
-       }catch(err){
-        console.log(err);
-
-       }
-        
-    };
+    useEffect(() => {
+        setDate(formattedDate);
+        setCtime(formattedTime);
+    }, []);
 
     return (
         <div className="bg-orange-100 min-h-screen">
@@ -65,18 +41,17 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <a
-                            href="#"
-                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
-                        >
-                            <span className="material-icons-outlined mr-2">
-                                tune
-                            </span>
-                            All Blogs
-                            <span className="material-icons-outlined ml-auto">
-                                keyboard_arrow_right
-                            </span>
-                        </a>
+                        <Link to={"/all-blogs-admin"}>
+                            <a className="inline-block text-gray-600 hover:text-black my-4 w-full">
+                                <span className="material-icons-outlined float-left pr-2">
+                                    tune
+                                </span>
+                                All Blogs
+                                <span className="material-icons-outlined float-right">
+                                    keyboard_arrow_right
+                                </span>
+                            </a>
+                        </Link>
                         <a
                             onClick={activepage}
                             className="flex items-center cursor-pointer text-gray-600 hover:text-black my-4 w-full"
