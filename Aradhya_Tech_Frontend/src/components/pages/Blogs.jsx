@@ -13,11 +13,8 @@ const Blogs = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const result = await axios.get(
-                    "http://localhost:8000/api/user/blogs"
-                );
+                const result = await axios.get("http://localhost:8000/api/user/blogs");
                 setBlogs(result.data);
-                // console.log(result.data)
             } catch (error) {
                 console.log(error);
             }
@@ -43,9 +40,7 @@ const Blogs = () => {
                             </div>
                             BLOGS & NEWS
                         </p>
-                        <h2 className="text-3xl md:text-5xl font-bold">
-                            Our Blog
-                        </h2>
+                        <h2 className="text-3xl md:text-5xl font-bold">Our Blog</h2>
                         <p className="text-base md:text-lg my-6">
                             What would you love to learn how to do?
                         </p>
@@ -57,16 +52,16 @@ const Blogs = () => {
                             Subscribe to get the latest insights in your inbox.
                         </h2>
                         <div className="flex bg-white rounded-lg overflow-hidden">
-                            <div className="flex-1">
+                            <div className="flex-1 w-[80%]">
                                 <input
                                     type="text"
                                     className="w-full h-[45px] md:h-[65px] border-none text-black focus:border-none focus:outline-none rounded-l-lg px-4 text-xl font-semibold"
                                     placeholder="Your Email Please"
                                 />
                             </div>
-                            <div>
+                            <div className="w-[20%]">
                                 <button
-                                    className="w-full md:w-[80px] h-[45px] md:h-[65px] bg-[#ff5b2e] rounded-lg flex items-center justify-center text-white text-base md:text-xl"
+                                    className="lg:w-full w-[100%] md:w-[80px] h-[45px] md:h-[65px] bg-[#ff5b2e] rounded-lg flex items-center justify-center text-white text-base md:text-xl"
                                     type="button"
                                 >
                                     <FaArrowRight />
@@ -80,18 +75,17 @@ const Blogs = () => {
             {/* Section 2 */}
             <div className="h-[100%] w-[100%] px-[10%] py-[5%] bg-[#c6aaa0]">
                 <div className="flex flex-wrap h-auto">
-                    {blogs.map((blog, index) => (
+                    {blogs.map((blog) => (
                         <div
-                            onClick={(id) => {
-                                getId(blog._id);
-                            }}
+                            key={blog._id}
+                            onClick={() => getId(blog._id)}
                             className="w-[33.33%] h-auto my-3"
                         >
                             <WorkCard
-                                key={index}
                                 img={blog.img}
                                 desc={blog.date}
                                 title={blog.title}
+                                readmore={"Read more..."}
                             />
                         </div>
                     ))}

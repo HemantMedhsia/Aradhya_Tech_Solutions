@@ -36,7 +36,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        <Link to={"/about"}>ABOUT</Link>
+                        <Link to={"/about"} onClick={() => window.scrollTo(0, 0)}>ABOUT</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -44,7 +44,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        <Link to={"/services"}>SERVICES</Link>
+                        <Link to={"/services"} onClick={() => window.scrollTo(0, 0)}>SERVICES</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -52,7 +52,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        <Link to={"/blogs"}>BLOGS</Link>
+                        <Link to={"/blogs"} onClick={() => window.scrollTo(0, 0)}>BLOGS</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -60,7 +60,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
-                        <Link to={"/workshop"}>WORKSHOP & TRAININGS</Link>
+                        <Link to={"/workshop"} onClick={() => window.scrollTo(0, 0)}>WORKSHOP & TRAININGS</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -68,7 +68,7 @@ function Header() {
                         )}
                     </li>
                     <li className="hover:text-[#ff5b2e] duration-500 block">
-                        <Link to={"/contact"}>CONTACT US</Link>
+                        <Link to={"/contact"} onClick={() => window.scrollTo(0, 0)}>CONTACT US</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
@@ -77,7 +77,7 @@ function Header() {
                     </li>
                 </ul>
             </div>
-            <Link to={"/contact"}><Button name={"Request Quote"}  /></Link>
+            <Link to={"/contact"} onClick={() => window.scrollTo(0,500)}><Button name={"Request Demo"}  /></Link>
             
         </div>
     );
