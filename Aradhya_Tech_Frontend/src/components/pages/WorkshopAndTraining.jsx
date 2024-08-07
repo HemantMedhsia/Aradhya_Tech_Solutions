@@ -164,7 +164,7 @@ const WorkshopAndTraining = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-wrap pt-16">
+                <div className="flex flex-wrap justify-center pt-16">
                     <div className="p-3">
                         <WorkshopCard
                             imageUrl={workimg1}

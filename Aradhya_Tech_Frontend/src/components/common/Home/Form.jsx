@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Button from "../Button";
 
 const Form = () => {
@@ -15,6 +17,7 @@ const Form = () => {
 
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [loader, setLoader] = useState(false);
 
     const validate = () => {
         const newErrors = {};
@@ -44,6 +47,7 @@ const Form = () => {
             return;
         }
         setErrors({});
+        setLoader(true);
 
         try {
             const response = await axios.post(
@@ -52,7 +56,7 @@ const Form = () => {
             );
             if (response.status === 200) {
                 setSubmitted(true);
-                alert("Email sent successfully!");
+                toast.success("Email sent successfully!");
                 setFormData({
                     subject: "",
                     fullName: "",
@@ -61,16 +65,23 @@ const Form = () => {
                     service: "Web Design",
                     message: "",
                     agree: false,
-                }); 
+                });
             }
         } catch (error) {
             console.error("Error sending email:", error);
-            alert("Failed to send email.");
+            toast.error("Failed to send email.");
+        } finally {
+            setLoader(false);
         }
     };
 
     return (
         <div className="w-[100%] rounded-2xl bg-[#f7f7f7] h-auto px-8 py-6">
+            {loader ? (
+                <div className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full h-full bg-black bg-opacity-70">
+                    <span className="mailloader absolute "></span>
+                </div>
+            ) : null}
             <form onSubmit={handleSubmit}>
                 <div className="w-full text-2xl lg:text-4xl font-bold mb-4 text-center lg:text-left">
                     <h2 className="text-[#ff5b2e]">
@@ -189,6 +200,7 @@ const Form = () => {
                     </p>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     );
 };
