@@ -4,6 +4,8 @@ import Searchbar from "../../common/Searchbar";
 import ModalComponent from "../../common/AdminPanel/ModalComponent";
 import Button from "../../common/Button";
 import { CgCloseR } from "react-icons/cg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AllBlogsAdmin = () => {
     const [blogs, setBlogs] = useState([]);
@@ -43,8 +45,10 @@ const AllBlogsAdmin = () => {
             );
             setBlogs(blogs.filter((blog) => blog._id !== id));
             console.log(`Deleted blog with id: ${id}`);
+            toast.success("Blog deleted successfully");
         } catch (error) {
             console.log(error);
+            toast.error(error.message);
         }
     };
 
@@ -63,7 +67,7 @@ const AllBlogsAdmin = () => {
 
     const submitContent = async () => {
         if (!contentTitle || !contentDescription) {
-            alert("Please fill in all fields");
+            toast.error("Please fill in all fields")
             return;
         }
         try {
@@ -74,12 +78,14 @@ const AllBlogsAdmin = () => {
                     description: contentDescription,
                 }
             );
+            toast.success("Content Added Secessfully!");
             refreshBlogs();
             setActiveAddContent(false);
             setContentTitle("");
             setContentDescription("");
         } catch (error) {
             console.log(error);
+            toast.error(error.message);
         }
     };
 
@@ -223,6 +229,7 @@ const AllBlogsAdmin = () => {
                     </div>
                 </div>
             )}
+            <ToastContainer/>
         </div>
     );
 };

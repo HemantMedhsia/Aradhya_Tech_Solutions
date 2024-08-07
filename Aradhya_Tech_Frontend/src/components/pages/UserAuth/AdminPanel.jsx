@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const AdminPanel = () => {
     const [active, setActive] = useState(false);
@@ -30,7 +32,7 @@ const AdminPanel = () => {
                 "http://localhost:8000/api/user/blogs",
                 formData
             );
-            alert("Blog add Successfully");
+            toast.success("Blog Added Sucessfully");
             console.log(response.data);
             setFormData({
                 title: "",
@@ -40,6 +42,7 @@ const AdminPanel = () => {
             });
         } catch (err) {
             console.error(err);
+            toast.success(err.message)
         }
     };
 
@@ -239,6 +242,7 @@ const AdminPanel = () => {
                     </main>
                 ) : null}
             </div>
+            <ToastContainer/>
         </div>
     );
 };

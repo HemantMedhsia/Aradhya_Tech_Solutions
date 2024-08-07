@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-const ModalComponent = ({ setActive, currentBlog, refreshBlogs }) => {
+const ModalComponent = ({ setActive, currentBlog, refreshBlogs, setToast }) => {
     const [formData, setFormData] = useState({
         title: currentBlog.title || "",
         author: currentBlog.author || "",
@@ -28,14 +30,17 @@ const ModalComponent = ({ setActive, currentBlog, refreshBlogs }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        toast.info("Updating blog...");
         try {
             await axios.put(
                 `http://localhost:8000/api/user/blogs/${currentBlog._id}`,
                 formData
             );
             setActive(false);
+            setToast("Blog updated successfully!")
             refreshBlogs();
         } catch (error) {
+            toast.error("Error updating blog");
             console.error("Error updating blog:", error);
         }
     };
@@ -156,6 +161,7 @@ const ModalComponent = ({ setActive, currentBlog, refreshBlogs }) => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };
