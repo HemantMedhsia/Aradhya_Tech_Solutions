@@ -1,10 +1,24 @@
 import React from "react";
+import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+
 
 const Searchbar = ({value, handleSearchChange}) => {
+    const navigate =useNavigate();
+
+    const handleBackClick = () =>{
+        navigate("/admin");
+    }
+
+  
     return (
         <div class=" py-10 w-[100%] px-20">
             <div class="flex items-center p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 justify-between">
-                <div className="text-4xl flex items-center text-[#ff5b2e] font-bold">All Blogs</div>
+            
+                <div className="text-4xl flex items-center text-[#ff5b2e] font-bold">
+                <div className="mr-4 text-gray-700 cursor-pointer" onClick={handleBackClick}><IoIosArrowBack /></div>
+                <div>All Blogs</div>
+                </div>
                 <div className="flex space-x-6 ">
                     <div class="flex bg-gray-100 p-4 w-80 space-x-4 rounded-lg">
                         <svg

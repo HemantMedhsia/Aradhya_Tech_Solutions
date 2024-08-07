@@ -2,29 +2,36 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const ModalComponent = ({ setActive, currentBlog, refreshBlogs }) => {
-    const [title, setTitle] = useState(currentBlog.title || "");
-    const [author, setAuthor] = useState(currentBlog.author || "");
-    const [imageUrl, setImageUrl] = useState(currentBlog.img || "");
-    const [slug, setSlug] = useState(currentBlog.slug || "");
+    const [formData, setFormData] = useState({
+        title: currentBlog.title || "",
+        author: currentBlog.author || "",
+        img: currentBlog.img || "",
+        slug: currentBlog.slug || "",
+    });
 
     useEffect(() => {
-        setTitle(currentBlog.title || "");
-        setAuthor(currentBlog.author || "");
-        setImageUrl(currentBlog.img || "");
-        setSlug(currentBlog.slug || "");
+        setFormData({
+            title: currentBlog.title || "",
+            author: currentBlog.author || "",
+            img: currentBlog.img || "",
+            slug: currentBlog.slug || "",
+        });
     }, [currentBlog]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.put(
                 `http://localhost:8000/api/user/blogs/${currentBlog._id}`,
-                {
-                    title,
-                    author,
-                    img: imageUrl,
-                    slug,
-                }
+                formData
             );
             setActive(false);
             refreshBlogs();
@@ -34,133 +41,119 @@ const ModalComponent = ({ setActive, currentBlog, refreshBlogs }) => {
     };
 
     return (
-        <div>
-            {/* Main modal */}
-            <div className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full h-full bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full h-full bg-black bg-opacity-50">
+            <div className="min-h-screen w-full flex flex-col justify-center">
                 <div className="relative py-3 sm:max-w-xl sm:mx-auto w-full">
-                    {/* Modal content */}
-                    
-                        {/* Modal header */}
-                        <div className="relative bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg sm:rounded-3xl sm:p-10">
-                            <div className="flex items-center justify-between p-4 md:p-0 border-b rounded-t dark:border-gray-600">
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-300 to-[#ff5b2e] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+                    <div className="relative bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                        <div className="max-w-md mx-auto">
+                            <div>
+                                <h1 className="text-2xl font-semibold pb-5">
                                     Update Blog
-                                </h3>
-                                <button
-                                    type="button"
-                                    onClick={() => setActive(false)}
-                                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                >
-                                    <svg
-                                        className="w-3 h-3"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 14 14"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                        />
-                                    </svg>
-                                </button>
+                                </h1>
                             </div>
-                            {/* Modal body */}
-                            <form
-                                onSubmit={handleSubmit}
-                                className="p-4 md:p-5"
-                            >
-                                <div className="grid gap-4 mb-4 grid-cols-2">
-                                    <div className="col-span-2">
-                                        <label
-                                            htmlFor="title"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        >
-                                            Title
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="title"
-                                            id="title"
-                                            value={title}
-                                            onChange={(e) =>
-                                                setTitle(e.target.value)
-                                            }
-                                            className="bg-gray-50 border-b border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Type blog title"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="col-span-2">
-                                        <label
-                                            htmlFor="author"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        >
-                                            Author
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="author"
-                                            id="author"
-                                            value={author}
-                                            onChange={(e) =>
-                                                setAuthor(e.target.value)
-                                            }
-                                            className="bg-gray-50 border-b border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Type author name"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="col-span-2">
-                                        <label
-                                            htmlFor="imageUrl"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        >
-                                            Image URL
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="imageUrl"
-                                            id="imageUrl"
-                                            value={imageUrl}
-                                            onChange={(e) =>
-                                                setImageUrl(e.target.value)
-                                            }
-                                            className="bg-gray-50 border-b border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Type image URL"
-                                            required
-                                        />
-                                    </div>
-                                    <div className="col-span-2">
-                                        <label
-                                            htmlFor="slug"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        >
-                                            Slug
-                                        </label>
-                                        <textarea
-                                            id="slug"
-                                            rows="3"
-                                            value={slug}
-                                            onChange={(e) =>
-                                                setSlug(e.target.value)
-                                            }
-                                            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-b border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Write slug here"
-                                        ></textarea>
-                                    </div>
+                            <div className="divide-y divide-gray-200">
+                                <div className="text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
+                                    <form
+                                        onSubmit={handleSubmit}
+                                        className="space-y-6"
+                                    >
+                                        <div className="relative mb-6">
+                                            <input
+                                                autoComplete="off"
+                                                id="title"
+                                                name="title"
+                                                type="text"
+                                                className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                placeholder="Title"
+                                                value={formData.title}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="title"
+                                                className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                            >
+                                                Title
+                                            </label>
+                                        </div>
+                                        <div className="relative mb-6">
+                                            <input
+                                                autoComplete="off"
+                                                id="author"
+                                                name="author"
+                                                type="text"
+                                                className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                placeholder="Author"
+                                                value={formData.author}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="author"
+                                                className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                            >
+                                                Author
+                                            </label>
+                                        </div>
+                                        <div className="relative mb-6">
+                                            <textarea
+                                                autoComplete="off"
+                                                id="img"
+                                                name="img"
+                                                className="peer placeholder-transparent h-15 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                placeholder="Img Url"
+                                                value={formData.img}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="img"
+                                                className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                            >
+                                                Img Url
+                                            </label>
+                                        </div>
+                                        <div className="relative mb-6">
+                                            <input
+                                                autoComplete="off"
+                                                id="slug"
+                                                name="slug"
+                                                type="text"
+                                                className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                placeholder="Slug"
+                                                value={formData.slug}
+                                                onChange={handleChange}
+                                                required
+                                            />
+                                            <label
+                                                htmlFor="slug"
+                                                className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                            >
+                                                Slug
+                                            </label>
+                                        </div>
+                                        <div className="relative mb-6"></div>
+                                        <div className="relative mt-6">
+                                            <button
+                                                type="submit"
+                                                className="w-[40%] item-center px-4 py-2 font-bold bg-red-300 rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
+                                            >
+                                                Update Blog
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => setActive(false)}
+                                                className="w-[30%] ml-4 px-4 py-2 font-bold bg-red-300 rounded-md shadow-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out"
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <button
-                                    type="submit"
-                                    className="flex justify-center text-white items-center w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Update
-                                </button>
-                            </form>
+                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
