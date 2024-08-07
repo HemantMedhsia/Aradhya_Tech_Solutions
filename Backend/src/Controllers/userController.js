@@ -243,6 +243,47 @@ export const userContact = async (req, res) => {
 };
 
 
+export const hireUs =  async(req,res)=>{
+    const {name,mobileNumber,email,technology,college,address} = req.body;
+
+    // Configure Nodemailer
+  let transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: "vt2855028@gmail.com",
+      pass: "hyej nafp oywq gvnx",
+    },
+  });
+
+  // Email to owner
+  let ownerMailOptions = {
+    from: email,
+    to: "vt2855028@gmail.com",
+    subject: "New Contact Form Submission",
+    text: `Subject: ${name}\nFull Name: ${mobileNumber}\nEmail: ${email}\nContact Number: ${technology}\nService: ${college}\nMessage: ${address}`,
+  };
+
+  // Confirmation email to user
+  let userMailOptions = {
+    from: "vt2855028@gmail.com",
+    to: email,
+    subject: "Thank you for contacting us",
+    text: "We have received your message and will get back to you shortly.",
+  };
+
+  try {
+    await transporter.sendMail(ownerMailOptions);
+    await transporter.sendMail(userMailOptions);
+    res.status(200).send("Emails sent successfully");
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).send("Failed to send email");
+  }
+    
+
+};
+
+
 
 
 export {

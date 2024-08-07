@@ -11,6 +11,7 @@ import {
   allData,
   AuthLink,
   userContact,
+  hireUs,
 //   temp,
 } from "../Controllers/userController.js";
 import checkUserAuth from "../Middlewares/auth-middleware.js";
@@ -41,7 +42,11 @@ router.get("/content", getContent);
 router.delete("/blogs/:id/content", deleteBlogData);
 router.put("/blogs/:id", updateBlogData )
 router.post("/single-blog/:id",getSingleBlogData);
+
+
+// Without database route
 router.post("/contact",userContact);
+router.post("/hire",hireUs);
 
 
 // Protected Routes

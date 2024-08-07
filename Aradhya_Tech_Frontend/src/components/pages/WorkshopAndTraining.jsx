@@ -1,113 +1,98 @@
 import image1 from "../../assets/images/workshopimg2.jpeg";
 import HireUsForm from "../common/Home/HireUsForm";
-import image2 from "../..//assets/images/tech1.svg";
-import image3 from "../..//assets/images/tech2.svg";
-import image4 from "../..//assets/images/tech3.svg";
-import image5 from "../..//assets/images/tech4.svg";
-import image6 from "../..//assets/images/tech5.svg";
+import image2 from "../../assets/images/tech1.svg";
+import image3 from "../../assets/images/tech2.svg";
+import image4 from "../../assets/images/tech3.svg";
+import image5 from "../../assets/images/tech4.svg";
+import image6 from "../../assets/images/tech5.svg";
 import WorkshopCard from "../common/Home/WorkshopCard";
-import workimg1 from "../..//assets/images/workshopimg3.jpg";
-import workimg2 from "../..//assets/images/workshopimg4.jpg";
-import workimg3 from "../..//assets/images/workshopimg1.jpg";
-import workimg4 from "../..//assets/images/workshopimg5.jpg";
-import workimg5 from "../..//assets/images/workshopimg6.jpg";
-import workimg6 from "../..//assets/images/workshopimg7.jpg";
+import workimg1 from "../../assets/images/workshopimg3.jpg";
+import workimg2 from "../../assets/images/workshopimg4.jpg";
+import workimg3 from "../../assets/images/workshopimg1.jpg";
+import workimg4 from "../../assets/images/workshopimg5.jpg";
+import workimg5 from "../../assets/images/workshopimg6.jpg";
+import workimg6 from "../../assets/images/workshopimg7.jpg";
 import Button from "../common/Button";
-import image7 from "../..//assets/images/workshopSvg.svg";
+import image7 from "../../assets/images/workshopSvg.svg";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const WorkshopAndTraining = () => {
     const [showForm, setShowForm] = useState(false);
-    const [name, setName] = useState("");
-    const [mobileNumber, setMobileNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [technologyTopic, setTechnologyTopic] = useState("");
-    const [institute, setInstitute] = useState("");
-    const [address, setAddress] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        mobileNumber: "",
+        email: "",
+        technologyTopic: "",
+        institute: "",
+        address: "",
+    });
+
     const [submittedData, setSubmittedData] = useState(null);
 
-    // Handle form submission
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        setSubmittedData({
-            name,
-            mobileNumber,
-            email,
-            technologyTopic,
-            institute,
-            address,
-        });
-        // Optionally clear the form fields
-        setName("");
-        setMobileNumber("");
-        setEmail("");
-        setTechnologyTopic("");
-        setInstitute("");
-        setAddress("");
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("Form submitted");
+        try {
+            const response = await axios.post(
+                "http://localhost:8000/api/user/hire",
+                formData
+            );
+            if (response.status === 200) {
+                setSubmittedData(true);
+                alert("Email sent successfully!");
+                setFormData({
+                    name: "",
+                    mobileNumber: "",
+                    email: "",
+                    technologyTopic: "",
+                    institute: "",
+                    address: "",
+                });
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
+            alert("Failed to send email.");
+        }
     };
 
     const toggleForm = () => {
         setShowForm(!showForm);
+        if (!showForm) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
     };
 
-    // Use useEffect to handle body class for disabling scrolling
     useEffect(() => {
-        if (showForm) {
-            document.body.classList.add("overflow-hidden");
-        } else {
-            document.body.classList.remove("overflow-hidden");
-        }
-        // Cleanup function to remove class when component is unmounted or showForm changes
         return () => {
-            document.body.classList.remove("overflow-hidden");
+            document.body.style.overflow = "auto";
         };
-    }, [showForm]);
+    }, []);
 
     return (
-        <div className="">
-            {/*Section-1  */}
-            {/* <div className="relative w-full h-auto">
-                <div className="w-full h-[80vh] overflow-hidden">
-                    <img
-                        className="z-0 w-full h-full object-cover object-top"
-                        src={image1}
-                        alt="Background"
-                    />
-                </div>
-
-                <div className="absolute top-[80%] left-0 z-10 bg-orange-700 h-[100vh] w-full"></div>
-                <div className="absolute top-0 left-0 z-20 bg-white h-full w-full opacity-70">
-                    <div className="relative p-4">
-                        <h1 className="text-xl font-bold">
-                            Workshop and Trainings
-                        </h1>
-                        <p>
-                            Aradhya Technologies offers impactful workshops and
-                            training sessions to empower individuals and
-                            businesses with cutting-edge skills and knowledge.
-                        </p>
-                    </div>
-                </div>
-            </div> */}
-
+        <div>
             <div className="relative h-[450px]">
-                {/* Background Image */}
                 <img
                     src={image1}
                     alt="Background"
                     className="absolute inset-0 w-full h-full object-cover object-top"
                 />
-                {/* Overlay Color */}
-                <div className="absolute inset-0 bg-[#ffff] opacity-70"></div>{" "}
-                {/* Adjust opacity for better visibility */}
-                {/* Subtle Blur Effect */}
+                <div className="absolute inset-0 bg-[#ffff] opacity-70"></div>
                 <div className="absolute inset-0 backdrop-blur-sm"></div>
-                {/* Centered Text */}
                 <div className="relative flex flex-col items-center justify-center h-full text-center space-y-4 px-4">
                     <h1 className="text-[#30303c] text-5xl font-bold">
                         Workshop and Trainings
                     </h1>
-                    <p className="text-[#52525d] text-justify text-lg  max-w-2xl">
+                    <p className="text-[#52525d] text-justify text-lg max-w-2xl">
                         Aradhya Technologies offers impactful workshops and
                         training sessions to empower individuals and businesses
                         with cutting-edge skills and knowledge.
@@ -115,9 +100,7 @@ const WorkshopAndTraining = () => {
                 </div>
             </div>
 
-            {/* Section --2 */}
             <div className="h-auto bg-[#fbf1ef] py-16 px-4 md:px-10">
-                {/* Section 2 first part */}
                 <div className="md:flex pb-6">
                     <div className="w-full md:w-[40%] mb-10 md:mb-0">
                         <h1 className="text-[#30303c] text-3xl md:text-4xl font-bold">
@@ -181,7 +164,6 @@ const WorkshopAndTraining = () => {
                     </div>
                 </div>
 
-                {/* Section 2 second part  */}
                 <div className="flex flex-wrap pt-16">
                     <div className="p-3">
                         <WorkshopCard
@@ -222,8 +204,6 @@ const WorkshopAndTraining = () => {
                 </div>
             </div>
 
-            {/* Section-3  */}
-
             <div className="flex flex-col lg:flex-row my-16">
                 <div className="w-full lg:w-[50%] px-4 lg:px-10 text-left lg:text-left">
                     <h1 className="text-3xl lg:text-4xl font-bold text-[#30303c] leading-tight">
@@ -252,7 +232,7 @@ const WorkshopAndTraining = () => {
             {showForm && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center px-5 ">
                     <div className="fixed inset-0 bg-gray-800 opacity-50"></div>
-                    <div className="relative bg-[#fbf1ef] p-4 pt-6 pb-8 border border-gray-300 shadow-md rounded-xl sm:max-w-sm lg:max-w-lg  mx-auto w-full z-10 overflow-y-auto max-h-full my-4">
+                    <div className="relative bg-[#fbf1ef] p-4 pt-6 pb-8 border border-gray-300 shadow-md rounded-xl sm:max-w-sm lg:max-w-lg mx-auto w-full z-10 overflow-y-auto max-h-full my-4">
                         <button
                             onClick={toggleForm}
                             className="absolute top-2 right-2 text-red-500 text-3xl"
@@ -263,20 +243,20 @@ const WorkshopAndTraining = () => {
                         <form onSubmit={handleSubmit} className="space-y-3">
                             <div className="mb-2">
                                 <label
-                                    className="block  text-gray-700 text-sm font-bold mb-1"
+                                    className="block text-gray-700 text-sm font-bold mb-1"
                                     htmlFor="name"
                                 >
                                     Name
                                 </label>
                                 <input
-                                    className=" border-none  appearance-none  rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="border-none appearance-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="name"
                                     type="text"
-                                    value={name}
-                                    onChange={(event) =>
-                                        setName(event.target.value)
-                                    }
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     placeholder="Enter your name"
+                                    required
                                 />
                             </div>
                             <div className="mb-2">
@@ -287,14 +267,14 @@ const WorkshopAndTraining = () => {
                                     Mobile Number
                                 </label>
                                 <input
-                                    className=" appearance-none  border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="mobileNumber"
                                     type="tel"
-                                    value={mobileNumber}
-                                    onChange={(event) =>
-                                        setMobileNumber(event.target.value)
-                                    }
+                                    name="mobileNumber"
+                                    value={formData.mobileNumber}
+                                    onChange={handleChange}
                                     placeholder="Enter your mobile number"
+                                    required
                                 />
                             </div>
                             <div className="mb-2">
@@ -305,14 +285,14 @@ const WorkshopAndTraining = () => {
                                     Email
                                 </label>
                                 <input
-                                    className=" appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="email"
                                     type="email"
-                                    value={email}
-                                    onChange={(event) =>
-                                        setEmail(event.target.value)
-                                    }
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     placeholder="example@gmail.com"
+                                    required
                                 />
                             </div>
                             <div className="mb-2">
@@ -323,14 +303,14 @@ const WorkshopAndTraining = () => {
                                     Technology / Topic
                                 </label>
                                 <input
-                                    className=" appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="technologyTopic"
                                     type="text"
-                                    value={technologyTopic}
-                                    onChange={(event) =>
-                                        setTechnologyTopic(event.target.value)
-                                    }
+                                    name="technologyTopic"
+                                    value={formData.technologyTopic}
+                                    onChange={handleChange}
                                     placeholder="Enter technology or topic"
+                                    required
                                 />
                             </div>
                             <div className="mb-2">
@@ -341,14 +321,14 @@ const WorkshopAndTraining = () => {
                                     Institute/College/University
                                 </label>
                                 <input
-                                    className=" appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="institute"
                                     type="text"
-                                    value={institute}
-                                    onChange={(event) =>
-                                        setInstitute(event.target.value)
-                                    }
+                                    name="institute"
+                                    value={formData.institute}
+                                    onChange={handleChange}
                                     placeholder="Enter institute/college/university"
+                                    required
                                 />
                             </div>
                             <div className="mb-2">
@@ -359,21 +339,21 @@ const WorkshopAndTraining = () => {
                                     Address
                                 </label>
                                 <textarea
-                                    className=" appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="appearance-none border-none rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="address"
-                                    value={address}
-                                    onChange={(event) =>
-                                        setAddress(event.target.value)
-                                    }
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleChange}
                                     placeholder="Enter your address"
+                                    required
                                 />
                             </div>
                             <div className="text-sm text-center flex justify-center ">
-                                {" "}
                                 <Button
                                     name={"Submit Your Query Request"}
                                     width={"65%"}
                                     height={"45px"}
+                                    type="submit"
                                 />
                             </div>
                         </form>

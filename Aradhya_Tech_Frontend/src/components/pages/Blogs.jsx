@@ -53,7 +53,7 @@ const Blogs = () => {
                 </div>
                 <div className="w-full md:w-[50%] px-4 md:px-0">
                     <div className="w-full max-w-[500px] mx-auto my-[10%]">
-                        <h2 className="text-xl md:text-2xl tracking-wide font-bold my-4">
+                        <h2 className="text-lg md:text-2xl tracking-wide font-bold my-4">
                             Subscribe to get the latest insights in your inbox.
                         </h2>
                         <div className="flex bg-white rounded-lg overflow-hidden">
@@ -78,14 +78,32 @@ const Blogs = () => {
             </div>
 
             {/* Section 2 */}
-            <div className="h-[100%] w-[100%] px-[10%] py-[5%] bg-[#c6aaa0]">
+            {/* <div className="h-[100%] w-[100%] px-[10%] py-[5%] bg-[#c6aaa0]">
                 <div className="flex flex-wrap h-auto">
                     {blogs.map((blog, index) => (
                         <div
                             onClick={(id) => {
                                 getId(blog._id);
                             }}
-                            className="w-[33.33%] h-auto my-3"
+                            className="w-[33.33%]  h-auto my-3"
+                        >
+                            <WorkCard
+                                key={index}
+                                img={blog.img}
+                                desc={blog.date}
+                                title={blog.title}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div> */}
+            <div className="h-full w-full px-4 py-5 md:px-10 md:py-5">
+                <div className="flex flex-wrap h-auto ">
+                    {blogs.map((blog, index) => (
+                        <div
+                            key={blog._id} // Moved key here for better React handling
+                            onClick={() => getId(blog._id)} // Corrected the onClick function
+                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 h-auto my-3 px-2 " // Added responsive classes
                         >
                             <WorkCard
                                 key={index}

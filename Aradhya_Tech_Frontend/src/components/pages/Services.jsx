@@ -47,18 +47,18 @@ import twelve from "../../assets/images/Industryweserve/12.svg";
 
 const Services = () => {
     return (
-        <div>
+        <div className="">
             {/* section 1 */}
-            <div className="pt-[8%] pb-[4%] bg-[#fbf1ef] flex flex-col items-center">
-                <div className="flex flex-col items-center w-[60%]">
-                    <p className="text-xl my-8 text-[#ff5b2e] font-semibold ">
+            <div className="pt-[8%] pb-4 bg-[#fbf1ef] flex flex-col items-center">
+                <div className="flex flex-col items-center w-full md:w-[80%] lg:w-[60%] px-4">
+                    <p className="text-xl my-8 text-[#ff5b2e] font-semibold">
                         OUR SERVICES
                     </p>
-                    <h2 className="text-5xl font-bold text-center tracking-wide text-gray-800 leading-[60px]">
-                        Aradhya Technologies , Top-rated Social Media and Web &
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center tracking-wide text-gray-800 leading-8 md:leading-10 lg:leading-[60px]">
+                        Aradhya Technologies, Top-rated Social Media and Web &
                         Mobile App Development Company.
                     </h2>
-                    <p className="text-lg text-[#52525d] font-semibold text-justify mt-12 mb-4">
+                    <p className="text-base md:text-lg text-[#52525d] font-semibold text-justify mt-6 md:mt-12 mb-4">
                         Your trusted partner for top-rated social media
                         marketing and web & mobile app development services
                         providers. We combine creativity, technical expertise,
@@ -70,7 +70,7 @@ const Services = () => {
                         transformation with Aradhya Technologies.
                     </p>
                 </div>
-                <div className="lg:w-[90%] flex flex-col lg:flex-row lg:justify-evenly my-16">
+                <div className="w-full lg:w-[90%] flex flex-col  lg:flex-row lg:justify-evenly my-8 md:my-12 lg:my-16 px-4">
                     <ServicebtnCard
                         value={"150"}
                         title={"Mobile Apps Developed"}
@@ -90,25 +90,24 @@ const Services = () => {
             </div>
 
             {/* section 2 */}
-            <div className="h-auto bg-white">
-                <div className="flex px-[9%] py-[7%]">
-                    <div className="w-[39%]">
-                        <div className="w-[80%]">
-                            <h2 className="text-4xl text-gray-800 font-bold tracking-wide leading-snug">
+            <div className="h-auto bg-white pl-7  ">
+                <div className="flex flex-col lg:flex-row px-4 lg:px-[9%] py-8 lg:py-[7%]">
+                    <div className="w-full lg:w-[39%] mb-8 lg:mb-0">
+                        <div className="w-full lg:w-[80%]">
+                            <h2 className="text-3xl md:text-3xl text-gray-800 font-bold tracking-wide leading-tight ">
                                 We make the collaboration of people and
                                 interface more intensive and exciting.
                             </h2>
-
-                            <div className="my-10">
+                            <div className="my-6 lg:my-10">
                                 <Button name={"Need a Designer"} />
                             </div>
                         </div>
                     </div>
-                    <div className="w-[61%]">
-                        <h2 className="text-5xl font-bold pb-8">
+                    <div className="w-full lg:w-[61%]">
+                        <h2 className="text-3xl md:text-5xl font-bold pb-4 lg:pb-8">
                             Design Service
                         </h2>
-                        <div className="flex justify-between">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 ml-3">
                             <ServicesCard
                                 img={img1}
                                 title={"Website Design"}
@@ -121,13 +120,12 @@ const Services = () => {
                                 img={mobileapp}
                                 title={"UI/UX Design"}
                                 desc={
-                                    "We create comprehensive and sophisticated yet simple to use interfaces for your web , app & social medias."
+                                    "We create comprehensive and sophisticated yet simple to use interfaces for your web, app & social medias."
                                 }
                                 readmore={"Read More"}
                             />
                         </div>
-
-                        <div className="flex justify-between my-6">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 mt-5 ml-3">
                             <ServicesCard
                                 img={ui}
                                 title={"Brandings"}
@@ -167,7 +165,7 @@ const Services = () => {
                         <h2 className="text-3xl lg:text-5xl font-bold pb-6 lg:pb-8">
                             Development Service
                         </h2>
-                        <div className="flex flex-col lg:flex-row lg:justify-between">
+                        <div className="flex flex-col md:flex-row justify-between gap-4">
                             <ServicesCard
                                 img={appcode}
                                 title={"NGO Web Development"}
@@ -179,8 +177,7 @@ const Services = () => {
                                 readmore={"Read More"}
                             />
                         </div>
-
-                        <div className="flex flex-col lg:flex-row lg:justify-between my-6">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 my-6">
                             <ServicesCard
                                 img={buyonline}
                                 title={"E-Commerce Development"}
@@ -198,15 +195,14 @@ const Services = () => {
 
             {/* section 4 */}
             <div className="h-auto bg-white">
-                <div className="flex px-[9%] py-[7%]">
-                    <div className="w-[39%]">
-                        <div className="w-[80%]">
-                            <h2 className="text-4xl text-gray-800 font-bold tracking-wide leading-snug">
+                <div className="flex flex-col lg:flex-row px-4 lg:px-[9%] py-8 lg:py-[7%]">
+                    <div className="w-full lg:w-[39%] mb-8 lg:mb-0">
+                        <div className="w-full lg:w-[80%]">
+                            <h2 className="text-2xl lg:text-4xl text-gray-800 font-bold tracking-wide leading-snug">
                                 Our Digital Marketing team is ready to help you
                                 on these services.
                             </h2>
-
-                            <div className="my-10">
+                            <div className="my-6 lg:my-10">
                                 <Button
                                     name={"Need a Marketing Expert"}
                                     width={"80%"}
@@ -214,11 +210,11 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-[61%]">
-                        <h2 className="text-5xl font-bold pb-8">
+                    <div className="w-full lg:w-[61%]">
+                        <h2 className="text-3xl lg:text-5xl font-bold pb-4 lg:pb-8">
                             Marketing Service
                         </h2>
-                        <div className="flex justify-between">
+                        <div className="flex flex-col md:flex-row justify-between gap-4">
                             <ServicesCard
                                 img={searchEngine}
                                 title={"Search Engine Optimization"}
@@ -230,8 +226,7 @@ const Services = () => {
                                 readmore={"Read More"}
                             />
                         </div>
-
-                        <div className="flex justify-between my-6">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 my-6">
                             <ServicesCard
                                 img={ppc}
                                 title={"Lead Generation"}
@@ -252,28 +247,27 @@ const Services = () => {
 
             {/* section 5 */}
             <div className="h-auto bg-white">
-                <div className="flex px-[9%] ">
-                    <div className="w-[39%]">
-                        <div className="w-[80%]">
-                            <h2 className="text-4xl text-gray-800 font-bold tracking-wide leading-snug">
+                <div className="flex flex-col lg:flex-row px-4 lg:px-[9%] py-8 lg:py-[7%]">
+                    <div className="w-full lg:w-[39%] mb-8 lg:mb-0">
+                        <div className="w-full lg:w-[80%]">
+                            <h2 className="text-2xl lg:text-4xl text-gray-800 font-bold tracking-wide leading-snug">
                                 Unleash the Power of Bulk SMS, Virtual Whatsapp,
                                 Text SMS, and Voice Broadcast for Enhanced
                                 Engagement
                             </h2>
-
-                            <div className="my-10">
+                            <div className="my-6 lg:my-10">
                                 <Button
-                                    name={"Promote Your Bussiness"}
+                                    name={"Promote Your Business"}
                                     width={"70%"}
                                 />
                             </div>
                         </div>
                     </div>
-                    <div className="w-[61%]">
-                        <h2 className="text-5xl font-bold pb-8">
-                            Marketing Bussiness
+                    <div className="w-full lg:w-[61%]">
+                        <h2 className="text-3xl lg:text-5xl font-bold pb-4 lg:pb-8">
+                            Marketing Business
                         </h2>
-                        <div className="flex justify-between">
+                        <div className="flex flex-col md:flex-row justify-between gap-4">
                             <ServicesCard
                                 img={searchEngine}
                                 title={"Bulk SMS"}
@@ -285,8 +279,7 @@ const Services = () => {
                                 readmore={"Read More"}
                             />
                         </div>
-
-                        <div className="flex justify-between my-6">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 my-6">
                             <ServicesCard
                                 img={ppc}
                                 title={"Virtual Text SMS"}
@@ -303,41 +296,41 @@ const Services = () => {
             </div>
 
             {/* section 6 */}
-            <div className="flex flex-col items-center bg-[#ffdbca]">
-                <div className="flex flex-col w-[60%] items-center mt-20 mb-10">
-                    <h2 className="text-4xl text-gray-800 font-bold">
+            <div className="flex flex-col items-center bg-[#ffdbca] px-4 py-10">
+                <div className="flex flex-col w-full lg:w-[60%] items-center mt-10 mb-6 lg:mt-20 lg:mb-10">
+                    <h2 className="text-2xl lg:text-4xl text-gray-800 font-bold text-center">
                         Development Process We Follow
                     </h2>
-                    <p className="text-xl text-[#52525d] font-semibold my-6">
+                    <p className="text-lg lg:text-xl text-[#52525d] font-semibold my-4 lg:my-6 text-center">
                         Our design process follows a proven approach. We begin
                         with a deep understanding of your needs and create a
-                        planning
+                        plan accordingly.
                     </p>
                 </div>
-                <div className="flex flex-col items-center justify-center mb-16">
-                    <div className="flex justify-between mb-6">
-                        <div className="mx-4">
+                <div className="flex flex-col items-center justify-center mb-10 lg:mb-16 w-full">
+                    <div className="flex flex-col lg:flex-row justify-center mb-6 w-full">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={pencil}
-                                title={"Requirment Gathering"}
+                                title={"Requirement Gathering"}
                                 number={"01"}
                             />
                         </div>
-                        <div className="mx-4">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={creativity}
                                 title={"Design"}
                                 number={"02"}
                             />
                         </div>
-                        <div className="mx-4">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={prototype}
-                                title={"Portotype"}
+                                title={"Prototype"}
                                 number={"03"}
                             />
                         </div>
-                        <div className="mx-4">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={computer}
                                 title={"Development"}
@@ -345,22 +338,22 @@ const Services = () => {
                             />
                         </div>
                     </div>
-                    <div className="flex justify-between">
-                        <div className="mx-4">
+                    <div className="flex flex-col lg:flex-row justify-center w-full">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={qc}
                                 title={"Quality Assurance"}
                                 number={"05"}
                             />
                         </div>
-                        <div className="mx-4">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={su}
-                                title={"Deploymen"}
+                                title={"Deployment"}
                                 number={"06"}
                             />
                         </div>
-                        <div className="mx-4">
+                        <div className="mx-4 mb-6 lg:mb-0 w-full lg:w-auto">
                             <NewBoxComponent
                                 img={cs}
                                 title={"Support & Maintenance"}
@@ -372,33 +365,57 @@ const Services = () => {
             </div>
 
             {/* section 7 */}
-            <div className="flex flex-col items-center w-full bg-[#fff]">
-                <div className="flex flex-col w-[60%] items-center mt-20 mb-10">
-                    <h2 className="text-4xl text-gray-800 font-bold">
+            <div className="flex flex-col items-center w-full bg-[#fff] px-4 py-10">
+                <div className="flex flex-col w-full lg:w-[60%] items-center mt-10 mb-6 lg:mt-20 lg:mb-10">
+                    <h2 className="text-2xl lg:text-4xl text-gray-800 font-bold text-center">
                         Industries We Serve
                     </h2>
-                    <p className="text-xl text-[#52525d] font-semibold my-4">
-                        we work on the following Industries.
+                    <p className="text-lg lg:text-xl text-[#52525d] font-semibold my-4 lg:my-6 text-center">
+                        We work on the following Industries.
                     </p>
                 </div>
                 <div className="w-full">
-                    <div className="flex justify-evenly w-full mb-12">
-                        <ToastCard img={one} title={"Real estate"} />
-                        <ToastCard img={two} title={"Education"} />
-                        <ToastCard img={three} title={"Event"} />
-                        <ToastCard img={four} title={"NGO"} />
+                    <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center gap-4 mb-6 lg:mb-12">
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={one} title={"Real estate"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={two} title={"Education"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={three} title={"Event"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={four} title={"NGO"} />
+                        </div>
                     </div>
-                    <div className="flex justify-evenly w-full mb-12">
-                        <ToastCard img={five} title={"Finance"} />
-                        <ToastCard img={six} title={"On-Demand"} />
-                        <ToastCard img={seven} title={"Tour & Travels"} />
-                        <ToastCard img={eight} title={"Transport"} />
+                    <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center gap-4 mb-6 lg:mb-12">
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={five} title={"Finance"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={six} title={"On-Demand"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={seven} title={"Tour & Travels"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={eight} title={"Transport"} />
+                        </div>
                     </div>
-                    <div className="flex justify-evenly w-full mb-12">
-                        <ToastCard img={nine} title={"eCommerce"} />
-                        <ToastCard img={ten} title={"Healthcare"} />
-                        <ToastCard img={eleven} title={"Resturant"} />
-                        <ToastCard img={twelve} title={"Grocery"} />
+                    <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center gap-4 mb-6 lg:mb-12">
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={nine} title={"eCommerce"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={ten} title={"Healthcare"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={eleven} title={"Restaurant"} />
+                        </div>
+                        <div className="w-full lg:w-[22%] flex justify-center">
+                            <ToastCard img={twelve} title={"Grocery"} />
+                        </div>
                     </div>
                 </div>
             </div>

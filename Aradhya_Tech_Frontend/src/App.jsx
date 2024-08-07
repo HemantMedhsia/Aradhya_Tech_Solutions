@@ -21,6 +21,7 @@ import ResetPassword from "./components/pages/UserAuth/ResetPassword";
 import AllBlogsAdmin from "./components/pages/UserAuth/AllBlogsAdmin";
 import ShowBlog from "./components/pages/ShowBlog";
 
+
 function useLogAdminPath(setAdmin, setLogin,setForgetPassword, setViewAllBlog) {
     const location = useLocation();
 
@@ -66,7 +67,7 @@ function App() {
                         <Route path="/contact" element={<ContactUs />} />
                         <Route path="/services" element={<Services />} />
                         <Route path="/blogs" element={<Blogs />} />
-                        <Route path="/admin" element={<AdminPanel />} />
+                        <Route path="/admin" element={<AdminPanel/>} />
                         <Route path="/workshop" element={<WorkshopAndTraining />} />
                         <Route path="/forgetpassword" element={<ForgetPassword />} />
                         {/* <Route path="/reset_password/:id/:token" element={<ResetPassword />} /> */}

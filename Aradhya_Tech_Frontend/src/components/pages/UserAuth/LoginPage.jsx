@@ -11,6 +11,7 @@ const LoginPage = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
+    
 
 
     const toggleDarkMode = () => {
@@ -30,6 +31,7 @@ const LoginPage = () => {
             );
             setSuccess("Login successful!");
             // Handle success, e.g., redirect or save token
+            
 
             console.log(response.data.token); // Assuming the API returns a token
             navigate("/admin");
@@ -58,7 +60,7 @@ const LoginPage = () => {
             <div className="grid gap-8">
                 <div
                     id="back-div"
-                    className={`bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] m-4`}
+                    className={`bg-gradient-to-r from-pink-300 to-[#ff5b2e] rounded-[26px] m-4`}
                 >
                     <div
                         className={`border-[20px] border-transparent rounded-[20px] ${
@@ -90,7 +92,7 @@ const LoginPage = () => {
                                     id="email"
                                     className={`border ${
                                         isDarkMode
-                                            ? "bg-indigo-700 text-gray-300 border-gray-700"
+                                            ? "bg-pink-300 text-gray-300 "
                                             : "border-gray-300"
                                     } p-3 shadow-md placeholder:text-base rounded-lg w-full focus:scale-105 ease-in-out duration-300`}
                                     type="email"
@@ -115,7 +117,7 @@ const LoginPage = () => {
                                     id="password"
                                     className={`border ${
                                         isDarkMode
-                                            ? "bg-indigo-700 text-gray-300 border-gray-700"
+                                            ? "bg-pink-300 text-gray-300 "
                                             : "border-gray-300"
                                     } p-3 mb-2 shadow-md placeholder:text-base rounded-lg w-full focus:scale-105 ease-in-out duration-300`}
                                     type="password"
@@ -138,7 +140,7 @@ const LoginPage = () => {
                                 </div>
                             )}
                             <button
-                                className={`bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out`}
+                                className={`bg-gradient-to-r from-pink-300 to-[#ff5b2e] shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-pink-300 hover:to-[#ff5b2e] transition duration-300 ease-in-out`}
                                 type="submit"
                             >
                                 Log In

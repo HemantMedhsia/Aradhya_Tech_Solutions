@@ -11,10 +11,8 @@ const AdminPanel = () => {
         slug: "",
     });
 
-    
-
     function activePage() {
-        setActive(true);
+        setActive(!active);
     }
 
     const handleChange = (e) => {
@@ -32,14 +30,21 @@ const AdminPanel = () => {
                 "http://localhost:8000/api/user/blogs",
                 formData
             );
+            alert("Blog add Successfully");
             console.log(response.data);
+            setFormData({
+                title: "",
+                author: "",
+                img: "",
+                slug: "",
+            });
         } catch (err) {
             console.error(err);
         }
     };
 
     return (
-        <div className="bg-orange-100 min-h-screen">
+        <div className="bg-orange-100 min-h-screen pb-8">
             <div className="flex w-full pt-24 px-10 pb-4">
                 <nav className="w-2/12 mr-6">
                     <div className="bg-white rounded-xl shadow-lg mb-6 p-6">
@@ -110,69 +115,148 @@ const AdminPanel = () => {
 
                 {active ? (
                     <main className="flex-grow">
-                        <div className="flex items-center justify-center">
-                            <form
-                                onSubmit={handleSubmit}
-                                className="w-full max-w-2xl p-16 shadow-2xl rounded-lg"
-                            >
-                                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                                    Add a New Blog
-                                </h2>
-                                <div className="mb-4">
-                                    <input
-                                        type="text"
-                                        id="title"
-                                        name="title"
-                                        value={formData.title}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
-                                        placeholder="Enter blog title"
-                                        required
-                                    />
+                        <div className="min-h-screen w-full flex flex-col justify-center">
+                            <div className="relative py-3 sm:max-w-xl sm:mx-auto  w-full">
+                                <div className="absolute inset-0 bg-gradient-to-r from-pink-300 to-[#ff5b2e] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+                                <div className="relative bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                                    <div className="max-w-md mx-auto">
+                                        <div>
+                                            <h1 className="text-2xl font-semibold pb-5">
+                                                Add a New Blog
+                                            </h1>
+                                        </div>
+                                        <div className="divide-y divide-gray-200">
+                                            <div className="text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
+                                                <form
+                                                    onSubmit={handleSubmit}
+                                                    className="space-y-6"
+                                                >
+                                                    <div className="relative mb-6">
+                                                        <input
+                                                            autoComplete="off"
+                                                            id="title"
+                                                            name="title"
+                                                            type="text"
+                                                            className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                            placeholder="Title"
+                                                            value={
+                                                                formData.title
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                        />
+                                                        <label
+                                                            htmlFor="title"
+                                                            className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                        >
+                                                            Title
+                                                        </label>
+                                                    </div>
+                                                    <div className="relative mb-6">
+                                                        <input
+                                                            autoComplete="off"
+                                                            id="author"
+                                                            name="author"
+                                                            type="text"
+                                                            className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                            placeholder="Author"
+                                                            value={
+                                                                formData.author
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                        />
+                                                        <label
+                                                            htmlFor="author"
+                                                            className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                        >
+                                                            Author
+                                                        </label>
+                                                    </div>
+                                                    <div className="relative mb-6">
+                                                        <input
+                                                            autoComplete="off"
+                                                            id="img"
+                                                            name="img"
+                                                            type="text"
+                                                            className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                            placeholder="Image URL"
+                                                            value={formData.img}
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                        />
+                                                        <label
+                                                            htmlFor="img"
+                                                            className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                        >
+                                                            Image URL
+                                                        </label>
+                                                    </div>
+                                                    <div className="relative mb-6">
+                                                        <input
+                                                            autoComplete="off"
+                                                            id="slug"
+                                                            name="slug"
+                                                            type="text"
+                                                            className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                            placeholder="Slug"
+                                                            value={
+                                                                formData.slug
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                        />
+                                                        <label
+                                                            htmlFor="slug"
+                                                            className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                        >
+                                                            Slug
+                                                        </label>
+                                                    </div>
+                                                    <div className="relative mb-6">
+                                                        <textarea
+                                                            autoComplete="off"
+                                                            id="description"
+                                                            name="description"
+                                                            className="peer placeholder-transparent h-15 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
+                                                            placeholder="Description"
+                                                            value={
+                                                                formData.description
+                                                            }
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                        />
+                                                        <label
+                                                            htmlFor="description"
+                                                            className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                        >
+                                                            Description
+                                                        </label>
+                                                    </div>
+                                                    <div className="relative mt-6">
+                                                        <button
+                                                            type="submit"
+                                                            className="w-[30%] item-center px-4 py-2 font-bold bg-red-300  rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
+                                                        >
+                                                            Add Blog
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="mb-4">
-                                    <input
-                                        type="text"
-                                        id="author"
-                                        name="author"
-                                        value={formData.author}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
-                                        placeholder="Enter author's name"
-                                        required
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <input
-                                        type="text"
-                                        id="img"
-                                        name="img"
-                                        value={formData.img}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
-                                        placeholder="Enter image URL"
-                                        required
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <input
-                                        type="text"
-                                        id="slug"
-                                        name="slug"
-                                        value={formData.slug}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm"
-                                        placeholder="Enter a unique slug"
-                                        required
-                                    />
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="w-[20%] item-center px-4 py-2 bg-red-300 text-black font-semibold rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out"
-                                >
-                                    Add Blog
-                                </button>
-                            </form>
+                            </div>
                         </div>
                     </main>
                 ) : null}
