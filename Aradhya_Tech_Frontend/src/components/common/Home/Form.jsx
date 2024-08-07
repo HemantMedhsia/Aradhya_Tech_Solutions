@@ -27,6 +27,15 @@ const Form = () => {
         if (!formData.message) newErrors.message = "Message is required";
         if (!formData.agree)
             newErrors.agree = "You must agree to the terms and conditions";
+        // Contact number validation
+        const contactNumberPattern = /^[0-9]{10}$/;
+        if (!formData.contactNumber) {
+            newErrors.contactNumber = "Contact Number is required";
+        } else if (!contactNumberPattern.test(formData.contactNumber)) {
+            newErrors.contactNumber =
+                "Contact Number must be a 10-digit number";
+        }
+
         return newErrors;
     };
 
@@ -130,11 +139,17 @@ const Form = () => {
                     <div className="flex flex-col lg:flex-row gap-2 mb-4">
                         <input
                             name="contactNumber"
+                            type="number"
                             value={formData.contactNumber}
                             onChange={handleChange}
                             placeholder="Contact Number"
                             className="w-full lg:w-1/2 h-12 rounded-lg px-2"
                         />
+                        {errors.contactNumber && (
+                            <p className="text-red-500">
+                                {errors.contactNumber}
+                            </p>
+                        )}
                         <select
                             name="service"
                             value={formData.service}
