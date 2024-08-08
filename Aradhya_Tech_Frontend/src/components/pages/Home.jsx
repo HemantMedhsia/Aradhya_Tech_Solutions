@@ -12,36 +12,36 @@ import serviceCardSvg7 from "../../assets/images/serviceCardSvg7.svg";
 import NormalCard from "../common/Home/NormalCard";
 import ServicesCard from "../common/Home/ServicesCard";
 import WorkCard from "../common/Home/WorkCard";
-import Ecommerce from '../../assets/images/OurRecentWork/E-commerce.png';
-import Ngo1 from '../../assets/images/OurRecentWork/NGOWebsite.png';
-import Ngo2 from '../../assets/images/OurRecentWork/NGOWeb2.png';
-import Ngo3 from '../../assets/images/OurRecentWork/NGO3.png';
-import Training from '../../assets/images/OurRecentWork/TrainingInstitute.png';
-import Trust from '../../assets/images/OurRecentWork/TrustWebsiteAAS.png';
-import android from '../../assets/images/Mobile/android.svg'
-import ios from '../../assets/images/Mobile/ios.svg';
-import java from '../../assets/images/Mobile/java.svg';
-import pwa from '../../assets/images/Mobile/pwa.svg';
-import ionic from '../../assets/images/Mobile/ionic.png';
-import react from '../../assets/images/Mobile/react.svg';
-import angular from '../../assets/images/Frontend/angular.svg';
-import bootstrap from '../../assets/images/Frontend/bootstrap.svg';
-import html5 from '../../assets/images/Frontend/html5.svg';
-import npm from '../../assets/images/Frontend/Npm.svg';
-import typescript from '../../assets/images/Frontend/typescript.svg'
-import reactjs from '../../assets/images/Frontend/Reactjs.svg'
-import mariadb from '../../assets/images/Database/MariaDB.svg';
-import mongodb from '../../assets/images/Database/mongodb.svg';
-import mysql from '../../assets/images/Database/mysql.svg';
-import postgresql from '../../assets/images/Database/postgresql.svg';
-import sqlite from '../../assets/images/Database/sqlite.svg'
-import bigcom from '../../assets/images/CMS/bigcommerce.svg';
-import shopify from '../../assets/images/CMS/shopify.svg';
-import wordpress from '../../assets/images/CMS/wordpress.svg';
-import wix from '../../assets/images/CMS/wix.svg';
-import woo from '../../assets/images/CMS/woo.svg';
+import Ecommerce from "../../assets/images/OurRecentWork/E-commerce.png";
+import Ngo1 from "../../assets/images/OurRecentWork/NGOWebsite.png";
+import Ngo2 from "../../assets/images/OurRecentWork/NGOWeb2.png";
+import Ngo3 from "../../assets/images/OurRecentWork/NGO3.png";
+import Training from "../../assets/images/OurRecentWork/TrainingInstitute.png";
+import Trust from "../../assets/images/OurRecentWork/TrustWebsiteAAS.png";
+import android from "../../assets/images/Mobile/android.svg";
+import ios from "../../assets/images/Mobile/ios.svg";
+import java from "../../assets/images/Mobile/java.svg";
+import pwa from "../../assets/images/Mobile/pwa.svg";
+import ionic from "../../assets/images/Mobile/ionic.png";
+import react from "../../assets/images/Mobile/react.svg";
+import angular from "../../assets/images/Frontend/angular.svg";
+import bootstrap from "../../assets/images/Frontend/bootstrap.svg";
+import html5 from "../../assets/images/Frontend/html5.svg";
+import npm from "../../assets/images/Frontend/Npm.svg";
+import typescript from "../../assets/images/Frontend/typescript.svg";
+import reactjs from "../../assets/images/Frontend/Reactjs.svg";
+import mariadb from "../../assets/images/Database/MariaDB.svg";
+import mongodb from "../../assets/images/Database/mongodb.svg";
+import mysql from "../../assets/images/Database/mysql.svg";
+import postgresql from "../../assets/images/Database/postgresql.svg";
+import sqlite from "../../assets/images/Database/sqlite.svg";
+import bigcom from "../../assets/images/CMS/bigcommerce.svg";
+import shopify from "../../assets/images/CMS/shopify.svg";
+import wordpress from "../../assets/images/CMS/wordpress.svg";
+import wix from "../../assets/images/CMS/wix.svg";
+import woo from "../../assets/images/CMS/woo.svg";
 import Form from "./../common/Home/Form";
-
+import { Link } from "react-router-dom";
 import {
     CustomNextArrow,
     CustomPrevArrow,
@@ -132,7 +132,12 @@ const Home = () => {
                             effective social media marketing solutions.
                         </p>
                         <div className="mt-6 lg:mt-10">
-                            <Button name={"Let's Talk"} />
+                            <Link
+                                to={"/contact"}
+                                onClick={() => window.scrollTo(0, 0)}
+                            >
+                                <Button name={"Let's Talk"} />
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -169,7 +174,9 @@ const Home = () => {
                             transformation with Aradhya Technologies.
                         </p>
                         <div className="mt-6 lg:mt-10">
-                            <Button name={"About Us ->"} />
+                            <Link  to={"/about"} onClick={()=>window.scrollTo(0,0)}>
+                                <Button name={"About Us ->"} />
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -304,7 +311,7 @@ const Home = () => {
                         </h2>
                     </div>
                     <div className="mt-4 lg:ml-4 lg:mt-2">
-                        <Button name="Hire Now" />
+                        <Link to={'/contact'} onClick={()=>window.scrollTo(0,0)}><Button name="Hire Now" /></Link>
                     </div>
                 </div>
             </div>
@@ -315,7 +322,9 @@ const Home = () => {
                     <h2 className="text-3xl md:text-4xl font-bold">
                         Our Recent Work
                     </h2>
-                    <p className="text-lg font-semibold md:text-xl mt-4 cursor-pointer hover:text-[#ff5b2e] md:mt-0">Hire Us</p>
+                    <p className="text-lg font-semibold md:text-xl mt-4 cursor-pointer hover:text-[#ff5b2e] md:mt-0">
+                        Hire Us
+                    </p>
                 </div>
                 <div className="py-4 px-8">
                     <Slider {...settings}>
@@ -427,7 +436,10 @@ const Home = () => {
                                 <Techlogo name={"Angular JS"} img={angular} />
                                 <Techlogo name={"ReactJs"} img={reactjs} />
                                 <Techlogo name={"Npm"} img={npm} />
-                                <Techlogo name={"Typescript"} img={typescript} />
+                                <Techlogo
+                                    name={"Typescript"}
+                                    img={typescript}
+                                />
                                 <Techlogo name={"HTML5"} img={html5} />
                                 <Techlogo name={"Bootstrap"} img={bootstrap} />
                             </div>
@@ -437,7 +449,10 @@ const Home = () => {
                                 <Techlogo name={"MariaDB"} img={mariadb} />
                                 <Techlogo name={"MongoDb"} img={mongodb} />
                                 <Techlogo name={"MySQL"} img={mysql} />
-                                <Techlogo name={"PostgreSQL"} img={postgresql} />
+                                <Techlogo
+                                    name={"PostgreSQL"}
+                                    img={postgresql}
+                                />
                                 <Techlogo name={"SQLite"} img={sqlite} />
                             </div>
                         )}
@@ -487,7 +502,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="w-full lg:w-1/2 flex justify-center px-4">
-                        <Form/>
+                        <Form />
                     </div>
                 </div>
             </div>
