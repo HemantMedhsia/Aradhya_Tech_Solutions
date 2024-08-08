@@ -11,6 +11,7 @@ import imgabout4 from "../../assets/images/aboutCardSvg4.svg";
 import imgabout5 from "../../assets/images/aboutCardSvg5.svg";
 import imgabout6 from "../../assets/images/aboutCardSvg6.svg";
 import SquareButton from "../common/SquareButton";
+import { Link } from "react-router-dom";
 
 export const About = () => {
     const [activeSection, setActiveSection] = useState("mission");
@@ -439,7 +440,12 @@ export const About = () => {
                         vision.
                     </h1>
                     <div className="mt-10 flex justify-center md:justify-start w-full">
-                        <Button name={"Join Our Team"} />
+                        <Link
+                            to={"/contact"}
+                            onClick={() => window.scrollTo(0, 0)}
+                        >
+                            <Button name={"Join Our Team"} />
+                        </Link>
                     </div>
                 </div>
                 <div className="mt-10 md:mt-14 md:w-1/2 p-5">
