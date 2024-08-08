@@ -41,6 +41,7 @@ import wordpress from '../../assets/images/CMS/wordpress.svg';
 import wix from '../../assets/images/CMS/wix.svg';
 import woo from '../../assets/images/CMS/woo.svg';
 import Form from "./../common/Home/Form";
+import CountUp from "react-countup";
 
 import {
     CustomNextArrow,
@@ -156,7 +157,7 @@ const Home = () => {
                             Top-rated Social Media and Web & Mobile App
                             Development Company
                         </h2>
-                        <p className="text-lg lg:text-xl text-[#52525d]">
+                        <p className="text-lg text-justify lg:text-xl text-[#52525d]">
                             Aradhya Technologies: Your trusted partner for
                             top-rated social media marketing and web & mobile
                             app development services providers. We combine
@@ -178,14 +179,14 @@ const Home = () => {
                         <div className="flex flex-col mr-0 lg:mr-6 mt-0 lg:mt-20">
                             <NormalCard
                                 title={"PROJECTS"}
-                                value={"50+"}
+                                value={"50"}
                                 desc={
                                     "Aradhya Technologies delivered fifty-plus successful projects around the world."
                                 }
                             />
                             <NormalCard
                                 title={"CLIENTS"}
-                                value={"100+"}
+                                value={"100"}
                                 desc={
                                     "Aradhya Technologies have 100+ satisfied happy clients of social media as well as web and applications."
                                 }
@@ -194,14 +195,14 @@ const Home = () => {
                         <div className="mt-6 lg:mt-44 flex flex-col">
                             <NormalCard
                                 title={"TEAM"}
-                                value={"30+"}
+                                value={"30"}
                                 desc={
                                     "Our team consists of highly qualified and knowledgeable professionals."
                                 }
                             />
                             <NormalCard
                                 title={"YEARS"}
-                                value={"5+"}
+                                value={"5"}
                                 desc={
                                     "We have been serving for over 5 years with our quality, processes, and work."
                                 }
@@ -230,7 +231,7 @@ const Home = () => {
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="w-11/12">
-                        <div className="flex flex-wrap justify-evenly mb-6">
+                        <div className="flex flex-wrap justify-evenly ">
                             <ServicesCard
                                 img={serviceCardSvg1}
                                 title="Web Development"
@@ -251,7 +252,7 @@ const Home = () => {
                             />
                         </div>
 
-                        <div className="flex flex-wrap justify-evenly mb-6">
+                        <div className="flex flex-wrap justify-evenly ">
                             <ServicesCard
                                 img={serviceCardSvg4}
                                 title="Android App Development"
@@ -272,7 +273,7 @@ const Home = () => {
                             />
                         </div>
 
-                        <div className="flex flex-wrap justify-evenly mb-6">
+                        <div className="flex flex-wrap justify-evenly ">
                             <ServicesCard
                                 img={serviceCardSvg5}
                                 title="Digital Marketing"

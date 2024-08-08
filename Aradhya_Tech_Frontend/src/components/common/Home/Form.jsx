@@ -210,7 +210,7 @@ const Form = () => {
                         width={"100%"}
                         height={"60px"}
                     />
-                    <p className="mt-2 text-sm text-center text-[#52525D]">
+                    <p className="mt-4 text-sm text-center  text-[#52525D]">
                         We hate spam, and we respect your privacy.
                     </p>
                 </div>

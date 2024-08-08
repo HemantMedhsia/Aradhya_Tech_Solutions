@@ -1,31 +1,27 @@
 import React from "react";
 import Button from "../common/Button";
-import contactSectionImg from '../../assets/images/team-supportContactPageSvg.svg'
+import contactSectionImg from "../../assets/images/team-supportContactPageSvg.svg";
 
 const CommonContactSection = () => {
     return (
-        <div className="flex flex-col bg-[#fbf1ef] md:flex-row justify-between lg:px-[8%]">
-            <div className="w-full lg:w-1/2 mb-6 md:my-[10%] mr-4 ">
-                <div className="w-[90%]">
-                    <p className="mb-10 text-[#ff5b2e] font-bold">
+        <div className="flex flex-col bg-[#fbf1ef] md:flex-row justify-between lg:px-[8%] px-4 py-8">
+            <div className="w-full lg:w-1/2 mb-6 md:my-[10%] mr-4 flex justify-center lg:justify-start">
+                <div className="w-[90%] max-w-lg">
+                    <p className="mb-4 text-[#ff5b2e] font-bold text-center lg:text-left">
                         <i
                             className="fa fa-building m-1"
                             aria-hidden="true"
-                        ></i>{" "}
+                        ></i>
                         Contact Us
                     </p>
-                    <h2 className="text-3xl md:text-4xl mb-10 font-bold">
+                    <h2 className="text-2xl md:text-4xl mb-4 font-bold text-center lg:text-left">
                         Have a project in mind? Let's get to chat.
                     </h2>
-                    <div className="flex w-full my-[5%]">
-                        <div className="mr-[3%]">
-                            <Button
-                                name={"Contact"}
-                                height={"60px"}
-                                // shadow={"0 4px 8px 4ee464"}
-                            />
+                    <div className="flex flex-col items-center sm:flex-row w-full my-4 sm:my-6 justify-center lg:justify-start">
+                        <div className="mb-4 sm:mb-0 sm:mr-4">
+                            <Button name={"Contact"} height={"60px"} />
                         </div>
-                        <div className="mx-[3%]">
+                        <div>
                             <Button
                                 bgcolour="4ee464" // Correctly formatted color value
                                 colour="white"
@@ -39,8 +35,12 @@ const CommonContactSection = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full ml-4 md:w-1/2 flex justify-center">
-                <img src={contactSectionImg} className="w-[80%] h-auto" alt="Agency Image" />
+            <div className="w-full md:w-1/2 flex justify-center">
+                <img
+                    src={contactSectionImg}
+                    className="w-[80%] h-auto"
+                    alt="Agency Image"
+                />
             </div>
         </div>
     );

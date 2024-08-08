@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import axios from "axios"; // Import axios or any other HTTP client of your choice
 import { useNavigate } from "react-router-dom"; 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; // Import the CSS file
 
 const LoginPage = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -11,8 +13,6 @@ const LoginPage = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
-    
-
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
@@ -29,27 +29,25 @@ const LoginPage = () => {
                 { email, password },
                 { tc: true }
             );
-            setSuccess("Login successful!");
-            // Handle success, e.g., redirect or save token
             
-
+            toast.success("Login Successfully");
+            // Handle success, e.g., redirect or save token
             console.log(response.data.token); // Assuming the API returns a token
-            navigate("/admin");
+
+            // Delay navigation to allow the toast to be visible for a moment
+            setTimeout(() => {
+                navigate("/admin");
+            }, 2000); // Adjust the delay as needed
         } catch (err) {     
             console.error("Error details:", err); // Log the error for debugging
-            if (err.response && err.response.data) {
-                setError(err.response.data.message || "An error occurred.");
-            } else {
-                setError("An error occurred.");
-            }
+                toast.error("An error occurred.");
+            
         }
     };
 
-
-      const handleForgetPasswordClick = () => {
+    const handleForgetPasswordClick = () => {
         navigate('/forgetpassword');
     };
-
 
     return (
         <div
@@ -198,6 +196,7 @@ const LoginPage = () => {
                     </div>
                 )}
             </button>
+            <ToastContainer />
         </div>
     );
 };

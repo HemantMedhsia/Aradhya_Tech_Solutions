@@ -2,7 +2,7 @@ import React from "react";
 
 const ServicesCard = ({ img, title, desc, readmore }) => {
     return (
-        <div className="bg-[#f7f7f7] rounded-xl h-auto w-[350px] border-[1px] px-6 pt-4 pb-6">
+        <div className="bg-[#f7f7f7] rounded-xl my-4 h-auto w-[350px] border-[1px] px-6 pt-4 pb-6">
             <div className=" flex justify-center items-center bg-white w-[30%] h-[28%] rounded-[8px]">
                 <img width={"60%"} src={img} />
             </div>

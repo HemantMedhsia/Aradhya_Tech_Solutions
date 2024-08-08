@@ -47,7 +47,7 @@ import twelve from "../../assets/images/Industryweserve/12.svg";
 
 const Services = () => {
     return (
-        <div className="">
+        <div className="!m-0 !p-0">
             {/* section 1 */}
             <div className="pt-[8%] pb-4 bg-[#fbf1ef] flex flex-col items-center">
                 <div className="flex flex-col items-center w-full md:w-[80%] lg:w-[60%] px-4">
@@ -90,7 +90,7 @@ const Services = () => {
             </div>
 
             {/* section 2 */}
-            <div className="h-auto bg-white pl-7  ">
+            <div className="h-auto bg-white pl-4 lg:pl-7  ">
                 <div className="flex flex-col lg:flex-row px-4 lg:px-[9%] py-8 lg:py-[7%]">
                     <div className="w-full lg:w-[39%] mb-8 lg:mb-0">
                         <div className="w-full lg:w-[80%]">
@@ -107,7 +107,7 @@ const Services = () => {
                         <h2 className="text-3xl md:text-5xl font-bold pb-4 lg:pb-8">
                             Design Service
                         </h2>
-                        <div className="flex flex-col md:flex-row justify-between gap-4 ml-3">
+                        <div className="flex flex-col items-center justify-between md:flex-row md:justify-between gap-4 mr-3 lg:ml-3">
                             <ServicesCard
                                 img={img1}
                                 title={"Website Design"}
@@ -125,7 +125,7 @@ const Services = () => {
                                 readmore={"Read More"}
                             />
                         </div>
-                        <div className="flex flex-col md:flex-row justify-between gap-4 mt-5 ml-3">
+                        <div className="flex flex-col items-center justify-center md:flex-row lg:justify-between gap-4 mt-5 mr-3 lg:ml-3">
                             <ServicesCard
                                 img={ui}
                                 title={"Brandings"}
@@ -235,9 +235,6 @@ const Services = () => {
                             <ServicesCard
                                 img={ratings}
                                 title={"Online Reputation Management"}
-                                desc={
-                                    "Elevate your online presence with expertly crafted websites by Aradhya Technologies."
-                                }
                                 readmore={"Read More"}
                             />
                         </div>
@@ -375,7 +372,7 @@ const Services = () => {
                     </p>
                 </div>
                 <div className="w-full">
-                    <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center gap-4 mb-6 lg:mb-12">
+                    <div className="flex lg:w-full w-full flex-col lg:flex-row flex-wrap justify-center gap-4 mb-6 lg:mb-12">
                         <div className="w-full lg:w-[22%] flex justify-center">
                             <ToastCard img={one} title={"Real estate"} />
                         </div>

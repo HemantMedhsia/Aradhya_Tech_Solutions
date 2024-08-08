@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom"; // Assuming you're using react-router
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
     const { id, token } = useParams(); // Get id and token from route params
@@ -8,6 +11,7 @@ const ResetPassword = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,13 +31,22 @@ const ResetPassword = () => {
                 }
             );
 
+            toast.success(response.data.message);
+            toast.success("Redirecting to Login Page");
+            console.log(response.data.message);
+
+            setTimeout(() => {
+                navigate("/login");
+            }, 2000);
+
             if (response.data.success) {
-                setSuccess("Password updated successfully");
+                // setSuccess("Password updated successfully");
                 setError("");
                 setNewPassword("");
                 setConfirmPassword("");
             } else {
                 setError(response.data.message || "Failed to update password");
+                toast.error(response.data.message || "Failed to update password");
                 setSuccess("");
             }
         } catch (err) {
@@ -44,10 +57,13 @@ const ResetPassword = () => {
                 console.error("Response data:", err.response.data);
                 console.error("Response status:", err.response.status);
                 console.error("Response headers:", err.response.headers);
+
                 setError(
                     err.response.data.message ||
                         "An error occurred while updating the password"
                 );
+
+                toast.error(error);
             } else if (err.request) {
                 // The request was made but no response was received
                 console.error("Request data:", err.request);
@@ -56,6 +72,7 @@ const ResetPassword = () => {
                 // Something happened in setting up the request that triggered an Error
                 console.error("Error message:", err.message);
                 setError("An error occurred while updating the password");
+                toast.error("An error occurred while updating the password")
             }
             setSuccess("");
         }
@@ -108,6 +125,7 @@ const ResetPassword = () => {
                     Update Password
                 </button>
             </form>
+            <ToastContainer />
         </div>
     );
 };

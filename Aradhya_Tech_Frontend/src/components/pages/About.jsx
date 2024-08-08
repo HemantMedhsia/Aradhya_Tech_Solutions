@@ -359,7 +359,7 @@ export const About = () => {
 
             {/* Section-5 */}
             <div className="w-full flex justify-center">
-                <div className="w-11/12 ml-6 mb-2">
+                <div className="lg:w-11/12 ml-3 mb-2">
                     <div className="flex flex-wrap justify-between mb-6">
                         <div className="mt-5">
                             <Aboutcard
