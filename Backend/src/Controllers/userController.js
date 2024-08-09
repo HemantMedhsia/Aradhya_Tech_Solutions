@@ -126,7 +126,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
       .send({ status: "failed", message: "Email doesn't exist" });
 
   const secret = user._id + process.env.JWT_SECRET_KEY;
-  const token = jwt.sign({ userID: user._id }, secret, { expiresIn: "15m" });
+  const token = jwt.sign({ userID: user._id }, secret, { expiresIn: "5m" });
   const link = `http://localhost:5173/reset_password/${user._id}/${token}`;
   console.log(link);
   const authlink = await new AuthModel({ link });
@@ -134,7 +134,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
   try {
     const mailOptions = {
       from: "vt2855028@gmail.com",
-      to: "vedanshtiwariup@gmail.com",
+      to: user.email,
       subject: "Password Reset",
       text: `Here is your password reset link: ${link}`,
       html: `<b>Here is your password reset link: <a href="${link}">${link}</a></b>`,

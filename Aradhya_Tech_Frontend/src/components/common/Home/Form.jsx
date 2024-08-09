@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,11 +13,21 @@ const Form = () => {
         service: "Web Design",
         message: "",
         agree: false,
+        captchaInput: "", // User's input for CAPTCHA
     });
 
+    const [captcha, setCaptcha] = useState(""); // Generated CAPTCHA
     const [errors, setErrors] = useState({});
-    const [submitted, setSubmitted] = useState(false);
     const [loader, setLoader] = useState(false);
+
+    useEffect(() => {
+        generateCaptcha(); // Generate CAPTCHA when component mounts
+    }, []);
+
+    const generateCaptcha = () => {
+        const randomCaptcha = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit random number
+        setCaptcha(randomCaptcha);
+    };
 
     const validate = () => {
         const newErrors = {};
@@ -27,13 +37,18 @@ const Form = () => {
         if (!formData.message) newErrors.message = "Message is required";
         if (!formData.agree)
             newErrors.agree = "You must agree to the terms and conditions";
-        // Contact number validation
+
         const contactNumberPattern = /^[0-9]{10}$/;
         if (!formData.contactNumber) {
             newErrors.contactNumber = "Contact Number is required";
         } else if (!contactNumberPattern.test(formData.contactNumber)) {
             newErrors.contactNumber =
                 "Contact Number must be a 10-digit number";
+        }
+
+        // CAPTCHA validation
+        if (formData.captchaInput !== captcha.toString()) {
+            newErrors.captchaInput = "Incorrect CAPTCHA";
         }
 
         return newErrors;
@@ -49,7 +64,6 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form submitted");
         const newErrors = validate();
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
@@ -64,7 +78,6 @@ const Form = () => {
                 formData
             );
             if (response.status === 200) {
-                setSubmitted(true);
                 toast.success("Email sent successfully!");
                 setFormData({
                     subject: "",
@@ -74,7 +87,9 @@ const Form = () => {
                     service: "Web Design",
                     message: "",
                     agree: false,
+                    captchaInput: "", // Reset CAPTCHA input
                 });
+                generateCaptcha(); // Generate new CAPTCHA after successful submission
             }
         } catch (error) {
             console.error("Error sending email:", error);
@@ -185,6 +200,34 @@ const Form = () => {
                             <p className="text-red-500">{errors.message}</p>
                         )}
                     </div>
+                    <div className="mb-4">
+                        <div className="flex flex-col lg:flex-row gap-2 mb-4">
+                            <input
+                                name="captchaInput"
+                                value={formData.captchaInput}
+                                onChange={handleChange}
+                                placeholder="Enter CAPTCHA"
+                                className="w-full lg:w-1/2 h-12 rounded-lg px-2"
+                                required
+                            />
+                            <span className="flex items-center justify-center font-bold text-lg lg:w-1/2 h-12 rounded-lg bg-gray-200 text-center">
+                                {captcha}
+                            </span>
+                        </div>
+                        {errors.captchaInput && (
+                            <p className="text-red-500">
+                                {errors.captchaInput}
+                            </p>
+                        )}
+                        <button
+                            type="button"
+                            onClick={generateCaptcha}
+                            className="mt-2 text-blue-600 underline"
+                        >
+                            Refresh CAPTCHA
+                        </button>
+                    </div>
+
                     <div className="flex items-center mb-4">
                         <input
                             name="agree"
@@ -210,7 +253,7 @@ const Form = () => {
                         width={"100%"}
                         height={"60px"}
                     />
-                    <p className="mt-4 text-sm text-center  text-[#52525D]">
+                    <p className="mt-4 text-sm text-center text-[#52525D]">
                         We hate spam, and we respect your privacy.
                     </p>
                 </div>

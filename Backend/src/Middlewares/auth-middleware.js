@@ -6,7 +6,7 @@ var checkUserAuth = async (req, res, next) => {
   const { authorization } = req.headers;
   if (authorization && authorization.startsWith("Bearer")) {
     try {
-      // Get Token from header 
+      // Get Token from header
       token = authorization.split(" ")[1];
 
       // Verify Token

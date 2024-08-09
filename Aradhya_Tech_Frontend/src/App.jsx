@@ -22,7 +22,6 @@ import AllBlogsAdmin from "./components/pages/UserAuth/AllBlogsAdmin";
 import ShowBlog from "./components/pages/ShowBlog";
 
 
-
 function useLogAdminPath(
     setAdmin,
     setLogin,
@@ -79,57 +78,54 @@ function App() {
                 />
                 {loading && (
                     <div className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full h-full bg-gray-900 opacity-80">
-                        <span className="loader absolute"><strong>Aradhya Technologies</strong></span>
+                        <span className="loader absolute">
+                            <strong>Aradhya Technologies</strong>
+                        </span>
                     </div>
                 )}
                 {/* Show loading spinner */}
-                        {admin ? (
-                            <AdminNavbar />
-                        ) : login || forgetPassword || viewAllBlog ? null : (
-                            <Header />
-                        )}
-                        <main>
-                            <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route path="/about" element={<About />} />
-                                <Route
-                                    path="/contact"
-                                    element={<ContactUs />}
-                                />
-                                <Route
-                                    path="/services"
-                                    element={<Services />}
-                                />
-                                <Route path="/blogs" element={<Blogs />} />
-                                <Route path="/admin" element={<AdminPanel/>} />
-                                <Route
-                                    path="/workshop"
-                                    element={<WorkshopAndTraining />}
-                                />
-                                <Route
-                                    path="/forgetpassword"
-                                    element={<ForgetPassword />}
-                                />
-                                <Route
-                                    path="/reset_password/:id/:token"
-                                    element={<ResetPassword />}
-                                />
-                                <Route path="/login" element={<LoginPage />} />
-                                <Route
-                                    path="/show-blogs/:id"
-                                    element={<ShowBlog />}
-                                />
-                                <Route
-                                    path="/all-blogs-admin"
-                                    element={<AllBlogsAdmin />}
-                                />
-                            </Routes>
-                        </main>
-                        {admin ||
-                        forgetPassword ||
-                        viewAllBlog ? null : login ? null : (
-                            <Footer />
-                        )}
+                {admin ? (
+                    <AdminNavbar />
+                ) : login || forgetPassword || viewAllBlog ? null : (
+                    <Header />
+                )}
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/contact" element={<ContactUs />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/blogs" element={<Blogs />} />
+                        <Route path="/admin" element={<AdminPanel/>} />
+                        {/* <Route
+                            path="/admin"
+                            element={<ProtectedRoute element={AdminPanel} />}
+                        /> */}
+                        <Route
+                            path="/workshop"
+                            element={<WorkshopAndTraining />}
+                        />
+                        <Route
+                            path="/forgetpassword"
+                            element={<ForgetPassword />}
+                        />
+                        <Route
+                            path="/reset_password/:id/:token"
+                            element={<ResetPassword />}
+                        />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/show-blogs/:id" element={<ShowBlog />} />
+                        <Route
+                            path="/all-blogs-admin"
+                            element={<AllBlogsAdmin />}
+                        />
+                    </Routes>
+                </main>
+                {admin ||
+                forgetPassword ||
+                viewAllBlog ? null : login ? null : (
+                    <Footer />
+                )}
             </div>
         </Router>
     );
