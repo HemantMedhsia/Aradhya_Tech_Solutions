@@ -1,22 +1,38 @@
 import { Blog } from "../Models/Blog.js";
 import { Content } from "../Models/Content.js";
-import nodemailer from "nodemailer";
+import cloudinary from "../Utils/cloudinaryConfig.js";
 
 export const getBlogData = async (req, res) => {
   const data = await Blog.find().populate("content");
   res.send(data);
 };
 
-export const setBlogData = (req, res) => {
-  const blog = new Blog(req.body);
-  blog
-    .save()
-    .then(() => {
-      res.status(201).send("New Blog Created Sucessfully");
-    })
-    .catch((err) => {
-      res.status(400).send(err.message);
+export const setBlogData = async (req, res) => {
+  try {
+    // Check if the image was uploaded
+    if (!req.file) {
+      return res.status(400).send("No file uploaded");
+    }
+
+    // Extract blog data
+    // console.log(req.file);
+    const { title, author, slug } = req.body;
+    const imageUrl = req.file.path; // Use the path or URL returned by Cloudinary
+
+    // Create and save the blog
+    const blog = new Blog({
+      title,
+      author,
+      slug,
+      img: imageUrl, // Use the image URL
     });
+
+    await blog.save();
+
+    res.status(201).send("New Blog Created Successfully");
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
 };
 
 export const getContent = async (req, res) => {
@@ -44,18 +60,45 @@ export const setBlogContentData = async (req, res) => {
   });
 };
 
+//   try {
+//     const Blogdata = await Blog.findByIdAndDelete(req.params.id);
+//     console.log(Blogdata);
+
+//     if (!Blogdata) {
+//       return res.status(404).json({ message: "Blog not found" });
+//     }
+
+//     res.status(200).json({ message: "Blog deleted successfully" });
+//   } catch (err) {
+//     res.send(err.message);
+//   }
+// };
+
 export const deleteBlogData = async (req, res) => {
   try {
-    const Blogdata = await Blog.findByIdAndDelete(req.params.id);
-    console.log(Blogdata);
+    // Find the blog by ID and delete it
+    const blog = await Blog.findByIdAndDelete(req.params.id);
+    console.log(blog);
 
-    if (!Blogdata) {
+    if (!blog) {
       return res.status(404).json({ message: "Blog not found" });
     }
 
-    res.status(200).json({ message: "Blog deleted successfully" });
+    // Extract the public_id from the image URL if you don't store it separately
+    const imageUrl = blog.img;
+    
+    const publicId = imageUrl.split("/").slice(-2).join("/").split(".")[0]; // Adjust the parsing based on your URL structure
+   
+    // Delete the image from Cloudinary if publicId is available
+    if (publicId) {
+      await cloudinary.uploader.destroy(publicId);
+    }
+   
+
+    res.status(200).json({ message: "Blog and image deleted successfully" });
   } catch (err) {
-    res.send(err.message);
+    console.error("Error deleting blog and image:", err);
+    res.status(500).send(err.message);
   }
 };
 
@@ -64,7 +107,7 @@ export const updateBlogData = async (req, res) => {
   try {
     const { id } = req.params;
     const updateData = req.body;
-    const updatedBlog = await Blog.findByIdAndUpdate(id, {...updateData});
+    const updatedBlog = await Blog.findByIdAndUpdate(id, { ...updateData });
     if (!updatedBlog) {
       return res.status(404).json({ message: "Blog not found" });
     }
@@ -98,15 +141,16 @@ export const deleteContentData = async (req, res) => {
   }
 };
 
-export const getSingleBlogData = async (req, res)=> {
+export const getSingleBlogData = async (req, res) => {
   try {
-    const singleBlogData =await Blog.findById(req.params.id).populate('content')
-  if(!singleBlogData) {
-    res.status(400).json({message:"Someting Went Wrong"})
-  }
-  res.send(singleBlogData)
-  }
-  catch(err) {
+    const singleBlogData = await Blog.findById(req.params.id).populate(
+      "content",
+    );
+    if (!singleBlogData) {
+      res.status(400).json({ message: "Someting Went Wrong" });
+    }
+    res.send(singleBlogData);
+  } catch (err) {
     res.send(err.message);
   }
-}
+};

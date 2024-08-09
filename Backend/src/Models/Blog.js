@@ -19,7 +19,7 @@ const BlogSchema = new mongoose.Schema({
     required: true,
   },
   content: [
-    {
+    { 
       type: mongoose.Schema.Types.ObjectId,
       ref: "Content",
     },

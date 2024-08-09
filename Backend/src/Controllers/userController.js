@@ -1,5 +1,6 @@
 // controllers/userController.js
 import UserModel from "../Models/User.js";
+import { Contact } from "../Models/ContactUserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import transporter from "../Utils/emailConfig.js";
@@ -126,7 +127,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
       .send({ status: "failed", message: "Email doesn't exist" });
 
   const secret = user._id + process.env.JWT_SECRET_KEY;
-  const token = jwt.sign({ userID: user._id }, secret, { expiresIn: "15m" });
+  const token = jwt.sign({ userID: user._id }, secret, { expiresIn: "5m" });
   const link = `http://localhost:5173/reset_password/${user._id}/${token}`;
   console.log(link);
   const authlink = await new AuthModel({ link });
@@ -134,7 +135,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
   try {
     const mailOptions = {
       from: "vt2855028@gmail.com",
-      to: "vedanshtiwariup@gmail.com",
+      to: user.email,
       subject: "Password Reset",
       text: `Here is your password reset link: ${link}`,
       html: `<b>Here is your password reset link: <a href="${link}">${link}</a></b>`,
@@ -207,46 +208,58 @@ export const userContact = async (req, res) => {
   const { subject, fullName, email, contactNumber, service, message } =
     req.body;
 
-  // Configure Nodemailer
-  let transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: "vt2855028@gmail.com",
-      pass: "hyej nafp oywq gvnx",
-    },
+  const newContact = new Contact({
+    name: fullName,
+    email: email,
+    contactNumber: contactNumber,
+    topic: service,
+    msg: message,
+    subject: subject, 
   });
 
-  // Email to owner
-  let ownerMailOptions = {
-    from: email,
-    to: "vt2855028@gmail.com",
-    subject: "New Contact Form Submission",
-    text: `Subject: ${subject}\nFull Name: ${fullName}\nEmail: ${email}\nContact Number: ${contactNumber}\nService: ${service}\nMessage: ${message}`,
-  };
-
-  // Confirmation email to user
-  let userMailOptions = {
-    from: "vt2855028@gmail.com",
-    to: email,
-    subject: "Thank you for contacting us",
-    text: "We have received your message and will get back to you shortly.",
-  };
-
   try {
+    await newContact.save();
+    // Configure Nodemailer
+    let transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "vt2855028@gmail.com",
+        pass: "hyej nafp oywq gvnx",
+      },
+    });
+
+    // Email to owner
+    let ownerMailOptions = {
+      from: email,
+      to: "vt2855028@gmail.com",
+      subject: "New Contact Form Submission",
+      text: `Subject: ${subject}\nFull Name: ${fullName}\nEmail: ${email}\nContact Number: ${contactNumber}\nService: ${service}\nMessage: ${message}`,
+    };
+
+    // Confirmation email to user
+    let userMailOptions = {
+      from: "vt2855028@gmail.com",
+      to: email,
+      subject: "Thank you for contacting us",
+      text: "We have received your message and will get back to you shortly.",
+    };
+
     await transporter.sendMail(ownerMailOptions);
     await transporter.sendMail(userMailOptions);
     res.status(200).send("Emails sent successfully");
-  } catch (error) {
-    console.error("Error sending email:", error);
+  } catch (err) {
+    console.error("Error sending email:", err);
     res.status(500).send("Failed to send email");
   }
 };
 
 
-export const hireUs =  async(req,res)=>{
-    const {name,mobileNumber,email,technology,college,address} = req.body;
 
-    // Configure Nodemailer
+
+export const hireUs = async (req, res) => {
+  const { name, mobileNumber, email, technology, college, address } = req.body;
+
+  // Configure Nodemailer
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -279,12 +292,7 @@ export const hireUs =  async(req,res)=>{
     console.error("Error sending email:", error);
     res.status(500).send("Failed to send email");
   }
-    
-
 };
-
-
-
 
 export {
   userRegistration,

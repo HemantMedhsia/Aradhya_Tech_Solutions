@@ -15,6 +15,8 @@ const AllBlogsAdmin = () => {
     const [activeAddContent, setActiveAddContent] = useState(false);
     const [contentTitle, setContentTitle] = useState("");
     const [contentDescription, setContentDescription] = useState("");
+    const [deleteConfirmation, setDeleteConfirmation] = useState(false);
+    const [blogToDelete, setBlogToDelete] = useState(null);
 
     useEffect(() => {
         // Fetch the initial list of blogs
@@ -38,7 +40,16 @@ const AllBlogsAdmin = () => {
         setPopup(true);
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = (id) => {
+        setDeleteConfirmation(true);
+        setBlogToDelete(id);
+    };
+
+    const cancelDelete = () => {
+        setDeleteConfirmation(false);
+    };
+
+    const handleDelete1 = async (id) => {
         try {
             await axios.delete(
                 `http://localhost:8000/api/user/blogs/${id}/content`
@@ -67,7 +78,7 @@ const AllBlogsAdmin = () => {
 
     const submitContent = async () => {
         if (!contentTitle || !contentDescription) {
-            toast.error("Please fill in all fields")
+            toast.error("Please fill in all fields");
             return;
         }
         try {
@@ -114,6 +125,7 @@ const AllBlogsAdmin = () => {
                             <p className="text-gray-700">
                                 Total Content: {blog.content.length}
                             </p>
+
                             <div className="mt-2 space-x-2 absolute bottom-0 right-0">
                                 <button
                                     className="bg-[#ff5b5e] text-xl px-10 hover:bg-yellow-700 text-white font-bold py-1 rounded"
@@ -144,6 +156,41 @@ const AllBlogsAdmin = () => {
                     currentBlog={currentBlog}
                     refreshBlogs={refreshBlogs}
                 />
+            )}
+
+            {deleteConfirmation && (
+                <div className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex justify-center items-center w-full h-full bg-black bg-opacity-50">
+                    <div className="relative py-3 sm:max-w-md sm:mx-auto w-full">
+                        <div className="relative bg-white shadow-lg sm:rounded-3xl sm:p-10">
+                            <div className="max-w-md mx-auto">
+                                <div>
+                                    <h1 className="text-2xl font-semibold">
+                                        Confirm Delete
+                                    </h1>
+                                </div>
+                                <div className="divide-y divide-gray-200">
+                                    <div className="text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
+                                        Are you sure you want to delete this
+                                        blog?
+                                    </div>
+                                    <div className="relative mt-6 flex justify-between">
+                                        <Button
+                                            name={"Yes, Delete"}
+                                            onClick={() => {
+                                                handleDelete1(blogToDelete);
+                                                cancelDelete();
+                                            }}
+                                        />
+                                        <Button
+                                            name={"Cancel"}
+                                            onClick={cancelDelete}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )}
 
             {activeAddContent && (
@@ -229,7 +276,7 @@ const AllBlogsAdmin = () => {
                     </div>
                 </div>
             )}
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../AuthContext";
+import { BiImageAdd } from "react-icons/bi";
 
 const AdminPanel = () => {
     const [active, setActive] = useState(false);
@@ -13,38 +14,77 @@ const AdminPanel = () => {
         img: "",
         slug: "",
     });
-    const {logout} = useAuth();
+    const { logout } = useAuth();
+    const [selectionDetail, setSelectionDetail] = useState("No file Choosen");
 
     function activePage() {
         setActive(!active);
     }
 
+    // const handleChange = (e) => {
+    //     const { name, value, files } = e.target;
+    //     if (files.length) {
+    //         setSelectionDetail(files[0].name);
+    //     }
+    //     if (name === "img" && files) {
+    //         setFormData((prevState) => ({
+    //             ...prevState,
+    //             [name]: files[1], // Save the file object, not the input value
+    //         }));
+    //     } else {
+    //         setFormData((prevState) => ({
+    //             ...prevState,
+    //             [name]: value,
+    //         }));
+    //     }
+    // };
+
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+        const { name, value, files } = e.target;
+        if (name === "img" && files) {
+            setSelectionDetail(files[0].name); // Update the file name in the selection detail
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: files[0], // Save the file object (not the input value)
+            }));
+        } else {
+            setFormData((prevState) => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission
+
+        // Create a new FormData object for sending the request
+        const formDataToSend = new FormData();
+        formDataToSend.append("title", formData.title);
+        formDataToSend.append("author", formData.author);
+        formDataToSend.append("slug", formData.slug);
+        if (formData.img) {
+            formDataToSend.append("img", formData.img); // Ensure 'img' is the correct key
+        }
+
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/user/blogs",
-                formData
+                formDataToSend,
+                { headers: { "Content-Type": "multipart/form-data" } }
             );
-            toast.success("Blog Added Sucessfully");
+            toast.success("Blog Added Successfully");
             console.log(response.data);
             setFormData({
                 title: "",
                 author: "",
-                img: "",
+                img: null,
                 slug: "",
             });
         } catch (err) {
             console.error(err);
-            toast.success(err.message)
+            toast.error("Error adding blog");
         }
     };
 
@@ -103,7 +143,7 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <Link to={"/"} onClick={()=>logout()}>
+                        <Link to={"/"} onClick={() => logout()}>
                             {" "}
                             <a className="flex items-center text-gray-600 hover:text-black my-4 w-full">
                                 <span className="material-icons-outlined mr-2">
@@ -183,24 +223,31 @@ const AdminPanel = () => {
                                                         </label>
                                                     </div>
                                                     <div className="relative mb-6">
-                                                        <textarea
-                                                            autoComplete="off"
-                                                            id="img"
-                                                            name="img"
-                                                            className="peer placeholder-transparent h-15 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
-                                                            placeholder="Img Url"
-                                                            value={formData.img}
-                                                            onChange={
-                                                                handleChange
-                                                            }
-                                                            required
-                                                        />
-                                                        <label
-                                                            htmlFor="description"
-                                                            className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
-                                                        >
-                                                            Img Url
-                                                        </label>
+                                                        <div className="w-[33%] flex justify-center py-1 text-sm font-normal item-center  bg-red-300  rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+                                                            <input
+                                                                autoComplete="off"
+                                                                t
+                                                                id="img"
+                                                                name="img"
+                                                                type="file"
+                                                                className=" absolute w-full left-0 opacity-0 cursor-pointer"
+                                                                placeholder="Img"
+                                                                onChange={
+                                                                    handleChange
+                                                                }
+                                                                accept="image/*"
+                                                                required
+                                                            />
+                                                            <div className="flex justify-center items-center mr-1 text-2xl">
+                                                                {" "}
+                                                                <BiImageAdd />
+                                                            </div>
+                                                            <p>Upload Image</p>
+                                                        </div>
+                                                        <div className="text-green-900 ml-2 font-semibold">
+                                                            {selectionDetail}
+                                                        </div>
+                                                        <div className=""></div>
                                                     </div>
                                                     <div className="relative mb-6">
                                                         <input
@@ -244,7 +291,7 @@ const AdminPanel = () => {
                     </main>
                 ) : null}
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };
