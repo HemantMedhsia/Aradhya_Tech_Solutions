@@ -14,22 +14,38 @@ const AdminPanel = () => {
         img: "",
         slug: "",
     });
-    const {logout} = useAuth();
+    const { logout } = useAuth();
     const [selectionDetail, setSelectionDetail] = useState("No file Choosen");
 
     function activePage() {
         setActive(!active);
     }
 
+    // const handleChange = (e) => {
+    //     const { name, value, files } = e.target;
+    //     if (files.length) {
+    //         setSelectionDetail(files[0].name);
+    //     }
+    //     if (name === "img" && files) {
+    //         setFormData((prevState) => ({
+    //             ...prevState,
+    //             [name]: files[1], // Save the file object, not the input value
+    //         }));
+    //     } else {
+    //         setFormData((prevState) => ({
+    //             ...prevState,
+    //             [name]: value,
+    //         }));
+    //     }
+    // };
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
-        if (files.length) {
-            setSelectionDetail(files[0].name);
-        }
         if (name === "img" && files) {
+            setSelectionDetail(files[0].name); // Update the file name in the selection detail
             setFormData((prevState) => ({
                 ...prevState,
-                [name]: files[1], // Save the file object, not the input value
+                [name]: files[0], // Save the file object (not the input value)
             }));
         } else {
             setFormData((prevState) => ({
@@ -38,6 +54,7 @@ const AdminPanel = () => {
             }));
         }
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission
@@ -126,7 +143,7 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <Link to={"/"} onClick={()=>logout()}>
+                        <Link to={"/"} onClick={() => logout()}>
                             {" "}
                             <a className="flex items-center text-gray-600 hover:text-black my-4 w-full">
                                 <span className="material-icons-outlined mr-2">
@@ -206,7 +223,7 @@ const AdminPanel = () => {
                                                         </label>
                                                     </div>
                                                     <div className="relative mb-6">
-                                                        <div className="w-[33%] flex justify-center py-1 text-sm font-normal item-center font-bold bg-red-300  rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+                                                        <div className="w-[33%] flex justify-center py-1 text-sm font-normal item-center  bg-red-300  rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
                                                             <input
                                                                 autoComplete="off"
                                                                 t
