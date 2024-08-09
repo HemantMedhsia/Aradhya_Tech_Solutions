@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../AuthContext";
 import { BiImageAdd } from "react-icons/bi";
 
 const AdminPanel = () => {
@@ -13,6 +14,7 @@ const AdminPanel = () => {
         img: "",
         slug: "",
     });
+    const {logout} = useAuth();
     const [selectionDetail, setSelectionDetail] = useState("No file Choosen");
 
     function activePage() {
@@ -124,7 +126,7 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <Link to={"/"}>
+                        <Link to={"/"} onClick={()=>logout()}>
                             {" "}
                             <a className="flex items-center text-gray-600 hover:text-black my-4 w-full">
                                 <span className="material-icons-outlined mr-2">

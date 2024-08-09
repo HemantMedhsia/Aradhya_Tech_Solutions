@@ -3,7 +3,9 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import axios from "axios"; // Import axios or any other HTTP client of your choice
 import { useNavigate } from "react-router-dom"; 
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS file
+import 'react-toastify/dist/ReactToastify.css'; 
+import { useAuth } from "../AuthContext";
+// Import the CSS file
 
 const LoginPage = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -13,6 +15,7 @@ const LoginPage = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
+    const {login} = useAuth();
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
@@ -20,30 +23,31 @@ const LoginPage = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setError(""); // Clear any previous errors
-        setSuccess(""); // Clear any previous success messages
-
+        setError("");
+        setSuccess("");
+    
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/user/login",
-                { email, password },
-                { tc: true }
+                { email, password }
             );
-            
+    
+            const token = response.data.token;
+            localStorage.setItem("authToken", token); // Store the token in localStorage
+            login(token); // Store the token and update the AuthContext state
+    
             toast.success("Login Successfully");
-            // Handle success, e.g., redirect or save token
-            console.log(response.data.token); // Assuming the API returns a token
-
-            // Delay navigation to allow the toast to be visible for a moment
+    
             setTimeout(() => {
                 navigate("/admin");
-            }, 2000); // Adjust the delay as needed
-        } catch (err) {     
-            console.error("Error details:", err); // Log the error for debugging
-                toast.error("An error occurred.");
-            
+            }, 2000);
+        } catch (err) {
+            console.error("Error details:", err);
+            toast.error("An error occurred.");
         }
     };
+    
+    
 
     const handleForgetPasswordClick = () => {
         navigate('/forgetpassword');
