@@ -50,7 +50,7 @@ router.post("/hire",hireUs);
 
 
 // Protected Routes
-// router.use(checkUserAuth); // Apply authentication middleware to all protected routes
+router.use(checkUserAuth); // Apply authentication middleware to all protected routes
 router.post("/changepassword", changeUserPassword);
 router.post("/logout", logout); // Add the logout route
 router.delete("blogs/:id/content/:contentid", deleteContentData);

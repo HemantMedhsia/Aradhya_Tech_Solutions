@@ -64,7 +64,7 @@ const userLogin = async (req, res) => {
       .send({ status: "failed", message: "Invalid email or password" });
 
   const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "5d",
+    expiresIn: "1m",
   });
   res.send({ status: "success", message: "Login successful", token });
   // console.log(token);

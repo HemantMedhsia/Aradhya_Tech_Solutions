@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../AuthContext";
 
 const AdminPanel = () => {
     const [active, setActive] = useState(false);
@@ -12,6 +13,7 @@ const AdminPanel = () => {
         img: "",
         slug: "",
     });
+    const {logout} = useAuth();
 
     function activePage() {
         setActive(!active);
@@ -101,7 +103,7 @@ const AdminPanel = () => {
                                 keyboard_arrow_right
                             </span>
                         </a>
-                        <Link to={"/"}>
+                        <Link to={"/"} onClick={()=>logout()}>
                             {" "}
                             <a className="flex items-center text-gray-600 hover:text-black my-4 w-full">
                                 <span className="material-icons-outlined mr-2">
