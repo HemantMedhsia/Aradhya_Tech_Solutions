@@ -24,6 +24,7 @@ import ShowBlog from "./components/pages/ShowBlog";
 import { AuthProvider, useAuth } from "./components/pages/AuthContext";
 import ProtectedRoute from "./components/pages/ProtectedRoute";
 import ErrorPage from "./components/pages/ErrorPage";
+import Test from "./components/pages/Test";
 
 function useLogAdminPath(
     setAdmin,
@@ -143,6 +144,7 @@ function AppContent() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/test" element={<Test />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </main>
