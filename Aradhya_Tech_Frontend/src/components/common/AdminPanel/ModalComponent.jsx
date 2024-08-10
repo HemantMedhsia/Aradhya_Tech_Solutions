@@ -30,14 +30,15 @@ const ModalComponent = ({ setActive, currentBlog, refreshBlogs, setToast }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.info("Updating blog...");
         try {
             await axios.put(
                 `http://localhost:8000/api/user/blogs/${currentBlog._id}`,
                 formData
             );
-            setActive(false);
-            setToast("Blog updated successfully!")
+            toast.success("Blog Updated Sucessfully !!")
+            setTimeout(()=> {
+                setActive(false)
+            },2000);
             refreshBlogs();
         } catch (error) {
             toast.error("Error updating blog");
