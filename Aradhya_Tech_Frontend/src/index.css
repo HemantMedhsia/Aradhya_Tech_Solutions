@@ -13,7 +13,8 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #52525d; /* Background of the scrollbar track */
+    background: #52525d;
+     /* Background of the scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -22,7 +23,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color of the scrollbar handle on hover */
+    background: #ffb7b7; /* Color of the scrollbar handle on hover */
 }
 
 /* Customize the selected text */

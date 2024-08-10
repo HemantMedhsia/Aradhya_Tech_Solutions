@@ -1,13 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../AuthContext";
 import { BiImageAdd } from "react-icons/bi";
+import ContactData from "../../common/Home/ContactData";
 
 const AdminPanel = () => {
     const [active, setActive] = useState(false);
+    const [contact, setContact] = useState(false);
     const [formData, setFormData] = useState({
         title: "",
         author: "",
@@ -17,27 +19,18 @@ const AdminPanel = () => {
     const { logout } = useAuth();
     const [selectionDetail, setSelectionDetail] = useState("No file Choosen");
 
+    // Create a ref for the file input
+    const fileInputRef = useRef(null);
+
     function activePage() {
         setActive(!active);
+        setContact(false); // Ensure ContactData is hidden when switching to the Add Blog section
     }
 
-    // const handleChange = (e) => {
-    //     const { name, value, files } = e.target;
-    //     if (files.length) {
-    //         setSelectionDetail(files[0].name);
-    //     }
-    //     if (name === "img" && files) {
-    //         setFormData((prevState) => ({
-    //             ...prevState,
-    //             [name]: files[1], // Save the file object, not the input value
-    //         }));
-    //     } else {
-    //         setFormData((prevState) => ({
-    //             ...prevState,
-    //             [name]: value,
-    //         }));
-    //     }
-    // };
+    function contactPage() {
+        setContact(!contact);
+        setActive(false); // Ensure Add Blog section is hidden when switching to ContactData
+    }
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -54,7 +47,6 @@ const AdminPanel = () => {
             }));
         }
     };
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission
@@ -82,6 +74,7 @@ const AdminPanel = () => {
                 img: null,
                 slug: "",
             });
+            setSelectionDetail("No file Choosen");
         } catch (err) {
             console.error(err);
             toast.error("Error adding blog");
@@ -89,13 +82,13 @@ const AdminPanel = () => {
     };
 
     return (
-        <div className="bg-orange-100 min-h-screen pb-8">
+        <div className="bg-orange-100 min-h-screen pb-8 overflow-x-hidden">
             <div className="flex w-full pt-24 px-10 pb-4">
-                <nav className="w-2/12 mr-6">
+                <nav className=" mr-6 w-[15%]">
                     <div className="bg-white rounded-xl shadow-lg mb-6 p-6">
                         <a
                             href="#"
-                            className="flex items-center text-gray-600 hover:text-black my-4 w-full"
+                            className="flex items-center text-gray-600 hover:text-black my-2 w-full"
                         >
                             <span className="material-icons-outlined mr-2">
                                 dashboard
@@ -106,7 +99,7 @@ const AdminPanel = () => {
                             </span>
                         </a>
                         <Link to={"/all-blogs-admin"}>
-                            <a className="inline-block text-gray-600 hover:text-black my-4 w-full">
+                            <a className="inline-block text-gray-600 hover:text-black my-2 w-full">
                                 <span className="material-icons-outlined float-left pr-2">
                                     tune
                                 </span>
@@ -118,7 +111,7 @@ const AdminPanel = () => {
                         </Link>
                         <a
                             onClick={activePage}
-                            className="flex items-center cursor-pointer text-gray-600 hover:text-black my-4 w-full"
+                            className="flex items-center cursor-pointer text-gray-600 hover:text-black my-2 w-full"
                         >
                             <span className="material-icons-outlined mr-2">
                                 tune
@@ -131,6 +124,18 @@ const AdminPanel = () => {
                     </div>
 
                     <div className="bg-white rounded-xl shadow-lg mb-6 p-6">
+                        <a
+                            onClick={contactPage}
+                            className="flex items-center cursor-pointer text-gray-600 hover:text-black my-4 w-full"
+                        >
+                            <span className="material-icons-outlined mr-2">
+                                tune
+                            </span>
+                            Query
+                            <span className="material-icons-outlined ml-auto">
+                                keyboard_arrow_right
+                            </span>
+                        </a>
                         <a
                             href="#"
                             className="flex items-center text-gray-600 hover:text-black my-4 w-full"
@@ -223,18 +228,21 @@ const AdminPanel = () => {
                                                         </label>
                                                     </div>
                                                     <div className="relative mb-6">
-                                                        <div className="w-[33%] flex justify-center py-1 text-sm font-normal item-center  bg-red-300  rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+                                                        <div className="w-[33%] flex justify-center py-1 text-sm font-normal item-center bg-red-300 rounded-md shadow-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
                                                             <input
+                                                                ref={
+                                                                    fileInputRef
+                                                                } // Attach the ref to the file input
                                                                 autoComplete="off"
-                                                                t
                                                                 id="img"
                                                                 name="img"
                                                                 type="file"
-                                                                className=" absolute w-full left-0 opacity-0 cursor-pointer"
+                                                                className="absolute w-full left-0 cursor-pointer opacity-0"
                                                                 placeholder="Img"
                                                                 onChange={
                                                                     handleChange
                                                                 }
+                                                                // onClick={handleImageSelect}
                                                                 accept="image/*"
                                                                 required
                                                             />
@@ -247,7 +255,6 @@ const AdminPanel = () => {
                                                         <div className="text-green-900 ml-2 font-semibold">
                                                             {selectionDetail}
                                                         </div>
-                                                        <div className=""></div>
                                                     </div>
                                                     <div className="relative mb-6">
                                                         <input
@@ -272,7 +279,6 @@ const AdminPanel = () => {
                                                             Slug
                                                         </label>
                                                     </div>
-                                                    <div className="relative mb-6"></div>
                                                     <div className="relative mt-6">
                                                         <button
                                                             type="submit"
@@ -287,6 +293,14 @@ const AdminPanel = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </main>
+                ) : null}
+
+                {contact ? (
+                    <main className="w-[80%]">
+                        <div className="">
+                            <ContactData />
                         </div>
                     </main>
                 ) : null}

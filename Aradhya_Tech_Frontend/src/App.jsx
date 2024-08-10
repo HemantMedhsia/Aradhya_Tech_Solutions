@@ -24,6 +24,7 @@ import ShowBlog from "./components/pages/ShowBlog";
 import { AuthProvider, useAuth } from "./components/pages/AuthContext";
 import ProtectedRoute from "./components/pages/ProtectedRoute";
 import ErrorPage from "./components/pages/ErrorPage";
+// import ContactData from "./components/common/Home/ContactData";
 
 function useLogAdminPath(
     setAdmin,
@@ -41,6 +42,7 @@ function useLogAdminPath(
     }, [location]);
 
 }
+import ContactData from "./components/common/Home/ContactData";
 
 function LogAdminPath({
     setAdmin,
@@ -103,6 +105,7 @@ function AppContent() {
                     <Route path="/contact" element={<ContactUs />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/blogs" element={<Blogs />} />
+                    <Route path="/contactdata" element={<ContactData/>}/>
                     <Route
                         path="/admin"
                         element={

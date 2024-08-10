@@ -65,7 +65,7 @@ const userLogin = async (req, res) => {
       .send({ status: "failed", message: "Invalid email or password" });
 
   const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "1m",
+    expiresIn: "10m",
   });
   res.send({ status: "success", message: "Login successful", token });
   // console.log(token);
@@ -214,7 +214,7 @@ export const userContact = async (req, res) => {
     contactNumber: contactNumber,
     topic: service,
     msg: message,
-    subject: subject, 
+    subject: subject,
   });
 
   try {
@@ -253,8 +253,33 @@ export const userContact = async (req, res) => {
   }
 };
 
+// Fetch  contact data
 
+export const getAllContact = async (req, res) => {
+  try {
+    const data = await Contact.find();
+    res.status(200).send(data);
+  } catch (err) {
+    console.log("Error fetching data:", err);
+    res.status(500).send("Failed to fetch contacts");
+  }
+};
 
+export const deleteContact = async (req, res) => {
+  try {
+    const { id } = req.params; // Get the ID from the request parameters
+    const deletedContact = await Contact.findByIdAndDelete(id); // Find and delete the contact by ID
+
+    if (!deletedContact) {
+      return res.status(404).send("Contact not found"); // If the contact is not found
+    }
+
+    res.status(200).send("Contact deleted successfully"); // If deletion is successful
+  } catch (err) {
+    console.log("Error deleting contact:", err);
+    res.status(500).send("Failed to delete contact"); // If there is an error during deletion
+  }
+};
 
 export const hireUs = async (req, res) => {
   const { name, mobileNumber, email, technology, college, address } = req.body;

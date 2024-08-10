@@ -13,6 +13,8 @@ import {
   AuthLink,
   userContact,
   hireUs,
+  getAllContact,
+  deleteContact,
 //   temp,
 } from "../Controllers/userController.js";
 import checkUserAuth from "../Middlewares/auth-middleware.js";
@@ -45,8 +47,10 @@ router.put("/blogs/:id", updateBlogData )
 router.post("/single-blog/:id",getSingleBlogData);
 
 
-// Without database route
+// Contact page
 router.post("/contact",userContact);
+router.get("/contact",getAllContact);
+router.delete("/contact/:id",deleteContact);
 router.post("/hire",hireUs);
 
 

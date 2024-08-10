@@ -102,7 +102,13 @@ const AllBlogsAdmin = () => {
 
     return (
         <div className="mx-auto min-h-screen bg-gray-200">
-            <Searchbar value={search} handleSearchChange={handleSearchChange} />
+            <div className="px-20 py-10">
+                <Searchbar
+                    value={search}
+                    handleSearchChange={handleSearchChange}
+                    heading={"All Blogs"}
+                />
+            </div>
             <ul className="space-y-4 flex flex-col items-center">
                 {filteredBlogs.map((blog) => (
                     <li
