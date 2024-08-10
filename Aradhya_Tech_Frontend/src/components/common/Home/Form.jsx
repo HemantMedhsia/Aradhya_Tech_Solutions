@@ -16,17 +16,37 @@ const Form = () => {
         captchaInput: "", // User's input for CAPTCHA
     });
 
-    const [captcha, setCaptcha] = useState(""); // Generated CAPTCHA
     const [errors, setErrors] = useState({});
     const [loader, setLoader] = useState(false);
+    const [captchaUrl, setCaptchaUrl] = useState("");
+    const [captchaSolution, setCaptchaSolution] = useState("");
+
+    const options = {
+        method: "GET",
+        url: "https://captcha-generator.p.rapidapi.com/",
+        params: {
+            noise_number: "0",
+            fontname: "sora",
+        },
+        headers: { 
+            "x-rapidapi-key":
+                "f47e3fc38amsh220f2599bb4fe5dp19bfc0jsn086b3e70d08e",
+            "x-rapidapi-host": "captcha-generator.p.rapidapi.com",
+        },
+    };
 
     useEffect(() => {
         generateCaptcha(); // Generate CAPTCHA when component mounts
     }, []);
 
-    const generateCaptcha = () => {
-        const randomCaptcha = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit random number
-        setCaptcha(randomCaptcha);
+    const generateCaptcha = async () => {
+        try {
+            const response = await axios.request(options);
+            setCaptchaUrl(response.data.image_url);
+            setCaptchaSolution(response.data.solution);
+        } catch (error) {
+            console.error("Error generating CAPTCHA:", error);
+        }
     };
 
     const validate = () => {
@@ -47,7 +67,7 @@ const Form = () => {
         }
 
         // CAPTCHA validation
-        if (formData.captchaInput !== captcha.toString()) {
+        if (formData.captchaInput !== captchaSolution.toString()) {
             newErrors.captchaInput = "Incorrect CAPTCHA";
         }
 
@@ -210,9 +230,11 @@ const Form = () => {
                                 className="w-full lg:w-1/2 h-12 rounded-lg px-2"
                                 required
                             />
-                            <span className="flex items-center justify-center font-bold text-lg lg:w-1/2 h-12 rounded-lg bg-gray-200 text-center">
-                                {captcha}
-                            </span>
+                            <img
+                                className="flex relative items-center justify-center font-bold text-2xl lg:w-1/2 h-auto rounded-lg bg-gray-200 text-gray-100 text-center"
+                                src={captchaUrl}
+                                alt="CAPTCHA"
+                            />
                         </div>
                         {errors.captchaInput && (
                             <p className="text-red-500">
