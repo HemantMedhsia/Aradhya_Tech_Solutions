@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import axios from "axios"; // Import axios or any other HTTP client of your choice
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; 
+import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../AuthContext";
 // Import the CSS file
 
@@ -15,7 +15,7 @@ const LoginPage = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
-    const {login} = useAuth();
+    const { login } = useAuth();
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
@@ -25,32 +25,28 @@ const LoginPage = () => {
         event.preventDefault();
         setError("");
         setSuccess("");
-    
+
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/user/login",
                 { email, password }
             );
-    
-            const token = response.data.token;
-            localStorage.setItem("authToken", token); // Store the token in localStorage
-            login(token); // Store the token and update the AuthContext state
-    
-            toast.success("Login Successfully");
-    
+            toast.success(response.data.message);
+            // Store the token and update the AuthContext state
+
             setTimeout(() => {
-                navigate("/admin");
+                const token = response.data.token;
+                localStorage.setItem("authToken", token); // Store the token in localStorage
+                login(token);
             }, 2000);
         } catch (err) {
             console.error("Error details:", err);
             toast.error("An error occurred.");
         }
     };
-    
-    
 
     const handleForgetPasswordClick = () => {
-        navigate('/forgetpassword');
+        navigate("/forgetpassword");
     };
 
     return (
