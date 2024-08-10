@@ -1,4 +1,5 @@
 import React from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const ServicesCard = ({ img, title, desc, readmore }) => {
     return (
@@ -8,7 +9,11 @@ const ServicesCard = ({ img, title, desc, readmore }) => {
             </div>
             <h2 className="text-2xl font-bold mt-4 text-[#30303c]">{title}</h2>
             <p className="text-lg text-[#52525d] mt-4">{desc}</p>
+            <div className="flex items-center space-x-2 space-y-5 hover:text-[#ff5b2e]">
             <p className="text-lg mt-4 cursor-pointer hover:text-[#ff5b2e]">{readmore}</p>
+            <FaArrowRightLong className="text-lg " />
+            </div>
+           
         </div>
     );
 };

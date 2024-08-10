@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="w-[100%]">
                 <div className="flex flex-wrap justify-between p-4 mb-1 mt-4">
                     <div className="w-full md:w-1/2 lg:w-[25%] bg-customGray text-[#adb7c5] p-4 mb-4 lg:mb-0">
-                        <h4 className="text-xl font-semibold mb-2">
+                        <h4 className="text-xl font-semibold mb-3">
                             Contact Info
                         </h4>
                         <p className="flex items-center hover:text-[#ff5b2e] duration-500">
@@ -23,11 +23,11 @@ const Footer = () => {
                         <p className="flex items-center hover:text-[#ff5b2e] duration-500">
                             <FontAwesomeIcon
                                 icon={faEnvelope}
-                                className="mr-2"
+                                className="mr-2 mt-3"
                             />
-                            <a
+                            <a 
                                 href="mailto:technologiesaradhya@gmail.com"
-                                className="hover:text-[#ff5b2e] duration-500"
+                                className="hover:text-[#ff5b2e] duration-500 mt-3"
                             >
                                 technologiesaradhya@gmail.com
                             </a>
@@ -38,18 +38,18 @@ const Footer = () => {
                             Follow Us
                         </h4>
                         <a
-                            href="https://facebook.com"
-                            className="flex items-center mb-1 hover:text-[#ff5b2e] duration-500"
+                            href="https://www.facebook.com/aradhyatech"
+                            className="flex items-center mt-3 hover:text-[#ff5b2e] duration-500"
                         >
                             <FontAwesomeIcon
                                 icon={faFacebook}
-                                className="mr-2"
+                                className="mr-2 "
                             />{" "}
                             Facebook
                         </a>
-                        <a
-                            href="https://instagram.com"
-                            className="flex items-center hover:text-[#ff5b2e] duration-500"
+                        <a 
+                            href="https://www.instagram.com/aradhyatech/"
+                            className="flex items-center hover:text-[#ff5b2e] duration-500 mt-3"
                         >
                             <FontAwesomeIcon
                                 icon={faInstagram}
@@ -114,7 +114,7 @@ const Footer = () => {
                 <div className="flex flex-col items-center mt-auto space-y-4 border-t border-gray-700 pt-4">
                     <div className="bg-customGray text-[#adb7c5] p-4 flex flex-col md:flex-row md:justify-between items-center w-full space-y-4 md:space-y-0">
                         <p className="text-center md:text-left">
-                            We are tracking any intention of piracy.
+                            We are tracking any intention of privacy.
                         </p>
                         <p className="text-center md:text-right">
                             Copyright © 2024 Aradhyatechnologies. All rights

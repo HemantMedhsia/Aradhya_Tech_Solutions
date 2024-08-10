@@ -7,6 +7,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body{
+  overflow-x: hidden;
+}
+
 /* Custom scrollbar for Webkit browsers */
 ::-webkit-scrollbar {
     width: 4px; /* Width of the scrollbar */

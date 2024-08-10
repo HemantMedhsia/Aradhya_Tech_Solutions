@@ -17,9 +17,9 @@ const WorkCard = ({ img, title, desc, readmore }) => {
                 <h2 className=" text-xl sm:text-2xl font-bold  text-[#30303c]">
                     {title}
                 </h2>
+
                 <p className="text-base sm:text-lg mt-4">{readmore}</p>
             </div>
-           
         </div>
     );
 };

@@ -41,7 +41,10 @@ import wordpress from "../../assets/images/CMS/wordpress.svg";
 import wix from "../../assets/images/CMS/wix.svg";
 import woo from "../../assets/images/CMS/woo.svg";
 import Form from "./../common/Home/Form";
-import { Link } from "react-router-dom";import CountUp from "react-countup";
+import { Link } from "react-router-dom";
+import CountUp from "react-countup";
+import { IoMdMail } from "react-icons/io";
+import { FaPhoneAlt } from "react-icons/fa";
 
 import {
     CustomNextArrow,
@@ -58,7 +61,7 @@ const Home = () => {
     const [activeSection, setActiveSection] = useState("mission");
 
     const btndata = [
-        { name: "contact", label: "+91 723588990", icon: "fa-solid fa-rocket" },
+        { name: "contact", label: "+91 723588990", icon: "fa-solid fa-phone" },
         // Add more sections as needed
     ];
 
@@ -175,7 +178,10 @@ const Home = () => {
                             transformation with Aradhya Technologies.
                         </p>
                         <div className="mt-6 lg:mt-10">
-                            <Link  to={"/about"} onClick={()=>window.scrollTo(0,0)}>
+                            <Link
+                                to={"/about"}
+                                onClick={() => window.scrollTo(0, 0)}
+                            >
                                 <Button name={"About Us ->"} />
                             </Link>
                         </div>
@@ -312,7 +318,12 @@ const Home = () => {
                         </h2>
                     </div>
                     <div className="mt-4 lg:ml-4 lg:mt-2">
-                        <Link to={'/contact'} onClick={()=>window.scrollTo(0,0)}><Button name="Hire Now" /></Link>
+                        <Link
+                            to={"/contact"}
+                            onClick={() => window.scrollTo(0, 0)}
+                        >
+                            <Button name="Hire Now" />
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -493,12 +504,20 @@ const Home = () => {
                                     sections={btndata}
                                     activeSection={activeSection}
                                 />
-                                <p className="text-lg text-gray-800 my-2">
-                                    hr@aradhyatechnologies.in
-                                </p>
-                                <p className="text-lg text-gray-800">
-                                    aradhya.onboarding@gmail.com
-                                </p>
+
+                                <div className="flex text-lg">
+                                    <IoMdMail className="mt-3 mr-1 text-2xl font-semibold" />
+                                    <p className="text-lg text-gray-800 my-2">
+                                        hr@aradhyatechnologies.in
+                                    </p>
+                                </div>
+
+                                <div className="flex text-lg">
+                                    <IoMdMail className="mt-3 mr-1 text-2xl font-semibold" /> 
+                                    <p className="text-lg my-2 text-gray-800">
+                                        aradhya.onboarding@gmail.com
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
