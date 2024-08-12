@@ -110,11 +110,11 @@ const Certification = () => {
 
     return (
         <div className="pt-[8%] h-[100vh] w-[100%] bg-[#fbf1ef]">
-            <div className="flex justify-center text-5xl text-teal-500">
+            <div className="flex justify-center text-5xl text-[#ff5b2e]">
                 <div className="font-semibold mx-2">
                     Certificate Verification
                 </div>
-                <div className="flex items-center justify-center mt-[3px]">
+                <div className="text-teal-500 flex items-center justify-center mt-[3px]">
                     <MdOutlineVerified />
                 </div>
             </div>
@@ -156,9 +156,6 @@ const Certification = () => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="certificate"
                             type="text"
-                            name="certificate"
-                            value={certificate}
-                            onChange={handleOnchange}
                             placeholder="Enter Certificate Number"
                         />
                         {error.certificate && (

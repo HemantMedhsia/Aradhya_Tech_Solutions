@@ -44,6 +44,7 @@ function useLogAdminPath(
 }
 import ContactData from "./components/common/Home/ContactData";
 import Certification from "./components/pages/Certification";
+import AddCertification from "./components/pages/UserAuth/AddCertification";
 
 function LogAdminPath({
     setAdmin,
@@ -145,6 +146,7 @@ function AppContent() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/add-certificate" element={<AddCertification />} />
                     <Route path="/certificate-verification" element={<Certification />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
