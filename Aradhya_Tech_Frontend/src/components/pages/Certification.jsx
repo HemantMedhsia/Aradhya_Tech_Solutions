@@ -140,7 +140,7 @@ const Certification = () => {
                             name="name"
                             value={name}
                             onChange={handleOnchange}
-                            placeholder="Enter Your Name"
+                            placeholder="Your Full Name"
                         />
                         {error.name && (
                             <p className="text-red-500 text-xs mt-1">
@@ -162,7 +162,7 @@ const Certification = () => {
                             name="certificate" // Add this line
                             value={certificate} // Add this line to bind the state
                             onChange={handleOnchange} // Make sure this function is triggered on change
-                            placeholder="Enter Certificate Number"
+                            placeholder="Certificate Number"
                         />
 
                         {error.certificate && (
