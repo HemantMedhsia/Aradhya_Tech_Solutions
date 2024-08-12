@@ -24,13 +24,15 @@ import ShowBlog from "./components/pages/ShowBlog";
 import { AuthProvider, useAuth } from "./components/pages/AuthContext";
 import ProtectedRoute from "./components/pages/ProtectedRoute";
 import ErrorPage from "./components/pages/ErrorPage";
-// import ContactData from "./components/common/Home/ContactData";
+import ContactData from "./components/common/Home/ContactData";
+import Certification from "./components/pages/Certification";
+import AddCertification from "./components/pages/UserAuth/AddCertification";
 
 function useLogAdminPath(
     setAdmin,
     setLogin,
     setForgetPassword,
-    setViewAllBlog,
+    setViewAllBlog
 ) {
     const location = useLocation();
 
@@ -40,11 +42,7 @@ function useLogAdminPath(
         setForgetPassword(location.pathname === "/forgetpassword");
         setViewAllBlog(location.pathname === "/all-blogs-admin");
     }, [location]);
-
 }
-import ContactData from "./components/common/Home/ContactData";
-import Certification from "./components/pages/Certification";
-import AddCertification from "./components/pages/UserAuth/AddCertification";
 
 function LogAdminPath({
     setAdmin,
@@ -52,12 +50,7 @@ function LogAdminPath({
     setForgetPassword,
     setViewAllBlog,
 }) {
-    useLogAdminPath(
-        setAdmin,
-        setLogin,
-        setForgetPassword,
-        setViewAllBlog
-    );
+    useLogAdminPath(setAdmin, setLogin, setForgetPassword, setViewAllBlog);
     return null;
 }
 
@@ -68,7 +61,7 @@ function AppContent() {
     const [forgetPassword, setForgetPassword] = useState(false);
     const [viewAllBlog, setViewAllBlog] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    const location = useLocation();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -79,6 +72,9 @@ function AppContent() {
 
         fetchData();
     }, []);
+
+    // Determine whether to show Header and Footer
+    const showHeaderFooter = !["/add-certificate"].includes(location.pathname);
 
     return (
         <div className="bg-white w-full h-auto">
@@ -97,9 +93,9 @@ function AppContent() {
             )}
             {admin ? (
                 <AdminNavbar />
-            ) : login || forgetPassword || viewAllBlog ? null : (
+            ) : login || forgetPassword || viewAllBlog ? null : showHeaderFooter ? (
                 <Header />
-            )}
+            ) : null}
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -107,7 +103,7 @@ function AppContent() {
                     <Route path="/contact" element={<ContactUs />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/blogs" element={<Blogs />} />
-                    <Route path="/contactdata" element={<ContactData/>}/>
+                    <Route path="/contactdata" element={<ContactData />} />
                     <Route
                         path="/admin"
                         element={
@@ -123,9 +119,7 @@ function AppContent() {
                     />
                     <Route
                         path="/reset_password/:id/:token"
-                        element={  
-                                <ResetPassword />
-                        }
+                        element={<ResetPassword />}
                     />
                     <Route
                         path="/login"
@@ -146,14 +140,24 @@ function AppContent() {
                             </ProtectedRoute>
                         }
                     />
-                    <Route path="/add-certificate" element={<AddCertification />} />
-                    <Route path="/certificate-verification" element={<Certification />} />
+                    <Route
+                        path="/add-certificate"
+                        element={
+                            <ProtectedRoute>
+                                <AddCertification />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/certificate-verification"
+                        element={<Certification />}
+                    />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </main>
-            {admin || forgetPassword || viewAllBlog ? null : login ? null : (
+            {admin || forgetPassword || viewAllBlog ? null : login ? null : showHeaderFooter ? (
                 <Footer />
-            )}
+            ) : null}
         </div>
     );
 }

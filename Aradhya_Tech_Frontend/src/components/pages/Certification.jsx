@@ -93,7 +93,10 @@ const Certification = () => {
         } catch (err) {
             if (err.response) {
                 setVerificationError(
-                    `${err.response.data.message || "An error occurred while verifying the certificate."}`
+                    `${
+                        err.response.data.message ||
+                        "An error occurred while verifying the certificate."
+                    }`
                 );
                 toast.error("Certification not found");
             } else if (err.request) {
@@ -156,8 +159,12 @@ const Certification = () => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="certificate"
                             type="text"
+                            name="certificate" // Add this line
+                            value={certificate} // Add this line to bind the state
+                            onChange={handleOnchange} // Make sure this function is triggered on change
                             placeholder="Enter Certificate Number"
                         />
+
                         {error.certificate && (
                             <p className="text-red-500 text-xs mt-1">
                                 {error.certificate}
@@ -220,13 +227,15 @@ const Certification = () => {
                             id="modal-description"
                             sx={{ mb: 1, fontWeight: "bold" }}
                         >
-                            Certificate No: <span className="font-normal">{certificate}</span>
+                            Certificate No:{" "}
+                            <span className="font-normal">{certificate}</span>
                         </Typography>
                         <Typography
                             id="modal-description"
                             sx={{ mb: 1, fontWeight: "bold" }}
                         >
-                            Serial No: <span className="font-normal">{serial}</span>
+                            Serial No:{" "}
+                            <span className="font-normal">{serial}</span>
                         </Typography>
                         <Typography
                             id="modal-description"
@@ -244,25 +253,29 @@ const Certification = () => {
                             id="modal-description"
                             sx={{ mb: 1, fontWeight: "bold" }}
                         >
-                            Program: <span className="font-normal">{program}</span>
+                            Program:{" "}
+                            <span className="font-normal">{program}</span>
                         </Typography>
                         <Typography
                             id="modal-description"
                             sx={{ mb: 1, fontWeight: "bold" }}
                         >
-                            Duration: <span className="font-normal">{duration}</span>
+                            Duration:{" "}
+                            <span className="font-normal">{duration}</span>
                         </Typography>
                         <Typography
                             id="modal-description"
                             sx={{ mb: 1, fontWeight: "bold" }}
                         >
-                            Date of Program: <span className="font-normal">{dateOfProgram}</span>
+                            Date of Program:{" "}
+                            <span className="font-normal">{dateOfProgram}</span>
                         </Typography>
                         <Typography
                             id="modal-description"
                             sx={{ mb: 1, fontWeight: "bold" }}
                         >
-                            Date of Issue: <span className="font-normal">{dateIssue}</span>
+                            Date of Issue:{" "}
+                            <span className="font-normal">{dateIssue}</span>
                         </Typography>
                     </Box>
                 </Modal>

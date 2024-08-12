@@ -86,18 +86,20 @@ const AdminPanel = () => {
             <div className="flex w-full pt-24 px-10 pb-4">
                 <nav className=" mr-6 w-[15%]">
                     <div className="bg-white rounded-xl shadow-lg mb-6 p-6">
-                        <a
-                            href="#"
-                            className="flex items-center text-gray-600 hover:text-black my-2 w-full"
-                        >
-                            <span className="material-icons-outlined mr-2">
-                                dashboard
-                            </span>
-                            Certificate
-                            <span className="material-icons-outlined ml-auto">
-                                keyboard_arrow_right
-                            </span>
-                        </a>
+                        <Link to={"/add-certificate"}>
+                            <a
+                                href="#"
+                                className="flex items-center text-gray-600 hover:text-black my-2 w-full"
+                            >
+                                <span className="material-icons-outlined mr-2">
+                                    dashboard
+                                </span>
+                                Certificate
+                                <span className="material-icons-outlined ml-auto">
+                                    keyboard_arrow_right
+                                </span>
+                            </a>
+                        </Link>
                         <Link to={"/all-blogs-admin"}>
                             <a className="inline-block text-gray-600 hover:text-black my-2 w-full">
                                 <span className="material-icons-outlined float-left pr-2">
