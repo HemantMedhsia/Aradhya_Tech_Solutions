@@ -121,11 +121,14 @@ export const addSingleCertification = async (req, res) => {
 export const getCertificationDetails = async (req, res) => {
   try {
     const CERN = req.params.cern;
-    const NAME = req.params.name;
+    let NAME = req.params.name;
 
     if (!CERN || !NAME) {
       return res.status(400).json({ message: "CERN and NAME are required" });
     }
+
+    // Convert NAME to uppercase
+    NAME = NAME.toUpperCase();
 
     const certification = await certificateModel.findOne({ CERN, NAME });
 
@@ -135,8 +138,7 @@ export const getCertificationDetails = async (req, res) => {
 
     res.status(200).json({ certification });
 
-  }
-  catch (error) {
+  } catch (error) {
     res
       .status(500)
       .json({
@@ -145,3 +147,4 @@ export const getCertificationDetails = async (req, res) => {
       });
   }
 };
+

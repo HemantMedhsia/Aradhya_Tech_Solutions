@@ -93,7 +93,7 @@ const AdminPanel = () => {
                             <span className="material-icons-outlined mr-2">
                                 dashboard
                             </span>
-                            Users
+                            Certificate
                             <span className="material-icons-outlined ml-auto">
                                 keyboard_arrow_right
                             </span>
