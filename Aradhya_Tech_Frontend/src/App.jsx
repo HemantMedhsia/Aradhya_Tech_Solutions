@@ -24,7 +24,6 @@ import ShowBlog from "./components/pages/ShowBlog";
 import { AuthProvider, useAuth } from "./components/pages/AuthContext";
 import ProtectedRoute from "./components/pages/ProtectedRoute";
 import ErrorPage from "./components/pages/ErrorPage";
-import Test from "./components/pages/Test";
 // import ContactData from "./components/common/Home/ContactData";
 
 function useLogAdminPath(
@@ -44,6 +43,7 @@ function useLogAdminPath(
 
 }
 import ContactData from "./components/common/Home/ContactData";
+import Certification from "./components/pages/Certification";
 
 function LogAdminPath({
     setAdmin,
@@ -122,10 +122,8 @@ function AppContent() {
                     />
                     <Route
                         path="/reset_password/:id/:token"
-                        element={
-                            <ProtectedRoute>
+                        element={  
                                 <ResetPassword />
-                            </ProtectedRoute>
                         }
                     />
                     <Route
@@ -147,7 +145,7 @@ function AppContent() {
                             </ProtectedRoute>
                         }
                     />
-                    <Route path="/test" element={<Test />} />
+                    <Route path="/certificate-verification" element={<Certification />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </main>

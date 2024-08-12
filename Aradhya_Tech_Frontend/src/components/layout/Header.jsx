@@ -18,7 +18,7 @@ function Header() {
                 </button>
             </div>
             <div
-                className={`w-full md:w-1/2 mt-3 md:mt-0 ${
+                className={`w-full md:w-3/5 mt-3 md:mt-0 ${
                     isMenuOpen ? "block" : "hidden"
                 } md:block`}
             >
@@ -67,8 +67,16 @@ function Header() {
                             </p>
                         )}
                     </li>
-                    <li className="hover:text-[#ff5b2e] duration-500 block">
+                    <li className="hover:text-[#ff5b2e] duration-500 block mb-2 md:mb-0">
                         <Link to={"/contact"} onClick={() => window.scrollTo(0, 0)}>CONTACT US</Link>
+                        {!isMenuOpen && (
+                            <p className="inline-block text-2xl text-[#ff5b2e]">
+                                &middot;
+                            </p>
+                        )}
+                    </li>
+                    <li className="hover:text-[#ff5b2e] duration-500 block">
+                        <Link to={"/certificate-verification"} onClick={() => window.scrollTo(0, 0)}>CERTIFICATION</Link>
                         {!isMenuOpen && (
                             <p className="inline-block text-2xl text-[#ff5b2e]">
                                 &middot;
