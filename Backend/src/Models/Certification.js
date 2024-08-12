@@ -44,4 +44,10 @@ const certificationSchema = new mongoose.Schema({
     }
 });
 
+certificationSchema.pre('save', function (next) {
+    this.NAME = this.NAME.toUpperCase();
+    next();
+});
+
+
 export const certificateModel = new mongoose.model("certificateModel",certificationSchema);

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddCertification = () => {
+
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         NAME: "",
         CERN: "",
@@ -205,7 +208,7 @@ const AddCertification = () => {
                                 />
                                 <label className="ml-2 block text-sm font-medium text-gray-700">
                                     Verify
-                                </label> 
+                                </label>
                             </div>
                         </div>
                         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -217,6 +220,13 @@ const AddCertification = () => {
                             </button>
                         </div>
                     </form>
+                    <button
+                        type="submit"
+                        onClick={() => navigate("/admin")}
+                        className="bg-teal-500 mt-2 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                        Back
+                    </button>
                 </div>
             </div>
             {/* <div className="w-[30%] flex items-center">
