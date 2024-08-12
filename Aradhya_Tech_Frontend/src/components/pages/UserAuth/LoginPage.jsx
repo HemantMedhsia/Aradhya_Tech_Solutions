@@ -41,7 +41,7 @@ const LoginPage = () => {
             }, 2000);
         } catch (err) {
             console.error("Error details:", err);
-            toast.error("An error occurred.");
+            toast.error("Invalid Username/Password");
         }
     };
 
