@@ -8,16 +8,16 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem("authToken");
-        console.log("Token from localStorage:", token);
+        // console.log("Token from localStorage:", token);
     
         if (token) {
             try {
                 const decodedToken = jwtDecode(token);
                 const currentTime = Date.now() / 1000;
     
-                console.log("Decoded Token:", decodedToken);
-                console.log("Token Expiry:", decodedToken.exp);
-                console.log("Current Time:", currentTime);
+                // console.log("Decoded Token:", decodedToken);
+                // console.log("Token Expiry:", decodedToken.exp);
+                // console.log("Current Time:", currentTime);
     
                 if (decodedToken.exp < currentTime) {
                     logout(); // Token expired, log the user out

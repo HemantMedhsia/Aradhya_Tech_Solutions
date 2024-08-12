@@ -128,7 +128,7 @@ const sendUserPasswordResetEmail = async (req, res) => {
 
   const secret = user._id + process.env.JWT_SECRET_KEY;
   const token = jwt.sign({ userID: user._id }, secret, { expiresIn: "5m" });
-  const link = `http://localhost:5173/reset_password/${user._id}/${token}`;
+  const link = `${process.env.RESET_LINK}/${user._id}/${token}`;
   console.log(link);
   const authlink = await new AuthModel({ link });
   await authlink.save();
@@ -217,31 +217,54 @@ export const userContact = async (req, res) => {
     subject: subject,
   });
 
+  
+
   try {
-    await newContact.save();
+    const response= await newContact.save();
     // Configure Nodemailer
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "vt2855028@gmail.com",
-        pass: "hyej nafp oywq gvnx",
+        user: "technologiesaradhya@gmail.com",
+        pass: "gkdi zwod mgpo fbwr",
       },
     });
 
     // Email to owner
     let ownerMailOptions = {
       from: email,
-      to: "vt2855028@gmail.com",
+      to: "technologiesaradhya@gmail.com",
       subject: "New Contact Form Submission",
-      text: `Subject: ${subject}\nFull Name: ${fullName}\nEmail: ${email}\nContact Number: ${contactNumber}\nService: ${service}\nMessage: ${message}`,
+      html: `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <h2 style="color: #4CAF50;">New Contact Form Submission</h2>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Full Name:</strong> ${fullName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Contact Number:</strong> ${contactNumber}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Message:</strong> ${message}</p>
+        <hr style="border-top: 1px solid #ddd; margin-top: 20px;">
+        <p style="font-size: 12px; color: #888;">This email was generated from a contact form submission on your website.</p>
+      </div>
+    `,
     };
 
     // Confirmation email to user
     let userMailOptions = {
-      from: "vt2855028@gmail.com",
+      from: "technologiesaradhya@gmail.com",
       to: email,
-      subject: "Thank you for contacting us",
-      text: "We have received your message and will get back to you shortly.",
+      subject: "Thank You for Reaching Out to Us!",
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <h1 style="color: #4CAF50;">Thank You for Contacting Us!</h1>
+        <p>Dear Customer,${fullName}</p>
+          <p>We have received your message and want to thank you for getting in touch. Our team will review your inquiry and respond as soon as possible.</p>
+          <p>If your matter is urgent, please use the phone number listed below to talk to one of our staff members. Otherwise, we will get back to you shortly.</p>
+          <p>Best Regards,<br/>Aradhya Technologies Team</p>
+          <p style="font-size: 12px; color: #888;">Phone:+91-7235-888-990<br/>Email: technologiesaradhya@gmail.com</p>
+        </div>
+      `,
     };
 
     await transporter.sendMail(ownerMailOptions);
@@ -288,25 +311,46 @@ export const hireUs = async (req, res) => {
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-      user: "vt2855028@gmail.com",
-      pass: "hyej nafp oywq gvnx",
+      user: "technologiesaradhya@gmail.com",
+      pass: "gkdi zwod mgpo fbwr",
     },
   });
 
   // Email to owner
   let ownerMailOptions = {
     from: email,
-    to: "vt2855028@gmail.com",
+    to: "technologiesaradhya@gmail.com",
     subject: "New Contact Form Submission",
-    text: `Subject: ${name}\nFull Name: ${mobileNumber}\nEmail: ${email}\nContact Number: ${technology}\nService: ${college}\nMessage: ${address}`,
+    html: `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+      <h2 style="color: #4CAF50;">New Contact Form Submission</h2>
+      <p><strong>Full Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Contact Number:</strong> ${mobileNumber}</p>
+      <p><strong>Service:</strong> ${technology}</p>
+      <p><strong>College:</strong> ${college}</p>
+      <p><strong>Message:</strong> ${address}</p>
+      <hr style="border-top: 1px solid #ddd; margin-top: 20px;">
+      <p style="font-size: 12px; color: #888;">This email was generated from a contact form submission on your website.</p>
+    </div>
+  `,
   };
 
   // Confirmation email to user
   let userMailOptions = {
-    from: "vt2855028@gmail.com",
+    from: "technologiesaradhya@gmail.com",
     to: email,
-    subject: "Thank you for contacting us",
-    text: "We have received your message and will get back to you shortly.",
+    subject: "Thank You for Reaching Out to Us!",
+    html: `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+      <h1 style="color: #4CAF50;">Thank You for Contacting Us!</h1>
+      <p>Dear Customer, ${name}</p>
+      <p>We have received your message and want to thank you for getting in touch. Our team will review your inquiry and respond as soon as possible.</p>
+      <p>If your matter is urgent, please use the phone number listed below to talk to one of our staff members. Otherwise, we will get back to you shortly.</p>
+      <p>Best Regards,<br/>Aradhya Technologies Team</p>
+      <p style="font-size: 12px; color: #888;">Phone:+91-7235-888-990<br/>Email: technologiesaradhya@gmail.com</p>
+    </div>
+  `,
   };
 
   try {
