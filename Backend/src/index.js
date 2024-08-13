@@ -1,6 +1,6 @@
 // require('dotenv').config()
 import dotenv from "dotenv";
-import connectDB from "./Db/db.js";
+import connectDB from "./DB/db.js";
 import { app } from "./app.js";
 import userRoutes from "./Routes/userRoutes.js"
 
