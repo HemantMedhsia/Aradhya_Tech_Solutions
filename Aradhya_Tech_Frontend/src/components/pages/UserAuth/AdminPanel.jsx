@@ -67,7 +67,7 @@ const AdminPanel = () => {
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
             toast.success("Blog Added Successfully");
-            console.log(response.data);
+            // console.log(response.data);
             setFormData({
                 title: "",
                 author: "",
@@ -76,7 +76,8 @@ const AdminPanel = () => {
             });
             setSelectionDetail("No file Choosen");
         } catch (err) {
-            console.error(err);
+            // console.error(err);
+            // console.error('Error:', err.response ? err.response.data : err.message);
             toast.error("Error adding blog");
         }
     };

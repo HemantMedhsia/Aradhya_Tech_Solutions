@@ -11,7 +11,9 @@ dotenv.config({
 });
 
 
-
+app.get("/",(req,res)=>{
+    res.send("Product is deploy");
+});
 app.use("/api/user", userRoutes)
 
 
