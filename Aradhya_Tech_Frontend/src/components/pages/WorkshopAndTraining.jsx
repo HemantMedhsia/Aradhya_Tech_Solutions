@@ -42,7 +42,7 @@ const WorkshopAndTraining = () => {
         console.log("Form submitted");
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/user/hire",
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/hire`,
                 formData
             );
             if (response.status === 200) {

@@ -32,7 +32,7 @@ const ModalComponent = ({ setActive, currentBlog, refreshBlogs, setToast }) => {
         e.preventDefault();
         try {
             await axios.put(
-                `http://localhost:8000/api/user/blogs/${currentBlog._id}`,
+                `${BACKEND_URL}/api/user/blogs/${currentBlog._id}`,
                 formData
             );
             toast.success("Blog Updated Sucessfully !!")

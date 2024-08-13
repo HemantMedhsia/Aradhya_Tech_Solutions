@@ -13,7 +13,7 @@ const ForgetPassword = () => {
         e.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/user/send-reset-password-email",
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/send-reset-password-email`,
                 { email }
             );
             setMessage(response.data.message);

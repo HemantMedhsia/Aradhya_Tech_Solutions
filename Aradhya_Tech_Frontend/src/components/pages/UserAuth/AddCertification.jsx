@@ -28,7 +28,7 @@ const AddCertification = () => {
         e.preventDefault();
         try {
             const response = await fetch(
-                "http://localhost:8000/api/user/add-certification",
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/add-certification`,
                 {
                     method: "POST",
                     headers: {

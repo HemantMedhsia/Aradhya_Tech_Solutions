@@ -26,7 +26,7 @@ const AllBlogsAdmin = () => {
     const refreshBlogs = async () => {
         try {
             const result = await axios.get(
-                "http://localhost:8000/api/user/blogs"
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/blogs`
             );
             setBlogs(result.data);
             console.log("result data", result.data);
@@ -52,7 +52,7 @@ const AllBlogsAdmin = () => {
     const handleDelete1 = async (id) => {
         try {
             await axios.delete(
-                `http://localhost:8000/api/user/blogs/${id}/content`
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/blogs/${id}/content`
             );
             setBlogs(blogs.filter((blog) => blog._id !== id));
             console.log(`Deleted blog with id: ${id}`);
@@ -83,7 +83,7 @@ const AllBlogsAdmin = () => {
         }
         try {
             await axios.post(
-                `http://localhost:8000/api/user/blogs/${currentBlog._id}/content`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/blogs/${currentBlog._id}/content`,
                 {
                     title: contentTitle,
                     description: contentDescription,

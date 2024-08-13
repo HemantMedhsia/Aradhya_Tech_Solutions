@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../AuthContext";
-// Import the CSS file
 
 const LoginPage = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -28,9 +27,10 @@ const LoginPage = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8000/api/user/login",
+                `${import.meta.env.VITE_BACKEND_URL}/api/user/login`,
                 { email, password }
-            );
+            );            
+
             toast.success(response.data.message);
             // Store the token and update the AuthContext state
 

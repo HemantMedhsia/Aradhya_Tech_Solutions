@@ -66,7 +66,7 @@ export default function ContactData() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/api/user/contact/${id}`);
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/user/contact/${id}`);
             setRows((prevRows) => prevRows.filter((row) => row._id !== id));
             toast.success("Row Data Deleted Sucessfully !!")
         } catch (error) {
@@ -80,7 +80,7 @@ export default function ContactData() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:8000/api/user/contact"
+                    `${import.meta.env.VITE_BACKEND_URL}/api/user/contact`
                 );
 
                 // Add sequential numbers to the rows

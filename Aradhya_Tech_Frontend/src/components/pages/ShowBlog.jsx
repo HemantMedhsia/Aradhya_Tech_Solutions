@@ -25,7 +25,7 @@ const ShowBlog = () => {
     useEffect(() => {
         async function fetchBlog() {
             try {
-                const response = await axios.post(`http://localhost:8000/api/user/single-blog/${id}`);
+                const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/user/single-blog/${id}`);
                 setBlog(response.data);
             } catch (err) {
                 console.log(err);
